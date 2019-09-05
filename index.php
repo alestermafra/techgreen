@@ -6,4 +6,4 @@ define('APP', ROOT . DS . 'app');
 define('WEBROOT', APP . DS . 'webroot'
 
 require WEBROOT . DS . 'index.php';
-echo 'bruce';
+echo "alester";
