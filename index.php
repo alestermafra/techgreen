@@ -5,4 +5,4 @@ define('LIB', ROOT . DS . 'lib');
 define('APP', ROOT . DS . 'app');
 define('WEBROOT', APP . DS . 'webroot'
 
-require WEBROOT . DS . 'index.php';    
+require WEBROOT . DS . 'index.php';
