@@ -84,7 +84,10 @@ class EnderecoController extends AppController {
 					$redirect .= '/overview_pj';
 				}
 			}
-			else if($pessoa['czfornec']) {
+			else if($pessoa['czfornec'] && $pessoa['cpsj']) {
+				$redirect = '/fornecedor/overview_pj';
+			}
+			else if($pessoa['czfornec'] && $pessoa['cpsf']) {
 				$redirect = '/fornecedor/overview_pf';
 			}
 			$redirect .= '/' . $cps;

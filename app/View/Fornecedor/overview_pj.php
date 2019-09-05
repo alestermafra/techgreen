@@ -21,9 +21,19 @@
 							<td class="text-muted">Tipo</td>
 							<td><?= $fornecedor['ntfornec'] ?></td>
 						</tr>
+                        <?php if(!empty($fornecedor['email'])): ?>
+						<tr>
+							<td class="text-muted">E-mail</td>
+							<td><a href="mailto:<?php echo $fornecedor['email'] ?>"><?php echo $fornecedor['email'] ?></a></td>
+						</tr>
+						<?php endif; ?>
 						<tr>
 							<td class="text-muted">CNPJ</td>
 							<td><input type="text" readonly class="form-control-plaintext p-0 m-0 cnpj-mask" value="<?php echo $fornecedor['cnpj'] ?>" data-value="<?php echo $fornecedor['cnpj'] ?>"></td>
+						</tr>
+                        <tr>
+							<td class="text-muted">Especialidade</td>
+							<td><?= $fornecedor['espec'] ?></td>
 						</tr>
 					</table>
 					
@@ -46,9 +56,67 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="card">
+				<div class="card-header bg-dark text-white">
+					Endereços
+					<div class="float-right">
+						<a
+							href="<?php echo $this->url('/endereco/inserir/' . $fornecedor['cps']) ?>"
+							class="btn btn-sm btn-primary"
+							role="button"
+							title="Adicionar novo endereço"
+						>
+							<i class="material-icons align-middle md-18">add</i>
+								<span class="align-middle">Endereço</span>
+							</a>
+					</div>
+				</div>
+				<div class="card-body">
+					<?php if(!isset($fornecedor['enderecos']) || isset($fornecedor['enderecos']) && empty($fornecedor['enderecos'])): ?>
+						<small>Nenhum endereço cadastrado.</small>
+					<?php else: ?>
+						<table class="table table-sm table-borderless p-0 m-0">
+					<?php foreach($fornecedor['enderecos'] as $end): ?>
+						<tr>
+							<td class="text-muted"><?php echo $end['ntpsend'] ?></td>
+							<td><?php echo endereco_short($end) ?></td>
+							<td>
+								<a href="<?php echo $this->url('/endereco/editar/' . $end['cpsend']) ?>" class="btn btn-link btn-sm" title="Editar endereço">
+									<i class='material-icons md-18'>edit</i>
+								</a>
+								<a href="<?php echo $this->url('/endereco/remover/' . $end['cpsend']) ?>" class="btn btn-link btn-sm text-danger" title="Remover endereço">
+									<i class='material-icons md-18'>clear</i>
+								</a>
+							</td>
+						</tr>
+					<?php endforeach ?>
+						</table>
+						<?php endif ?>
+				</div>
+			</div>
 		</div>
 		
 		<div class="col-md-4">
+			<div class="card">
+				<div class="card-header bg-dark text-white">
+					Telefones
+				</div>
+				<div class="card-body">
+					<?php if(!isset($fornecedor['telefones']) || isset($fornecedor['telefones']) && empty($fornecedor['telefones'])): ?>
+						<small>Nenhum telefone cadastrado.</small>
+					<?php else: ?>
+						<table class="table table-sm table-borderless p-0 m-0">
+							<?php foreach($fornecedor['telefones'] as $tel): ?>
+								<tr>
+									<td class="text-muted"><?= $tel['ntfone'] ?></td>
+									<td><input type="text" readonly class="form-control-plaintext p-0 m-0 phone w-auto" value="<?php echo $tel['fone'] ?>"data-value="<?php echo $tel['fone'] ?>"></input></td>
+								</tr>
+							<?php endforeach ?>
+						</table>
+					<?php endif ?>
+				</div>
+			</div>
 		
 			<div class="card">
 				<div class="card-header bg-dark text-white">
@@ -131,7 +199,6 @@
 		</div>
 	</div>
 </div>
-
 
 <div class="container-fluid">
 	<div class="card">
@@ -267,7 +334,7 @@
 				return '+00 (00) 00000-0000';
 			}
 		};
-		$('.fone-mask').mask(fone_mask);
+		$('.phone').mask(fone_mask);
 	};
 })();
 </script>

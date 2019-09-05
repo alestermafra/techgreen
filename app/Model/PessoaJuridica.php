@@ -2,6 +2,9 @@
 App::import('Table', 'Model');
 
 App::import('Pessoa', 'Model');
+App::import('Email', 'Model');
+App::import('Telefone', 'Model');
+App::import('Endereco', 'Model');
 
 class PessoaJuridica extends Table {
 	public static $_table = 'upsj';
@@ -26,6 +29,7 @@ class PessoaJuridica extends Table {
 		'eps.nps',
 		'upsj.cpsj',
 		'upsj.cnpj',
+		'upsj.email',
 	);
 	
 	public static function save($data) {
@@ -52,7 +56,24 @@ class PessoaJuridica extends Table {
 	}
 	
 	public static function saveAssociations($data) {
-		return $data;
+		if(isset($data['telefones']) && is_array($data['telefones'])) {
+			foreach($data['telefones'] as $tel) {
+				$tel['cps'] = $data['cps'];
+				try {
+					Telefone::save($tel);
+				}
+				catch(Exception $e) {}
+			}
+		}
+		if(isset($data['enderecos']) && is_array($data['enderecos'])) {
+			foreach($data['enderecos'] as $endereco) {
+				$endereco['cps'] = $data['cps'];
+				try {
+					Endereco::save($endereco);
+				}
+				catch(Exception $e) {}
+			}
+		}
 	}
 	
 	public static function validate($data, $mode = 'create') {
@@ -79,6 +100,9 @@ class PessoaJuridica extends Table {
 		}
 		if(isset($data['cnpj'])) {
 			$new_data['cnpj'] = preg_replace('/[^0-9]/i', '', strval($data['cnpj']));
+		}
+		if(isset($data['email'])) {
+			$new_data['email'] = strval($data['email']);
 		}
 		
 		return $new_data;
@@ -118,5 +142,14 @@ class PessoaJuridica extends Table {
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND upsj.cnpj = $cnpj";
 		return static::_find($type, $params);
+	}
+	
+	
+	public static function telefones(int $cps, string $type = 'all', array $params = array()) {
+		return Telefone::findByCps($cps, $type, $params);
+	}
+	
+	public static function enderecos(int $cps, string $type = 'all', array $params = array()) {
+		return Endereco::findByCps($cps, $type, $params);
 	}
 }

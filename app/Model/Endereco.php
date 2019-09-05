@@ -3,7 +3,7 @@ App::import('Table', 'Model');
 App::import('Connection', 'Model');
 
 App::import('TipoEndereco', 'Model');
-App::import('PessoaFisica', 'Model');
+App::import('Pessoa', 'Model');
 
 class Endereco extends Table {
 	
@@ -65,7 +65,7 @@ class Endereco extends Table {
 	}
 	
 	public static function validate($data, $mode = 'create') {
-		if(!isset($data['cps']) || intval($data['cps']) === 0 || !PessoaFisica::findByCps($data['cps'], 'count')) {
+		if(!isset($data['cps']) || intval($data['cps']) === 0 || !Pessoa::findById($data['cps'], 'count')) {
 			throw new Exception("Registro de pessoa não encontrado.");
 		}
 		if($mode === 'create') {

@@ -84,6 +84,9 @@ class FornecedorController extends AppController {
 		
 		$fornecedor['contatos'] = Contato::findByCpsConta($fornecedor['cps']);
 		
+		$fornecedor['telefones'] = Telefone::findByCps($fornecedor['cps']);
+		$fornecedor['enderecos'] = Endereco::findByCps($fornecedor['cps']);
+		
 		$this->view->set('fornecedor', $fornecedor);
 		$this->view->set('ocorrencia', Ocorrencia::findByCodigoPessoa($fornecedor['cps']));
 	}
@@ -94,7 +97,6 @@ class FornecedorController extends AppController {
 		}
 		
 		$fornecedor['telefones'] = Telefone::findByCps($fornecedor['cps']);
-		$fornecedor['enderecos'] = Endereco::findByCps($fornecedor['cps']);
 		
 		$this->view->set('fornecedor', $fornecedor);
 		$this->view->set('ocorrencia', Ocorrencia::findByCodigoPessoa($fornecedor['cps']));
@@ -113,6 +115,8 @@ class FornecedorController extends AppController {
 		}
 		
 		$this->view->set('tipos_fornecedor', TipoFornecedor::find());
+		$this->view->set('tipos_telefone', TipoTelefone::find());
+		$this->view->set('tipos_endereco', Endereco::tipoEndereco());
 	}
 	
 	public function inserir_pf() {
@@ -139,9 +143,11 @@ class FornecedorController extends AppController {
 		if($this->request->method === 'POST') {
 			$data = $_POST;
 			$fornecedor['nps'] = _isset($data['nps'], $fornecedor['nps']);
+			$fornecedor['espec'] = _isset($data['espec'], $fornecedor['espec']);
 			$fornecedor['ctfornec'] = _isset($data['ctfornec'], $fornecedor['ctfornec']);
 			$fornecedor['cnpj'] = _isset($data['cnpj'], $fornecedor['cnpj']);
 			$fornecedor['ativo'] = _isset($_POST['ativo'], $fornecedor['ativo']);
+			$fornecedor['telefones'] = _isset($data['telefones'], array());
 			try {
 				FornecedorPJ::save($fornecedor);
 				return $this->redirect('/fornecedor/overview_pj/' . $cps);
@@ -151,8 +157,13 @@ class FornecedorController extends AppController {
 			}
 		}
 		
+		$fornecedor['telefones'] = FornecedorPJ::telefones($fornecedor['cps']);
+		$fornecedor['enderecos'] = FornecedorPJ::enderecos($fornecedor['cps']);
+		
 		$this->view->set('fornecedor', $fornecedor);
 		$this->view->set('tipos_fornecedor', TipoFornecedor::find());
+		$this->view->set('tipos_telefone', TipoTelefone::find());
+		$this->view->set('tipos_endereco', Endereco::tipoEndereco());
 	}
 	
 	public function editar_pf(int $cps = null){

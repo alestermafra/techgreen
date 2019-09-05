@@ -30,8 +30,10 @@ class FornecedorPJ extends Table {
 		'eps.nps',
 		'upsj.cpsj',
 		'upsj.cnpj',
+		'upsj.email',
 		'zfornec.czfornec',
 		'zfornec.ativo',
+		'zfornec.espec',
 		'tfornec.ctfornec',
 		'tfornec.ntfornec',
 	);
@@ -86,6 +88,9 @@ class FornecedorPJ extends Table {
 		if(isset($data['ativo'])) {
 			$new_data['ativo'] = intval($data['ativo']);
 		}
+		if(isset($data['espec'])) {
+			$new_data['espec'] = strval($data['espec']);
+		}
 		
 		return $new_data;
 	}
@@ -113,6 +118,15 @@ class FornecedorPJ extends Table {
 		return false;
 	}
 	
+	
+	/* specials */
+	public static function telefones(int $cps, string $type = 'all', array $params = array()) {
+		return PessoaJuridica::telefones($cps, $type, $params);
+	}
+	
+	public static function enderecos(int $cps, string $type = 'all', array $params = array()) {
+		return PessoaJuridica::enderecos($cps, $type, $params);
+	}
 	
 	/* métodos de busca */
 	public static function find(string $type = 'all', array $params = array()) {
