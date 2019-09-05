@@ -3,6 +3,7 @@ App::import('AppController', 'Controller');
 
 App::import('Auth', 'Model');
 
+App::import("Pessoa", "Model");
 App::import('ClientePF', 'Model');
 App::import('ClientePJ', 'Model');
 
@@ -20,6 +21,8 @@ App::import('Contato', 'Model');
 App::import('ContaContato', 'Model');
 
 App::import('Ocorrencia', 'Model');
+
+App::import("Attachment", "Model");
 
 class PainelController extends AppController {
 	
@@ -64,6 +67,7 @@ class PainelController extends AppController {
 		$clientepf['interesses'] = ClientePF::interesses($cps);
 		$clientepf['aulas'] = ParticipanteAula::findByCps($cps);
 		$clientepf['equipamentos'] = Equipamento::findByCps($cps);
+		$clientepf['attachments'] = Attachment::get_attachments(WEBROOT . DS . "attachments" . DS . "painel" . DS . "pf" . DS . $cps);
 		
 		$this->view->set('clientepf', $clientepf);
 		$this->view->set('ocorrencia', Ocorrencia::findByCodigoPessoa($clientepf['cps'], 'all', array('order' => 'eocorrencia.data DESC')));
@@ -172,6 +176,7 @@ class PainelController extends AppController {
 		}
 		
 		$clientepj['contatos'] = Contato::findByCpsConta($clientepj['cps']);
+		$clientepj['attachments'] = Attachment::get_attachments(WEBROOT . DS . "attachments" . DS . "painel" . DS . "pj" . DS . $cps);
 		
 		$this->view->set('clientepj', $clientepj);
 		$this->view->set('ocorrencia', Ocorrencia::findByCodigoPessoa($clientepj['cps'], 'all', array('order' => 'eocorrencia.data DESC')));
@@ -251,5 +256,63 @@ class PainelController extends AppController {
 		$this->view->set('count', $count);
 		$this->view->set('excel', $excel);
 		$this->view->set('segmentacoes', Segmentacao::find());
+	}
+	
+	/*
+		Faz upload de arquivos.
+	*/
+	public function attachment_upload(int $cps) {
+		$this->autoRender = false;
+		
+		if(!$pessoa = Pessoa::findById($cps)) {
+			return $this->redirect("/");
+		}
+		
+		$tipo = NULL;
+		if($pessoa['cpsf']) {
+			$tipo = "pf";
+		}
+		else if($pessoa['cpsj']) {
+			$tipo = "pj";
+		}
+		
+		if(!$tipo) {
+			return $this->redirect("/");
+		}
+		
+		if($this->request->method === "POST" && Attachment::have_uploads("attachments")) {
+			Attachment::save_all("attachments", WEBROOT . DS . "attachments" . DS . "painel" . DS . $tipo . DS . $cps);
+		}
+		
+		return $this->redirect("/painel/overview_" . $tipo . "/" . $cps);
+	}
+	
+	public function attachment_delete(int $cps) {
+		$this->autoRender = false;
+		
+		if(!$pessoa = Pessoa::findById($cps)) {
+			return $this->redirect("/");
+		}
+		
+		$tipo = NULL;
+		if($pessoa['cpsf']) {
+			$tipo = "pf";
+		}
+		else if($pessoa['cpsj']) {
+			$tipo = "pj";
+		}
+		
+		if(!$tipo) {
+			return $this->redirect("/");
+		}
+		
+		if($this->request->method === "POST") {
+			$file = _isset($_POST['image_name'], null);
+			if($file !== null) {
+				Attachment::delete_attachment(WEBROOT . DS . "attachments" . DS . "painel" . DS . $tipo . DS . $cps . DS . $file);
+			}
+		}
+		
+		return $this->redirect("/painel/overview_" . $tipo . "/" . $cps);
 	}
 }
