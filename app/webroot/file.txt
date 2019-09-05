@@ -1,0 +1,91 @@
+
+array (
+  'passkey' => '71670b6e3324db05d28634f9f1bd76fb',
+  'info_hash' => 'ˆ\\¼ÐñqÔÒÙØ=­²Mºþ¸A',
+  'peer_id' => '-UT355W-¯°Òvñù|¬¼',
+  'port' => '29606',
+  'uploaded' => '6176768',
+  'downloaded' => '142606336',
+  'left' => '25161371131',
+  'corrupt' => '0',
+  'key' => 'F5B695AB',
+  'event' => 'stopped',
+  'numwant' => '0',
+  'compact' => '1',
+  'no_peer_id' => '1',
+)
+array (
+)
+/mgold/painel/test?passkey=71670b6e3324db05d28634f9f1bd76fb&info_hash=%88%5c%bc%d0%f1q%d4%7f%d2%d9%d8%3d%ad%b2M%ba%fe%b8A%17&peer_id=-UT355W-%af%b0%0c%d2v%f1%f9%13%7c%ac%bc%15&port=29606&uploaded=6176768&downloaded=142606336&left=25161371131&corrupt=0&key=F5B695AB&event=stopped&numwant=0&compact=1&no_peer_id=1
+array (
+  'passkey' => '71670b6e3324db05d28634f9f1bd76fb',
+  'info_hash' => 'ˆ\\¼ÐñqÔÒÙØ=­²Mºþ¸A',
+  'peer_id' => '-UT355W-¯°Òvñù|¬¼',
+  'port' => '29606',
+  'uploaded' => '0',
+  'downloaded' => '0',
+  'left' => '25161371131',
+  'corrupt' => '0',
+  'key' => 'F5B695AB',
+  'event' => 'started',
+  'numwant' => '200',
+  'compact' => '1',
+  'no_peer_id' => '1',
+)
+array (
+)
+/mgold/painel/test?passkey=71670b6e3324db05d28634f9f1bd76fb&info_hash=%88%5c%bc%d0%f1q%d4%7f%d2%d9%d8%3d%ad%b2M%ba%fe%b8A%17&peer_id=-UT355W-%af%b0%0c%d2v%f1%f9%13%7c%ac%bc%15&port=29606&uploaded=0&downloaded=0&left=25161371131&corrupt=0&key=F5B695AB&event=started&numwant=200&compact=1&no_peer_id=1
+array (
+  'passkey' => '71670b6e3324db05d28634f9f1bd76fb',
+  'info_hash' => 'ˆ\\¼ÐñqÔÒÙØ=­²Mºþ¸A',
+  'peer_id' => '-UT355W-¯°Òvñù|¬¼',
+  'port' => '29606',
+  'uploaded' => '65536',
+  'downloaded' => '0',
+  'left' => '25160830459',
+  'corrupt' => '0',
+  'key' => '65601354',
+  'event' => 'started',
+  'numwant' => '200',
+  'compact' => '1',
+  'no_peer_id' => '1',
+)
+array (
+)
+/mgold/painel/test?passkey=71670b6e3324db05d28634f9f1bd76fb&info_hash=%88%5c%bc%d0%f1q%d4%7f%d2%d9%d8%3d%ad%b2M%ba%fe%b8A%17&peer_id=-UT355W-%af%b0%0c%d2v%f1%f9%13%7c%ac%bc%15&port=29606&uploaded=65536&downloaded=0&left=25160830459&corrupt=0&key=65601354&event=started&numwant=200&compact=1&no_peer_id=1
+array (
+  'passkey' => '71670b6e3324db05d28634f9f1bd76fb',
+  'info_hash' => 'ˆ\\¼ÐñqÔÒÙØ=­²Mºþ¸A',
+  'peer_id' => '-UT355W-¯°Òvñù|¬¼',
+  'port' => '29606',
+  'uploaded' => '147456',
+  'downloaded' => '2097152',
+  'left' => '25159716347',
+  'corrupt' => '0',
+  'key' => '4DF7EB9B',
+  'event' => 'started',
+  'numwant' => '200',
+  'compact' => '1',
+  'no_peer_id' => '1',
+)
+array (
+)
+/mgold/painel/test?passkey=71670b6e3324db05d28634f9f1bd76fb&info_hash=%88%5c%bc%d0%f1q%d4%7f%d2%d9%d8%3d%ad%b2M%ba%fe%b8A%17&peer_id=-UT355W-%af%b0%0c%d2v%f1%f9%13%7c%ac%bc%15&port=29606&uploaded=147456&downloaded=2097152&left=25159716347&corrupt=0&key=4DF7EB9B&event=started&numwant=200&compact=1&no_peer_id=1
+array (
+  'passkey' => '71670b6e3324db05d28634f9f1bd76fb',
+  'info_hash' => 'ˆ\\¼ÐñqÔÒÙØ=­²Mºþ¸A',
+  'peer_id' => '-UT355W-¯°Òvñù|¬¼',
+  'port' => '29606',
+  'uploaded' => '147456',
+  'downloaded' => '4194304',
+  'left' => '25157766651',
+  'corrupt' => '0',
+  'key' => '2EB8D7D8',
+  'event' => 'started',
+  'numwant' => '200',
+  'compact' => '1',
+  'no_peer_id' => '1',
+)
+array (
+)
+/mgold/painel/test?passkey=71670b6e3324db05d28634f9f1bd76fb&info_hash=%88%5c%bc%d0%f1q%d4%7f%d2%d9%d8%3d%ad%b2M%ba%fe%b8A%17&peer_id=-UT355W-%af%b0%0c%d2v%f1%f9%13%7c%ac%bc%15&port=29606&uploaded=147456&downloaded=4194304&left=25157766651&corrupt=0&key=2EB8D7D8&event=started&numwant=200&compact=1&no_peer_id=1
