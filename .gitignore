@@ -1,1 +1,5 @@
-/tmp/sessions/sess_*
+# Ignorar arquivos de sessão 
+tmp/sessions/sess_*
+
+# Ignorar pasta de uploads
+app/webroot/attachments/

@@ -1,3 +1,18 @@
+<style>
+	.image-container {
+		position: relative;
+	}
+	
+	.image-control {
+		position: absolute;
+		display: none;
+	}
+	
+	.image-container:hover .image-control {
+		display: block;
+	}
+</style>
+
 <nav class="navbar navbar-light">
 	<span class="navbar-brand">Cliente</span>
 	<div>
@@ -228,6 +243,48 @@
 							<?php endforeach ?>
 						</table>
 					<?php endif ?>
+				</div>
+			</div>
+			
+			<div class="card">
+				<div class="card-header bg-dark text-white">
+					Anexos
+					<div class="float-right">
+						<label for="attachment-input" class="btn btn-sm btn-primary m-0">
+							<i class="material-icons align-middle md-18">cloud_upload</i>
+							<span class="align-middle">Enviar Imagem</span>
+						</label>
+					</div>
+				</div>
+				<div class="card-body">
+				
+					<form enctype="multipart/form-data" action="<?php echo $this->url('/painel/attachment_upload/' . $clientepf['cps']) ?>" method="POST">
+						<input id="attachment-input" type="file" name="attachments[]" style="display: none;" onchange="this.form.submit()" accept="image/*" multiple></input>
+					</form>
+					
+					<?php if(empty($clientepf['attachments'])): ?>
+						<div class="text-left small text-muted">
+							Nenhum anexo.
+						</div>
+					<?php else: ?>
+						<div class="row">
+							<?php foreach($clientepf['attachments'] as $image): ?>
+								<div class="col-sm-12 col-md-6 col-lg-4 p-1 image-container">
+									<div class="image-control">
+										<form action="<?php echo $this->url('/painel/attachment_delete/' . $clientepf['cps']) ?>" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir o anexo?');">
+											<input type="hidden" name="image_name" value="<?php echo $image['name'] ?>"></input>
+											<input type="submit" class="btn btn-sm btn-danger" value="Deletar"></input>
+										</form>
+									</div>
+									<div class="image">
+										<a href="<?php echo $this->url($image['url']) ?>" data-fancybox="gallery" style="width: 100%;">
+											<img src="<?php echo $this->url($image['url']) ?>" style="width: 120px; height 120px;" />
+										</a>
+									</div>
+								</div>
+							<?php endforeach; ?>
+						</div>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
