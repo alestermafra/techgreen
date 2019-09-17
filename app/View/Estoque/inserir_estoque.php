@@ -29,7 +29,9 @@
 					<label class="small text-muted">Produto</label> 
 					<select name="cprod" class="form-control form-control-sm" autofocus>
 						<?php foreach($produtos as $prod): ?>
-							<option value="<?php echo $prod['cprod'] ?>">
+							<option value="<?php echo $prod['cprod'] ?>"
+                            <?php if($prod['cprod']==$cprod) { echo ' seleted ';} ?>
+                            >
 								<?php echo $prod['nlinha'] .' > '. $prod['nprod'] ?>
 							</option>
 						<?php endforeach ?>

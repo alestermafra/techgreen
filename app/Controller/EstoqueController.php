@@ -135,7 +135,7 @@ class EstoqueController extends AppController {
 		$this->view->set('linhas', Linha::findByCscat(2));
 	}
 	//------------------------------------------------------------------------	
-	public function inserir_estoque() {
+	public function inserir_estoque(int $cprod = null) {
 		if($this->request->method === 'POST') {
 			$data = $_POST;
 			try {
@@ -147,6 +147,7 @@ class EstoqueController extends AppController {
 			}
 		}
 		
+		$this->view->set('cprod', $cprod);
 		$this->view->set('produtos', Estoque::produtos());
 	}
 	//------------------------------------------------------------------------	

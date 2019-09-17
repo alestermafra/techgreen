@@ -43,7 +43,7 @@ class Produto extends Table {
 	
 	/*criação*/
 	public static function create($data) {
-		if(!isset($data['clinha']) || !static::findByClinha($data['clinha'], 'count')) {
+		if(!isset($data['clinha'])) {
 			throw new Exception('Linha inválida / Tipo inválido (clinha)');
 		}
 		
@@ -63,7 +63,7 @@ class Produto extends Table {
 	
 	/*edição*/
 	public static function edit($data) {
-		if(!isset($data['clinha']) || !static::findByClinha($data['clinha'], 'count')) {
+		if(!isset($data['clinha'])) {
 			throw new Exception('Linha inválida / Tipo inválido (clinha)');
 		}
 		
