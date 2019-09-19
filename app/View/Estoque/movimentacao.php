@@ -48,6 +48,7 @@
 				<tr>
 					<th scope="col" class="small">id</th>
 					<th scope="col" class="small">Produto</th>
+					<th scope="col" class="small">Linha</th>
 					<th scope="col" class="small">Qtd</th>
 					<th scope="col" class="small">Qtd Max</th>
 				</tr>
@@ -57,6 +58,7 @@
 					<tr style="cursor: pointer" onclick="window.location = '<?php echo $this->url('/estoque/editar_estoque/' . $d['cstoque']) ?>'">
 						<td nowrap><?php echo $d['cstoque'] ?></td>
 						<td nowrap><?php echo $d['nprod'] ?></td>
+						<td nowrap><?php echo $d['nlinha'] ?></td>
 						<td nowrap><?php echo $d['qtd'] ?></td>
                         <td nowrap><?php echo $d['qtd_max'] ?></td>
 					</tr>

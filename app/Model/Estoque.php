@@ -11,6 +11,7 @@ class Estoque extends Table {
 			{{fields}}
 		FROM estoque
 			INNER JOIN eprod ON (estoque.cprod = eprod.cprod)
+			LEFT JOIN elinha ON (elinha.clinha = eprod.clinha)
 		WHERE estoque.RA = 1
 			{{conditions}}
 		{{group}}
@@ -25,6 +26,8 @@ class Estoque extends Table {
 		'estoque.qtd_max',
 		'eprod.cprod',
 		'eprod.nprod',
+		'elinha.clinha',
+		'elinha.nlinha'
 	);
 	
 	
