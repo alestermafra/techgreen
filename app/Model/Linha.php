@@ -80,25 +80,26 @@ class Linha extends Table {
 	
 	/* métodos de busca */
 	public static function find(string $type = 'all', array $params = array()) {
+		$params["order"] = _isset($params["order"], "elinha.nlinha");
 		return parent::_find($type, $params);
 	}
 	
 	public static function findById(int $id, string $type = 'first', array $params = array()) {
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND elinha.clinha = $id";
-		return static::_find($type, $params);
+		return static::find($type, $params);
 	}
 	
 	public static function findByCscat(int $id, string $type = 'all', array $params = array()) {
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND escat.cscat = $id";
-		return static::_find($type, $params);
+		return static::find($type, $params);
 	}
 	
 	public static function findByCcat(int $id, string $type = 'all', array $params = array()) {
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND ecat.ccat = $id";
-		return static::_find($type, $params);
+		return static::find($type, $params);
 	}
 	
 	public static function search($value, string $type = 'all', array $params = array()) {
@@ -108,6 +109,6 @@ class Linha extends Table {
 		$params['conditions'] .= " OR elinha.sprod LIKE '%$value%'";
 		$params['conditions'] .= " OR escat.nscat LIKE '%$value%'";
 		$params['conditions'] .= ")";
-		return static::_find($type, $params);
+		return static::find($type, $params);
 	}
 }
