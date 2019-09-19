@@ -32,8 +32,9 @@
 					<label class="small text-muted">Linha / Tipo</label> 
 					<select name="clinha" class="form-control form-control-sm" autofocus>
 						<?php foreach($linhas as $l): ?>
-							<option value="<?php echo $l['clinha']?>"
-							<?php if($produto['clinha']==$l['clinha']) { echo ' seleted ';}?>
+							<option
+								value="<?php echo $l['clinha']?>"
+								<?php if($l['clinha'] == $produto['clinha']) { echo ' selected'; } ?>
 							>
 								<?php echo $l['nlinha'] ?>
 							</option>
