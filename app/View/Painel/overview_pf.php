@@ -182,6 +182,30 @@
 					<?php endif ?>
 				</div>
 			</div>
+			
+			<div class="card">
+				<div class="card-header bg-dark text-white">
+					Aulas
+				</div>
+				<div class="card-body">
+					<?php if(empty($clientepf['aulas'])): ?>
+						<small>Não participou de nenhuma aula.</small>
+					<?php else: ?>
+						<ul class="list-group list-group-flush">
+							<?php foreach($clientepf['aulas'] as $aula): ?>
+								<li class="list-group-item">
+									<div class="d-flex w-100 justify-content-between">
+									  <h5><?= $aula['nlinha'] ?> <small>(<?= $aula['subtitulo']; ?>)</small></h5>
+									  <small><?= $aula['cdia']; ?>/<?= $aula['cmes']; ?>/<?= $aula['can']; ?></small>
+									</div>
+									<p><?= $aula['descricao']; ?></p>
+									<small>Instrutor <?= $aula['instrutor']; ?></small>
+								</li>
+							<?php endforeach ?>
+						</ul>
+					<?php endif ?>
+				</div>
+			</div>
 		</div>
 	
 		
@@ -199,26 +223,6 @@
 								<tr>
 									<td class="text-muted"><?= $tel['ntfone'] ?></td>
 									<td><input type="text" readonly class="form-control-plaintext p-0 m-0 phone w-auto" value="<?php echo $tel['fone'] ?>"data-value="<?php echo $tel['fone'] ?>"></input></td>
-								</tr>
-							<?php endforeach ?>
-						</table>
-					<?php endif ?>
-				</div>
-			</div>
-			
-			<div class="card">
-				<div class="card-header bg-dark text-white">
-					Aulas
-				</div>
-				<div class="card-body">
-					<?php if(empty($clientepf['aulas'])): ?>
-						<small>Não participou de nenhuma aula.</small>
-					<?php else: ?>
-						<table class="table table-sm table-hover table-borderless p-0 m-0">
-							<?php foreach($clientepf['aulas'] as $aula): ?>
-								<tr>
-									<td><a href="<?= $this->url("/aula/view/{$aula['caula']}") ?>"><?= $aula['nlinha'] ?></a></td>
-									<td><?= $aula['cdia'] ?>/<?= $aula['cmes'] ?>/<?= $aula['can'] ?></td>
 								</tr>
 							<?php endforeach ?>
 						</table>

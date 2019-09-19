@@ -32,6 +32,8 @@ class ParticipanteAula extends Table {
 		'eaula.chora',
 		'eaula.cminuto',
 		'eaula.instrutor',
+		'eaula.descricao',
+		'eaula.subtitulo',
 		'elinha.clinha',
 		'elinha.nlinha',
 		'eps.cps',
