@@ -46,8 +46,7 @@ class ClientePF extends Table {
 		'zpainel.czpainel',
 		'zpainel.ativo',
 		'eseg.cseg',
-		'eseg.nseg',
-		'(SELECT fone FROM zfone WHERE cps = eps.cps AND flg_principal = 1 AND RA = 1 LIMIT 1) AS fone'
+		'eseg.nseg'
 	);
 	
 	
