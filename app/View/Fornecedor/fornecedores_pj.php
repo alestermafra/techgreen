@@ -99,14 +99,14 @@
 	<nav>
 		<ul class="pagination pagination-sm justify-content-center">
 			<li class="page-item <?php echo $page === 1? 'disabled':'' ?>">
-				<a class="page-link" href="<?php echo $this->url('/fornecedor' . $url_get . '&page=1') ?>">Primeira</a>
+				<a class="page-link" href="<?php echo $this->url('/fornecedor/fornecedores_pj/' . $url_get . '&page=1') ?>">Primeira</a>
 			</li>
 			<li class="page-item <?php echo $page <= 1? 'disabled':'' ?>">
-				<a class="page-link" href="<?php echo $this->url('/fornecedor' . $url_get . '&page=' . ($page - 1)) ?>">Anterior</a>
+				<a class="page-link" href="<?php echo $this->url('/fornecedor/fornecedores_pj/' . $url_get . '&page=' . ($page - 1)) ?>">Anterior</a>
 			</li>
 			<li class="page-item active"><a class="page-link" href="javascript:void(0)"><?php echo $page ?></a></li>
-			<li class="page-item <?php echo ($pages === 0 || $page === $pages)? 'disabled':'' ?>"><a class="page-link" href="<?php echo $this->url('/fornecedor' . $url_get . '&page=' . ($page + 1)) ?>">Próxima</a></li>
-			<li class="page-item <?php echo ($pages === 0 || $page === $pages)? 'disabled':'' ?>"><a class="page-link" href="<?php echo $this->url('/fornecedor' . $url_get . '&page=' . $pages) ?>">Última</a></li>
+			<li class="page-item <?php echo ($pages === 0 || $page === $pages)? 'disabled':'' ?>"><a class="page-link" href="<?php echo $this->url('/fornecedor/fornecedores_pj/' . $url_get . '&page=' . ($page + 1)) ?>">Próxima</a></li>
+			<li class="page-item <?php echo ($pages === 0 || $page === $pages)? 'disabled':'' ?>"><a class="page-link" href="<?php echo $this->url('/fornecedor/fornecedores_pj/' . $url_get . '&page=' . $pages) ?>">Última</a></li>
 		</ul>
 	</nav>
 		
