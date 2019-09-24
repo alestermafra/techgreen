@@ -14,7 +14,8 @@ class ClientePF extends Table {
 		FROM zpainel
 			INNER JOIN eps ON (eps.cps = zpainel.cps)
 			INNER JOIN upsf ON (upsf.cps = eps.cps)
-			INNER JOIN eseg ON (eseg.cseg = zpainel.cseg)
+			LEFT JOIN eseg ON (eseg.cseg = zpainel.cseg)
+			LEFT JOIN zfone ON (zfone.cps = eps.cps AND zfone.flg_principal = 1)
 		WHERE eps.RA = 1
 			AND upsf.RA = 1
 			AND zpainel.RA = 1
@@ -46,7 +47,9 @@ class ClientePF extends Table {
 		'zpainel.czpainel',
 		'zpainel.ativo',
 		'eseg.cseg',
-		'eseg.nseg'
+		'eseg.nseg',
+		'zfone.cfone',
+		'zfone.fone',
 	);
 	
 	
@@ -136,25 +139,26 @@ class ClientePF extends Table {
 	
 	/* métodos de busca */
 	public static function find(string $type = 'all', array $params = array()) {
+		$params["order"] = _isset($params["order"], "eps.nps");
 		return parent::_find($type, $params);
 	}
 	
 	public static function findById(int $id, string $type = 'first', array $params = array()) {
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND zpainel.czpainel = $id";
-		return static::_find($type, $params);
+		return static::find($type, $params);
 	}
 	
 	public static function findByCps(int $cps, string $type = 'first', array $params = array()) {
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND eps.cps = $cps";
-		return static::_find($type, $params);
+		return static::find($type, $params);
 	}
 	
 	public static function findByCPF(string $cpf, string $type = 'first', array $params = array()) {
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND eaux.cpf = '$cpf'";
-		return static::_find($type, $params);
+		return static::find($type, $params);
 	}
 	
 	public static function search($value, string $type = 'all', array $params = array()) {
@@ -162,7 +166,7 @@ class ClientePF extends Table {
 		$params['conditions'] .= " AND ( eps.cps = '$value'";
 		$params['conditions'] .= " OR eps.nps LIKE '%$value%'";
 		$params['conditions'] .= ")";
-		return static::_find($type, $params);
+		return static::find($type, $params);
 	}
 	
 	

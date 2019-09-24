@@ -12,11 +12,10 @@ class ClientePJ extends Table {
 		FROM zpainel
 			INNER JOIN eps ON (eps.cps = zpainel.cps)
 			INNER JOIN upsj ON (upsj.cps = eps.cps)
-			INNER JOIN eseg ON (eseg.cseg = zpainel.cseg)
+			LEFT JOIN eseg ON (eseg.cseg = zpainel.cseg)
 		WHERE eps.RA = 1
 			AND upsj.RA = 1
 			AND zpainel.RA = 1
-			AND eseg.RA = 1
 			{{conditions}}
 		{{group}}
 		{{order}}

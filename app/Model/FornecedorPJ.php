@@ -12,11 +12,10 @@ class FornecedorPJ extends Table {
 		FROM zfornec
 			INNER JOIN upsj ON (upsj.cps = zfornec.cps)
 			INNER JOIN eps ON (eps.cps = upsj.cps)
-			INNER JOIN tfornec ON (tfornec.ctfornec = zfornec.ctfornec)
+			LEFT JOIN tfornec ON (tfornec.ctfornec = zfornec.ctfornec)
 		WHERE eps.RA = 1
 			AND upsj.RA = 1
 			AND zfornec.RA = 1
-			AND tfornec.RA = 1
 			{{conditions}}
 		{{group}}
 		{{order}}

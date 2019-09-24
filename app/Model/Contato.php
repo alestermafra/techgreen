@@ -12,6 +12,7 @@ class Contato extends Table {
 		FROM uccon
 			INNER JOIN upsf ON (upsf.cps = uccon.cps_contato)
 			INNER JOIN eps ON (eps.cps = upsf.cps)
+			LEFT JOIN zfone ON (zfone.cps = eps.cps AND zfone.flg_principal = 1)
 		WHERE eps.RA = 1
 			AND upsf.RA = 1
 			AND uccon.RA = 1
@@ -41,8 +42,8 @@ class Contato extends Table {
 		'upsf.dependente3',
 		'upsf.dependente4',
 		'upsf.dependente5',
-		'(SELECT cfone FROM zfone WHERE cps = eps.cps AND flg_principal = 1 AND RA = 1 LIMIT 1) AS cfone',
-		'(SELECT fone FROM zfone WHERE cps = eps.cps AND flg_principal = 1 AND RA = 1 LIMIT 1) AS fone',
+		'zfone.cfone',
+		'zfone.fone',
 		'uccon.cccon',
 		'uccon.cps_conta',
 		'uccon.cps_contato',
