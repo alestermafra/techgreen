@@ -1,11 +1,13 @@
 <?php
 	/* parametros para inserir na paginação. */
 	$url_get = '?';
-	if(isset($_GET['search_value'])) {
-		$url_get .= "&search_value={$_GET['search_value']}";
-	}
-	if(isset($_GET['order'])) {
-		$url_get .= "&order={$_GET['order']}";
+	foreach($_GET as $k => $v) {
+		if($k === 'page') {
+			continue;
+		}
+		if($v) {
+			$url_get .= "&$k=$v";
+		}
 	}
 ?>
 
