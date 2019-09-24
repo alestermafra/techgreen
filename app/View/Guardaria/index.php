@@ -5,7 +5,9 @@
 		if($k === 'page') {
 			continue;
 		}
-		$url_get .= "&$k=$v";
+		if($v) {
+			$url_get .= "&$k=$v";
+		}
 	}
 ?>
 

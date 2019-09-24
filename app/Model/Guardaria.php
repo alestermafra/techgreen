@@ -152,19 +152,6 @@ class Guardaria extends Table {
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND ( eps.cps = '$value'";
 		$params['conditions'] .= " OR eps.nps LIKE '%$value%'";
-		$params['conditions'] .= " OR eequipe.nome LIKE '%$value%'";
-		$params['conditions'] .= " OR eequipe.marca LIKE '%$value%'";
-		$params['conditions'] .= " OR eequipe.tamanho LIKE '%$value%'";
-		$params['conditions'] .= " OR eequipe.cor LIKE '%$value%'";
-		$params['conditions'] .= " OR eequipe.ano LIKE '%$value%'";
-		$params['conditions'] .= " OR eequipe.estado_geral LIKE '%$value%'";
-		$params['conditions'] .= " OR tequipe.ntequipe LIKE '%$value%'";
-		$params['conditions'] .= " OR eplano.nplano LIKE '%$value%'";
-		$params['conditions'] .= " OR eprod.nprod LIKE '%$value%'";
-		$params['conditions'] .= " OR epgt.npgt LIKE '%$value%'";
-		$params['conditions'] .= " OR eguardaria.descricao LIKE '%$value%'";
-		$params['conditions'] .= " OR eguardaria.valor LIKE '%$value%'";
-		$params['conditions'] .= " OR eguardaria.valor_extra LIKE '%$value%'";
 		$params['conditions'] .= ")";
 		return static::_find($type, $params);
 	}
