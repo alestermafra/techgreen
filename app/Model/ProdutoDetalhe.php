@@ -37,9 +37,37 @@ class ProdutoDetalhe extends Table {
 		'eprodd.valor',
 	);
 
-	/* métodos de criação / de edição */
+	/* métodos de criação de edição */
 	public static function save($data) {
+		if(!isset($data['cprodd'])) {
+			return static::create($data);
+		}
 		return static::edit($data);
+	}
+	
+	/*criação*/
+	public static function create($data) {
+		if(!isset($data['clinha'])) {
+			throw new Exception('Linha inválida / Tipo inválido (clinha)');
+		}
+		
+		$connection = new Connection();
+		
+		$dinicio = date("Y-m-d");
+		$dfim =  date("Y-m-d", strtotime("+5 year"));
+		
+		$eprodd = [
+			'cprod' => (int) _isset($data['cprod'], null),
+			'ctabela' => (int) _isset($data['ctabela'], 8),
+			'cplano' => (int) _isset($data['cplano'], 18),
+			'valor' => (string) _isset($data['valor'], null),
+			'dinicio' => (string) $dinicio,
+			'dfim' => (string) $dfim,
+			'flg_pedido' => (int) _isset($data['flg_pedido'], null),
+		];
+		$cprodd = $connection->insert('eprodd', $eprodd);
+		
+		return static::findById($cprodd);
 	}
 	
 	/*edição*/
