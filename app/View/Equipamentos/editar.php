@@ -41,13 +41,12 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="cps-select" class="small text-muted">Responsável</label>
-					<select name="cps" id="cps-select" class="form-control form-control-sm">
-						<option value="0">Selecione</option>
-						<?php foreach($pessoas as $p): ?>
-							<option value="<?php echo $p['cps'] ?>"<?php echo _isset($_POST['cps'], $equipamento['cps']) == $p['cps']? ' selected' : '' ?>><?php echo $p['nps'] ?> (#<?php echo $p['cps'] ?>)</option>
-						<?php endforeach ?>
-					</select>
+					<input type="hidden" id="cps" name="cps" value="<?= $equipamento["cps"] ?>"></input>
+					<label for="cps-autocomplete" class="small text-muted">Responsável</label>
+					<input type="text" id="cps-autocomplete" class="form-control form-control-sm" placeholder="Procurar cliente"></input>
+				</div>
+				<div id="cps-autocomplete-details">
+					<span id="cps-autocomplete-nps"><?= $equipamento["nps"] ?></span> <span style="color: #CCC">(#<span id="cps-autocomplete-cps"><?= $equipamento["cps"] ?></span>)</span>
 				</div>
 			</div>
 		</div>
@@ -119,3 +118,34 @@
 		</div>
 	</div>
 </form>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<style>
+	.ui-autocomplete {
+		max-height: 200px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#cps-autocomplete").autocomplete({
+		source: '<?= $this->url("/painel/search") ?>',
+		select: function(event, ui) {
+			$("#cps-autocomplete-details").hide();
+			$("#cps-autocomplete-nps").text(ui.item.nps);
+			$("#cps-autocomplete-cps").text(ui.item.cps);
+			$("#cps").val(ui.item.cps);
+			$("#cps-autocomplete-details").fadeIn();
+		}
+	})
+	.autocomplete("instance")._renderItem = function(ul, item) {
+		return $("<li>")
+			.append("<div style='font-size: 19px;'>" + item.nps + " <span style='color: #ccc;'>(#" + item.cps + ")</span></div>")
+			.appendTo(ul);
+	};
+});
+</script>
