@@ -70,7 +70,7 @@
 					Endereços
 					<div class="float-right">
 						<a
-							href="<?php echo $this->url('/endereco/inserir/' . $fornecedor['cps']) ?>"
+							href="<?php echo $this->url("/endereco/inserir/{$fornecedor['cps']}?redirect={$this->controller->request->url}") ?>"
 							class="btn btn-sm btn-primary"
 							role="button"
 							title="Adicionar novo endereço"
@@ -90,10 +90,10 @@
 									<td class="text-muted"><?php echo $endereco['ntpsend'] ?></td>
 									<td><?php echo endereco_short($endereco) ?></td>
 									<td>
-										<a href="<?php echo $this->url('/endereco/editar/' . $endereco['cpsend']) ?>" class="btn btn-link btn-sm" title="Editar endereço">
+										<a href="<?php echo $this->url("/endereco/editar/{$endereco['cpsend']}?redirect={$this->controller->request->url}") ?>" class="btn btn-link btn-sm" title="Editar endereço">
 											<i class='material-icons md-18'>edit</i>
 										</a>
-										<a href="<?php echo $this->url('/endereco/remover/' . $endereco['cpsend']) ?>" class="btn btn-link btn-sm text-danger" title="Remover endereço">
+										<a href="<?php echo $this->url("/endereco/remover/{$endereco['cpsend']}?redirect={$this->controller->request->url}") ?>" class="btn btn-link btn-sm text-danger" title="Remover endereço">
 											<i class='material-icons md-18'>clear</i>
 										</a>
 									</td>
