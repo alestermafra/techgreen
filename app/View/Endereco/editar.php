@@ -1,9 +1,9 @@
-<form action="<?php echo $this->url('/endereco/editar') ?>" method="POST">
+<form method="POST">
 
 <nav class="navbar navbar-light">
 	<span class="navbar-brand">Editar Endereço</span>
 	<div>
-		<a class="btn btn-sm btn-light" role="button" style="width: 100px;" href="<?php echo $this->url('/endereco/back/' . $endereco['cps']) ?>">Cancelar</a>
+		<a class="btn btn-sm btn-light" role="button" style="width: 100px;" href="<?= $this->url($redirect); ?>">Cancelar</a>
 		<input type="submit" class="btn btn-sm btn-success" style="width: 100px;" value="Concluir"></input>
 	</div>
 </nav>
@@ -102,7 +102,7 @@
 	<br/>
 	
 	<div class="form-group text-right">	
-		<a class="btn btn-sm btn-light" role="button" style="width: 100px;" href="<?php echo $this->url('/endereco/back/' . $endereco['cps']) ?>">Cancelar</a>
+		<a class="btn btn-sm btn-light" role="button" style="width: 100px;" href="<?= $this->url($redirect); ?>">Cancelar</a>
         <input type="submit" class="btn btn-sm btn-success" style="width: 100px;" value="Concluir" />
 	</div>
 </div>

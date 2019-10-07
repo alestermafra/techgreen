@@ -63,6 +63,46 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="card">
+				<div class="card-header bg-dark text-white">
+					Endereços
+					<div class="float-right">
+						<a
+							href="<?php echo $this->url("/endereco/inserir/{$clientepj['cps']}?redirect={$this->controller->request->url}") ?>"
+							class="btn btn-sm btn-primary"
+							role="button"
+							title="Adicionar novo endereço"
+						>
+							<i class="material-icons align-middle md-18">add</i>
+							<span class="align-middle">Endereço</span>
+						</a>
+					</div>
+				</div>
+				<div class="card-body">
+					<?php if(!isset($clientepj['enderecos']) || isset($clientepj['enderecos']) && empty($clientepj['enderecos'])): ?>
+						<small>Nenhum endereço cadastrado.</small>
+					<?php else: ?>
+						<table class="table table-sm table-borderless p-0 m-0">
+							<?php foreach($clientepj['enderecos'] as $end): ?>
+								<tr>
+									<td class="text-muted"><?php echo $end['ntpsend'] ?></td>
+									<td><?php echo endereco_short($end) ?></td>
+									<td>
+										<a href="<?php echo $this->url("/endereco/editar/{$end['cpsend']}?redirect={$this->controller->request->url}") ?>" class="btn btn-link btn-sm" title="Editar endereço">
+											<i class='material-icons md-18'>edit</i>
+										</a>
+										<a href="<?php echo $this->url("/endereco/remover/{$end['cpsend']}?redirect={$this->controller->request->url}") ?>" class="btn btn-link btn-sm text-danger" title="Remover endereço">
+											<i class='material-icons md-18'>clear</i>
+										</a>
+									</td>
+								</tr>
+							<?php endforeach ?>
+						</table>
+
+					<?php endif ?>
+				</div>
+			</div>
 		</div>
 		
 		<div class="col-md-4">

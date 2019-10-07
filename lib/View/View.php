@@ -37,6 +37,7 @@ class View {
 		}
 	}
 	
+	/* insere um elemento na view */
 	public function element($element, $vars = null) {
 		if($vars) {
 			extract($vars);
@@ -48,6 +49,7 @@ class View {
 		return $content;
 	}
 	
+	/* insere o template de email na view */
 	public function email($email) {
 		extract($this->vars);
 		ob_start();

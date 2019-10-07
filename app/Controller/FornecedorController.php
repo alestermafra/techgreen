@@ -97,6 +97,7 @@ class FornecedorController extends AppController {
 		}
 		
 		$fornecedor['telefones'] = Telefone::findByCps($fornecedor['cps']);
+		$fornecedor['enderecos'] = Endereco::findByCps($fornecedor['cps']);
 		
 		$this->view->set('fornecedor', $fornecedor);
 		$this->view->set('ocorrencia', Ocorrencia::findByCodigoPessoa($fornecedor['cps']));

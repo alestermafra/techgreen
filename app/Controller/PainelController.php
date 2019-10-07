@@ -176,6 +176,7 @@ class PainelController extends AppController {
 		}
 		
 		$clientepj['contatos'] = Contato::findByCpsConta($clientepj['cps']);
+		$clientepj['enderecos'] = Endereco::findByCps($clientepj['cps']);
 		$clientepj['attachments'] = Attachment::get_attachments(WEBROOT . DS . "attachments" . DS . "painel" . DS . "pj" . DS . $cps);
 		
 		$this->view->set('clientepj', $clientepj);
