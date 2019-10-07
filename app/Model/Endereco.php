@@ -169,4 +169,11 @@ class Endereco extends Table {
 		$params['conditions'] .= " AND eps.cps = $cps";
 		return static::_find($type, $params);
 	}
+	
+	
+	public static function remover(int $cpsend) {
+		$endereco = static::findById($cpsend);
+		static::remove("upsend.cpsend = $cpsend");
+		return $endereco;
+	}
 }
