@@ -140,6 +140,7 @@ class ClientePF extends Table {
 	/* métodos de busca */
 	public static function find(string $type = 'all', array $params = array()) {
 		$params["order"] = _isset($params["order"], "eps.nps");
+		$params["limit"] = _isset($params["limit"], 1000);
 		return parent::_find($type, $params);
 	}
 	
@@ -162,10 +163,13 @@ class ClientePF extends Table {
 	}
 	
 	public static function search($value, string $type = 'all', array $params = array()) {
+		$value = trim($value);
+		//$value = preg_quote($value);
 		$params['conditions'] = _isset($params['conditions'], '');
-		$params['conditions'] .= " AND ( eps.cps = '$value'";
-		$params['conditions'] .= " OR eps.nps LIKE '%$value%'";
-		$params['conditions'] .= ")";
+		$params['conditions'] .= " AND (
+			eps.cps LIKE '$value%'
+			OR eps.nps LIKE '%$value%'
+		)";
 		return static::find($type, $params);
 	}
 	

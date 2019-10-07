@@ -316,4 +316,19 @@ class PainelController extends AppController {
 		
 		return $this->redirect("/painel/overview_" . $tipo . "/" . $cps);
 	}
+	
+	
+	public function search() {
+		$this->autoRender = false;
+		
+		$term = _isset($_GET["term"], null);
+		
+		$result = [];
+		
+		if($term !== null) {
+			$result = ClientePF::search($term, "all", array("limit" => 100)); 
+		}
+		
+		echo json_encode($result);
+	}
 }
