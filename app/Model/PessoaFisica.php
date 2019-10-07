@@ -120,7 +120,7 @@ class PessoaFisica extends Table {
 			$new_data['a_nasc'] = intval($data['a_nasc']);
 		}
 		if(isset($data['rg'])) {
-			$new_data['rg'] = preg_replace('/[^0-9]/i', '', strval($data['rg']));
+			$new_data['rg'] = strval($data['rg']);
 		}
 		if(isset($data['cpf'])) {
 			$new_data['cpf'] = preg_replace('/[^0-9]/i', '', strval($data['cpf']));

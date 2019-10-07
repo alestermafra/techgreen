@@ -29,6 +29,10 @@
 			<div class="card">
 				<div class="card-body">
 					<table class="table table-sm table-borderless p-0 m-0">
+                    	<tr>
+							<td class="text-muted">Id</td>
+							<td><?= $clientepf['cps'] ?></td>
+						</tr>
 						<tr>
 							<td class="text-muted">Cliente</td>
 							<td><?= $clientepf['nps'] ?></td>

@@ -28,6 +28,10 @@
 			<div class="card">
 				<div class="card-body">
 					<table class="table table-sm table-borderless p-0 m-0">
+                    	<tr>
+							<td class="text-muted">Id</td>
+							<td><?php echo $clientepj['cps'] ?></td>
+						</tr>
 						<tr>
 							<td class="text-muted">Empresa</td>
 							<td><?php echo $clientepj['nps'] ?></td>

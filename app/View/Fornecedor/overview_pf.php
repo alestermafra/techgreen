@@ -14,6 +14,10 @@
 				<div class="card-body">
 					<table class="table table-sm table-borderless p-0 m-0">
 						<tr>
+							<td class="text-muted">ID</td>
+							<td><?php echo $fornecedor['cps'] ?></td>
+						</tr>
+                        <tr>
 							<td class="text-muted">Nome</td>
 							<td><?php echo $fornecedor['nps'] ?></td>
 						</tr>
