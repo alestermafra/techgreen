@@ -92,7 +92,7 @@ class LocacaoController extends AppController {
 		}
 		
 		if($this->request->method === 'POST') {
-			
+			$locacao['cps'] = _isset($_POST['cps'], $locacao['cps']);
 			$locacao['cprod'] = _isset($_POST['cprod'], $locacao['cprod']);
 			$locacao['cplano'] = _isset($_POST['cplano'], $locacao['cplano']);
 			$locacao['ctabela'] = _isset($_POST['ctabela'], $locacao['ctabela']);

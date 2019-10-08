@@ -97,7 +97,7 @@ class DiariaVelejadorController extends AppController {
 		}
 		
 		if($this->request->method === 'POST') {
-			
+			$diaria['cps'] = _isset($_POST['cps'], $diaria['cps']);
 			$diaria['cprod'] = _isset($_POST['cprod'], $diaria['cprod']);
 			$diaria['cplano'] = _isset($_POST['cplano'], $diaria['cplano']);
 			$diaria['ctabela'] = _isset($_POST['ctabela'], $diaria['ctabela']);
