@@ -60,6 +60,7 @@
                         <div class="row">
                             <div class="col"> <input title="Hora de término" name="chora_fim" type="number" class="form-control form-control-sm" value="<?=$agenda['chora_fim']?>" min="0" max="23" /> </div>
                             <div class="col"> <input title="Minuto de término" name="cminuto_fim" type="number" class="form-control form-control-sm" value="<?=$agenda['cminuto_fim']?>" min="0" max="59" /> </div>
+						</div>
 					</div>
 				</div>
 		  </div>
@@ -94,36 +95,27 @@
 			<div class="card-header bg-dark text-white">
 				Pessoa
 			</div>
-            <?php foreach ($agenda_cruzada as $i => $ag): ?>
-                <div class="card-body">
-                    <input type="hidden" name="cps[<?=$i?>][czagenda]" value="<?=$ag['czagenda']?>" />
-                    <select name="cps[<?=$i?>][cps]" class="form-control form-control-sm">
-                       <option value="0">Ninguem selecionado</option>
-                    <?php foreach($pessoa as $pss): ?>
-                        <option value="<?=$pss['cps']?>"
-                        <?php  if($ag['cps']==$pss['cps']){ echo ' selected ';} ?>
-                        >
-                    	    <?php echo $pss['nps'].' (#'.$pss['cps'].')';?>
-                        </option>
-                        <?php endforeach ?>
-                   </select>
-                </div>
-            <?php endforeach ?>
+			<div class="card-body">
+				<div class="form-group">
+					<input type="text" id="cps-autocomplete" class="form-control form-control-sm" placeholder="Procurar cliente (opcional)"></input>
+				</div>
+				<?php foreach ($agenda_cruzada as $i => $ag): ?>
+					<div id="cps-<?= $i ?>-container">
+						<input type="hidden" name="cps[<?=$i?>][czagenda]" value="<?=$ag['czagenda']?>"></input>
+						<input type="hidden" id="cps-<?= $i ?>-input" name="cps[<?=$i?>][cps]" value="<?=$ag['cps']?>"></input>
+						<div><span><?= $ag["nps"] ?></span> <button type="button" class="btn btn-link" onclick="$('#cps-<?= $i ?>-input').val(0); $('#cps-<?= $i ?>-container').hide();">remover</button></div>
+					</div>
+				<?php endforeach ?>
+				
+				<div id="outros-cps-container"></div>
+			</div>
             
             <template id="cps-tmplt">
-                <div class="card-body">
-                    <select name="cps[{{index}}][cps]" class="form-control form-control-sm">
-                        <option value="0">Ninguem selecionado</option>
-                        <?php foreach($pessoa as $pp): ?>
-                        <option value="<?php echo $pp['cps'] ?>"><?php echo $pp['nps'].' (#'.$pp['cps'].')';?></option>
-                        <?php endforeach ?>
-                    </select>
-                </div>
+				<div id="cps-{{index}}-container">
+					<input type="hidden" id="cps-{{index}}-input" name="cps[{{index}}][cps]" value="{{cps}}"></input>
+					<div><span>{{nps}}</span> <button type="button" class="btn btn-link" onclick="$('#cps-{{index}}-input').val(0); $('#cps-{{index}}-container').hide();">remover</button></div>
+				</div>
             </template>
-                                        
-            <div id="outros-cps-container"></div>
-                            
-            <div style="text-align: right"> <button type="button" class="btn btn-sm btn-link add-cps-form">Adicionar Pessoa</button></div>
  
         </div>
         
@@ -135,6 +127,41 @@
 		<input type="button" class="btn btn-sm btn-success" style="width: 100px;" value="Concluir" onclick="checa_coisas()">
 	</div>
 </form>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<style>
+	.ui-autocomplete {
+		max-height: 200px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	let cps_index = 255;
+	$("#cps-autocomplete").autocomplete({
+		source: '<?= $this->url("/agenda/search_pessoa") ?>',
+		select: function(event, ui) {
+			let index = cps_index++;
+			
+			let tmplt = $("#cps-tmplt").html();
+			tmplt = tmplt.replace(/{{index}}/g, index);
+			tmplt = tmplt.replace(/{{cps}}/g, ui.item.cps);
+			tmplt = tmplt.replace(/{{nps}}/g, ui.item.nps);
+			
+			$("#outros-cps-container").append(tmplt);
+		}
+	})
+	.autocomplete("instance")._renderItem = function(ul, item) {
+		return $("<li>")
+			.append("<div style='font-size: 19px;'>" + item.nps + " <span style='color: #ccc;'>(#" + item.cps + ") - " + (item.cpsf? "PF" : "PJ") + "</span></div>")
+			.appendTo(ul);
+	};
+});
+</script>
 
 <script type="text/javascript">
 (function() {

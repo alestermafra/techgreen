@@ -399,4 +399,20 @@ class AgendaController extends AppController {
 		return $this->redirect('/agenda/dia/'.$dados['cdia'].'/'.$dados['cmes'].'/'.$dados['can']);
 	}
 	
+	public function search_pessoa() {
+		App::import("Pessoa", "Model");
+		
+		$this->autoRender = false;
+		
+		$term = _isset($_GET["term"], null);
+		
+		$result = [];
+
+		if($term !== null) {
+			$result = Pessoa::search($term, "all", array("conditions" => " AND eps.flg_sys = 0", "limit" => 5));
+		}
+		
+		echo json_encode($result);
+	}
+	
 }

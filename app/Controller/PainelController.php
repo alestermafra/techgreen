@@ -326,7 +326,23 @@ class PainelController extends AppController {
 		$result = [];
 		
 		if($term !== null) {
-			$result = ClientePF::search($term, "all", array("limit" => 100)); 
+			$result = ClientePF::search($term, "all", array("limit" => 5)); 
+		}
+		
+		echo json_encode($result);
+	}
+	
+	public function search2() {
+		App::import("Cliente", "Model");
+		
+		$this->autoRender = false;
+		
+		$term = _isset($_GET["term"], null);
+		
+		$result = [];
+		
+		if($term !== null) {
+			$result = Cliente::search($term, "all", array("limit" => 5));
 		}
 		
 		echo json_encode($result);

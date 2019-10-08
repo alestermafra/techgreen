@@ -27,7 +27,7 @@ class Cliente extends Table {
 		'eps.sps',
 		'eps.nps',
 		'upsf.cpsf',
-		'upsf.cpsj',
+		'upsj.cpsj',
 	);
 	
 	
@@ -93,6 +93,7 @@ class Cliente extends Table {
 	
 	/* métodos de busca */
 	public static function find(string $type = 'all', array $params = array()) {
+		$params["order"] = _isset($params["order"], "eps.nps");
 		return parent::_find($type, $params);
 	}
 	
@@ -122,5 +123,17 @@ class Cliente extends Table {
 		$params['conditions'] = _isset($params['conditions'], " AND YEAR(zpainel.TS) = $year");
 		$params['group'] = _isset($params["group"], "m ASC");
 		return static::_find($type, $params);
+	}
+	
+	
+	public static function search($value, string $type = 'all', array $params = array()) {
+		$value = trim($value);
+		//$value = preg_quote($value);
+		$params['conditions'] = _isset($params['conditions'], '');
+		$params['conditions'] .= " AND (
+			eps.cps LIKE '$value%'
+			OR eps.nps LIKE '%$value%'
+		)";
+		return static::find($type, $params);
 	}
 }
