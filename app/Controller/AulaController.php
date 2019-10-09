@@ -93,11 +93,8 @@ class AulaController extends AppController {
 			$aula['clinha'] = _isset($_POST['clinha'], $aula['clinha']);
 			$aula['cplano'] = _isset($_POST['cplano'], $aula['cplano']);
 			$aula['valor'] = _isset($_POST['valor'], $aula['valor']);
-			$aula['cpgt'] = _isset($_POST['cpgt'], $aula['cpgt']);
-			$aula['cppgt'] = _isset($_POST['cppgt'], $aula['cppgt']);
 			$aula['datinha'] = _isset(date("Y-m-d",strtotime($_POST['datinha'])), date("Y-m-d",strtotime($aula['datinha'])));
 			$aula['descricao'] = _isset($_POST['descricao'], $aula['descricao']);
-			$aula['datinha_pgt'] = _isset(date("Y-m-d",strtotime($_POST['datinha_pgt'])), date("Y-m-d",strtotime($aula['datinha_pgt'])));
 			$aula['chora'] = _isset($_POST['chora'], $aula['chora']);
 			$aula['cminuto'] = _isset($_POST['cminuto'], $aula['cminuto']);
 			$aula['instrutor'] = _isset($_POST['instrutor'], $aula['instrutor']);

@@ -15,8 +15,6 @@ class Aula extends Table {
 		FROM eaula
 			LEFT JOIN eplano ON (eplano.cplano = eaula.cplano)
 			LEFT JOIN elinha ON (elinha.clinha = eaula.clinha)
-			LEFT JOIN epgt ON (epgt.cpgt = eaula.cpgt)
-			LEFT JOIN eppgt ON (eppgt.cppgt = eaula.cppgt)
 			LEFT JOIN (
 				SELECT
 					COUNT(czaula) as qtd,
@@ -47,16 +45,8 @@ class Aula extends Table {
 		'eplano.nplano',
 		'elinha.clinha',
 		'elinha.nlinha',
-		'epgt.cpgt',
-		'epgt.npgt',
-		'eppgt.cppgt',
-		'eppgt.qtd_parcela',
-		'eppgt.nppgt',
 		'eaula.valor',
 		'eaula.descricao',
-		'eaula.cdia_pgt',
-		'eaula.cmes_pgt',
-		'eaula.can_pgt',
 		'zaula.qtd',
 	);
 	
@@ -76,9 +66,6 @@ class Aula extends Table {
 		if(!isset($aula['cplano']) || !Plano::findById($aula['cplano'], 'count')) {
 			throw new Exception('Plano inválido.');
 		}
-		if(!isset($aula['cpgt']) || !FormaPagamento::findById($aula['cpgt'], 'count')) {
-			throw new Exception('Forma de pagamento inválida.');
-		}
 		
 		$connection = new Connection();
 		
@@ -86,15 +73,10 @@ class Aula extends Table {
 			'cplano' => (int) _isset($aula['cplano'], null),
 			'clinha' => (int) _isset($aula['clinha'], null),
 			'valor' => (int) _isset($aula['valor'], null),
-			'cpgt' => (int) _isset($aula['cpgt'], null),
 			'cdia' => date("j",strtotime($aula['datinha'])),
 			'cmes' => date("n",strtotime($aula['datinha'])),
 			'can' => date("Y",strtotime($aula['datinha'])),
-			'cppgt' => (int) _isset($aula['cppgt'], null),
 			'descricao' => (string) _isset($aula['descricao'], null),
-			'cdia_pgt' => date("j",strtotime($aula['datinha_pgt'])),
-			'cmes_pgt' => date("n",strtotime($aula['datinha_pgt'])),
-			'can_pgt' => date("Y",strtotime($aula['datinha_pgt'])),
 			'chora' => (int) _isset($aula['chora'], null),
 			'cminuto' => (int) _isset($aula['cminuto'], null),
 			'instrutor' => (string) _isset($aula['instrutor'], null),
@@ -112,9 +94,6 @@ class Aula extends Table {
 		if(!isset($aula['cplano']) || !Plano::findById($aula['cplano'], 'count')) {
 			throw new Exception('Plano inválido.');
 		}
-		if(!isset($aula['cpgt']) || !FormaPagamento::findById($aula['cpgt'], 'count')) {
-			throw new Exception('Forma de pagamento inválida.');
-		}
 		
 		$caula = $aula['caula'];
 		
@@ -124,15 +103,10 @@ class Aula extends Table {
 			'cplano' => (int) _isset($aula['cplano'], null),
 			'clinha' => (int) _isset($aula['clinha'], null),
 			'valor' => (int) _isset($aula['valor'], null),
-			'cpgt' => (int) _isset($aula['cpgt'], null),
 			'cdia' => date("j",strtotime($aula['datinha'])),
 			'cmes' => date("n",strtotime($aula['datinha'])),
 			'can' => date("Y",strtotime($aula['datinha'])),
-			'cppgt' => (int) _isset($aula['cppgt'], null),
 			'descricao' => (string) _isset($aula['descricao'], null),
-			'cdia_pgt' => date("j",strtotime($aula['datinha_pgt'])),
-			'cmes_pgt' => date("n",strtotime($aula['datinha_pgt'])),
-			'can_pgt' => date("Y",strtotime($aula['datinha_pgt'])),
 			'chora' => (int) _isset($aula['chora'], null),
 			'cminuto' => (int) _isset($aula['cminuto'], null),
 			'instrutor' => (string) _isset($aula['instrutor'], null),
@@ -160,7 +134,6 @@ class Aula extends Table {
 		$params['conditions'] .= " AND ( tequipe.ntequipe LIKE '%$value%'";
 		$params['conditions'] .= " OR eplano.nplano LIKE '%$value%'";
 		$params['conditions'] .= " OR elinha.nlinha LIKE '%$value%'";
-		$params['conditions'] .= " OR epgt.pgt LIKE '%$value%'";
 		$params['conditions'] .= " OR eaula.descricao LIKE '%$value%'";
 		$params['conditions'] .= " OR eaula.valor LIKE '%$value%'";
 		$params['conditions'] .= ")";

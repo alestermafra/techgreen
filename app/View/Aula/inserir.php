@@ -96,29 +96,6 @@
 						<input type="hidden" name="cplano" id="cplano-input" />
 					</div>
 				</div>
-                
-				<div class="form-group">
-					<label class="small text-muted">Forma de Pagamento</label> 
-					<select name="cpgt" id="cpgt-select" class="form-control form-control-sm">
-						<?php foreach($formas_pagamento as $t): ?>
-							<option value="<?php echo $t['cpgt'] ?>"<?php echo _isset($_POST['cpgt'], 0) == $t['cpgt']? ' selected' : '' ?>><?php echo $t['npgt'] ?></option>
-						<?php endforeach ?>
-					</select>
-				</div>
-				
-				<div class="form-group">
-					<label class="small text-muted">Parcelas</label> 
-					<select name="cppgt" id="cppgt-select" class="form-control form-control-sm">
-						<?php foreach($parcelas_pagamento as $ppgt): ?>
-							<option value="<?php echo $ppgt['cppgt'] ?>"<?php echo _isset($_POST['cppgt'], 0) == $ppgt['cppgt']? ' selected' : '' ?>><?php echo $ppgt['nppgt'] ?></option>
-						<?php endforeach ?>
-					</select>
-				</div>
-				
-				<div class="form-group">
-					<label class="small text-muted">Data / Vencimento</label> 
-					<input type="date" value="<?=date("Y-m-d")?>" name="datinha_pgt" id="datinha-select" class="form-control form-control-sm"/>
-				</div>
 			</div>
 		</div>
 		

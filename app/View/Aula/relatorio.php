@@ -127,7 +127,7 @@
                 <?php $valor_total = $valor_total + $d['valor'];?>
 				<?php endforeach; ?>
                 <tr>
-                	<td colspan="8"></td>
+                	<td colspan="9"></td>
                     <td>R$<b> <?php echo $valor_total;?></b></td>
                 </tr>
 			</tbody>
