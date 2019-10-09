@@ -52,6 +52,18 @@
 					</select>
 				</div>
                 
+                <div class="form-group form-row">
+					<div class="form-group col-sm-6">
+						<label class="small text-muted">Valor R$</label>
+						<input type="text" name="valor" id="valor-input" class="form-control form-control-sm"  placeholder="R$" value="<?php echo _isset($_POST['valor'], '') ?>"/>
+					</div>
+					<div class="form-group col-sm-6">
+						<label class="small text-muted">Plano / Carga horária</label>
+						<input type="text" name="plano" id="plano-input" class="form-control form-control-sm" readonly />
+						<input type="hidden" name="cplano" id="cplano-input" />
+					</div>
+				</div>
+                
                 <div class="form-row">
                     <div class="form-group col-sm-6">
                         <label class="small text-muted">Data de aula/curso</label> 
@@ -78,27 +90,6 @@
 				</div>
 		  </div>
 		</div>
-		
-		
-		<div class="card">
-			<div class="card-header bg-dark text-white">
-				Financeiro
-			</div>
-			<div class="card-body">
-            	<div class="form-group form-row">
-					<div class="form-group col-sm-6">
-						<label class="small text-muted">Valor R$</label>
-						<input type="text" name="valor" id="valor-input" class="form-control form-control-sm"  placeholder="R$" value="<?php echo _isset($_POST['valor'], '') ?>"/>
-					</div>
-					<div class="form-group col-sm-6">
-						<label class="small text-muted">Plano / Carga horária</label>
-						<input type="text" name="plano" id="plano-input" class="form-control form-control-sm" readonly />
-						<input type="hidden" name="cplano" id="cplano-input" />
-					</div>
-				</div>
-			</div>
-		</div>
-		
 		
 		<div class="form-group">
 			<label for="descricao-textarea" class="small text-muted">Descrição</label>
