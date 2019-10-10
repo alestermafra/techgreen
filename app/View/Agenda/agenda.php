@@ -112,9 +112,17 @@
 								foreach($list as $l){//lista de eventos
 									//para eventos que duram o mesmo dia (inicio e fim no mesmo dia)
 									if($l['cdia']==$dias[$pos2] && $l['cmes']==$mes[0]['cmes'] && $l['can']==$ano && $l['cdia']==$l['cdia_fim'] && $l['cmes']==$l['cmes_fim'] && $l['can']==$l['can_fim']){
-										echo '<div class="font-light text-truncate textinho" title="'.$l['OBS'].'">';
-										echo "<a class='text-light' href='".$this->url('/agenda/editar_agenda/'.$l['cagenda'].'/'.$dias[$pos2].'/'.$mes[0]['cmes'].'/'.$ano)."'>";
-										echo $l['chora_ini'].'h'.$l['cminuto_ini'].' - '.$l['chora_fim'].'h'.$l['cminuto_fim'];
+										echo '<div class="font-light text-truncate textinho" title="'.$l['OBS'].'" ';
+										if($l['cor']){ echo ' style="background-color:#'.$l['cor'].'; padding-left:0.5em;"';}
+										echo '>';
+										echo "<a";
+										if($l['cor']){ echo " class='text-dark'";} else {echo " class='text-light'";}
+										echo " href='".$this->url('/agenda/editar_agenda/'.$l['cagenda'].'/'.$dias[$pos2].'/'.$mes[0]['cmes'].'/'.$ano)."'>";
+										if(!$l['flg_dia_todo']) { 
+											echo $l['chora_ini'].'h'.$l['cminuto_ini'].' - '.$l['chora_fim'].'h'.$l['cminuto_fim']; 
+										}else{
+											echo 'Dia todo';
+										}
 										if($l['subtitulo']){ echo '<br>'.$l['subtitulo'];}
 										echo '<br>'.$l['nacao'];
 										foreach($pessoas as $p){
@@ -182,9 +190,15 @@
 								foreach($list as $ll){
 									//para eventos que duram o mesmo dia (inicio e fim no mesmo dia)
 									if($ll['cdia']==$dias[$pos2] && $ll['cmes']==$mes[0]['cmes'] && $ll['can']==$ano && $ll['cdia']==$ll['cdia_fim'] && $ll['cmes']==$ll['cmes_fim'] && $ll['can']==$ll['can_fim']){
-										echo '<div class="font-light text-truncate textinho" title="'.$ll['OBS'].'">';
+										echo '<div class="font-light text-truncate textinho" title="'.$ll['OBS'].'" ';
+										if($ll['cor']){ echo ' style="background-color:#'.$ll['cor'].'; padding-left:0.5em;"';}
+										echo '>';
 										echo "<a class='text-secondary' href='".$this->url('/agenda/editar_agenda/'.$ll['cagenda'].'/'.$dias[$pos2].'/'.$mes[0]['cmes'].'/'.$ano)."'>";
-										echo $ll['chora_ini'].'h'.$ll['cminuto_ini'].' - '.$ll['chora_fim'].'h'.$ll['cminuto_fim'];
+										if(!$ll['flg_dia_todo']) { 
+											echo $ll['chora_ini'].'h'.$ll['cminuto_ini'].' - '.$ll['chora_fim'].'h'.$ll['cminuto_fim']; 
+										}else{
+											echo 'Dia todo';
+										}
 										if($ll['subtitulo']){ echo '<br>'.$ll['subtitulo'];}
 										echo '<br>'.$ll['nacao'];
 										foreach($pessoas as $p){

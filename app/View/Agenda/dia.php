@@ -101,13 +101,19 @@
 		  <?php
 			
 			foreach($list as $ll){
-			echo "<tr class='table-bordered'>";
+			echo "<tr class='table-bordered'";
+			if($ll['cor']){ echo ' style="background-color:#'.$ll['cor'].'"';}
+			echo ">";
 				echo "<td colspan='4'>";
 					//para eventos que duram o mesmo dia (inicio e fim no mesmo dia)
 					if($ll['cdia']==$dia && $ll['cmes']==$mes[0]['cmes'] && $ll['can']==$ano && $ll['cdia']==$ll['cdia_fim'] && $ll['cmes']==$ll['cmes_fim'] && $ll['can']==$ll['can_fim']){
 						echo '<div class="font-light textinho" title="'.$ll['OBS'].'">';
 						echo "<a class='text-secondary' href='".$this->url('/agenda/editar_agenda/'.$ll['cagenda'].'/'.$dia.'/'.$mes[0]['cmes'].'/'.$ano)."'>";
-						echo $ll['chora_ini'].'h'.$ll['cminuto_ini'].' - '.$ll['chora_fim'].'h'.$ll['cminuto_fim'];
+						if(!$ll['flg_dia_todo']) { 
+							echo $ll['chora_ini'].'h'.$ll['cminuto_ini'].' - '.$ll['chora_fim'].'h'.$ll['cminuto_fim']; 
+						}else{
+							echo 'Dia todo';
+						}
 						if($ll['subtitulo']){ echo '<br>'.$ll['subtitulo'];}
 						echo '<br>'.$ll['nacao'];
 						foreach($pessoas as $pp){
@@ -126,7 +132,7 @@
 					if($ll['cdia']==$dia && $ll['cmes']==$mes[0]['cmes'] && $ll['can']==$ano && $ll['cdia']<$ll['cdia_fim'] && $ll['cmes']<=$ll['cmes_fim'] && $ll['can']<=$ll['can_fim']){
 						echo '<div class="font-light textinho" title="'.$ll['OBS'].'">';
 						echo "<a class='text-secondary' href='".$this->url('/agenda/editar_agenda/'.$ll['cagenda'].'/'.$dia.'/'.$mes[0]['cmes'].'/'.$ano)."'>";
-						echo $ll['chora_ini'].'h'.$ll['cminuto_ini'];
+						echo $ll['chora_ini'].'h'.$ll['cminuto_ini'];					
 						echo '<br>'.$ll['nacao'].' <small>(Inicio de Evento - ';
 						echo 'Termina as '.$ll['chora_fim'].'h'.$ll['cminuto_fim'].' em '.$ll['cdia_fim'].'/'.$ll['cmes_fim'].'/'.$ll['can_fim'];
 						echo ')</small>';

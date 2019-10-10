@@ -8,9 +8,15 @@ foreach($dias as $dias){
 	foreach($list as $ll){
 	//para eventos que duram o mesmo dia (inicio e fim no mesmo dia)
 		if($ll['cdia']==$dias['cdia'] && $ll['cmes']==$dias['cmes'] && $ll['can']==$dias['can'] && $ll['cdia']==$ll['cdia_fim'] && $ll['cmes']==$ll['cmes_fim'] && $ll['can']==$ll['can_fim']){
-			echo '<div class="font-light textinho" title="'.$ll['OBS'].'">';
+			echo '<div class="font-light textinho" title="'.$ll['OBS'].'" ';
+			if($ll['cor']){ echo ' style="background-color:#'.$ll['cor'].'; padding-left:0.5em"';}
+			echo ' >';
 			echo "<a class='text-secondary' href='".$this->url('/agenda/editar_agenda/'.$ll['cagenda'].'/'.$dias['cdia'].'/'.$dias['cmes'].'/'.$dias['can'])."'>";
-			echo $ll['chora_ini'].'h'.$ll['cminuto_ini'].' - '.$ll['chora_fim'].'h'.$ll['cminuto_fim'];
+			if(!$ll['flg_dia_todo']) { 
+				echo $ll['chora_ini'].'h'.$ll['cminuto_ini'].' - '.$ll['chora_fim'].'h'.$ll['cminuto_fim']; 
+			}else{
+				echo 'Dia todo';
+			}
 			if($ll['subtitulo']){ echo '<br>'.$ll['subtitulo'];}
 			echo '<br>'.$ll['nacao'];
 			foreach($pessoas as $pp){

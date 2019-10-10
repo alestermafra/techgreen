@@ -35,6 +35,8 @@ class Calendario extends Table {
 		'eagenda.chora_ini',
 		'eagenda.cminuto_fim',
 		'eagenda.chora_fim',
+		'eagenda.flg_dia_todo',
+		'eagenda.cor',
 		'eagenda.OBS',
 		'eacao.sacao',
 		'eacao.nacao',
@@ -54,21 +56,46 @@ class Calendario extends Table {
 		
 		$eagenda = array();
 		
-		$eagenda = [
-			'subtitulo' => (string) $data['subtitulo'],
-			'cacao' => (int) $data['cacao'],
-			'cdia' => date("j",strtotime($data['datinha'])),
-			'cmes' => date("n",strtotime($data['datinha'])),
-			'can' => date("Y",strtotime($data['datinha'])),
-			'cdia_fim' => date("j",strtotime($data['datinha_fim'])),
-			'cmes_fim' => date("n",strtotime($data['datinha_fim'])),
-			'can_fim' => date("Y",strtotime($data['datinha_fim'])),
-			'chora_ini' => (int) $data['chora_ini'],
-			'cminuto_ini' => (int) $data['cminuto_ini'],
-			'chora_fim' => (int) $data['chora_fim'],
-			'cminuto_fim' => (int) $data['cminuto_fim'],
-			'OBS' => (string) $data['OBS']
-		];
+		$data_local = date("Y-m-d");
+		
+		if($data['flg_dia_todo']==1){
+			$eagenda = [
+				'subtitulo' => (string) _isset($data['subtitulo'], null),
+				'cacao' => (int) $data['cacao'],
+				'flg_dia_todo' => (int) $data['flg_dia_todo'],
+				'cor' => (string) _isset($data['cor'], null),
+				'cdia' => date("j",strtotime($data['datinha'])),
+				'cmes' => date("n",strtotime($data['datinha'])),
+				'can' => date("Y",strtotime($data['datinha'])),
+				'cdia_fim' => date("j", strtotime($data_local)),
+				'cmes_fim' => date("n", strtotime($data_local)),
+				'can_fim' => date("Y", strtotime($data_local)),
+				'chora_ini' => 0,
+				'cminuto_ini' => 0,
+				'chora_fim' => 23,
+				'cminuto_fim' => 0,
+				'OBS' => (string) _isset($data['OBS'], null)
+			];
+		} else {
+			$eagenda = [
+				'subtitulo' => (string) _isset($data['subtitulo'], null),
+				'cacao' => (int) $data['cacao'],
+				'flg_dia_todo' => (int) _isset($data['flg_dia_todo'], 0),
+				'cor' => (string) _isset($data['cor'], null),
+				'cdia' => date("j",strtotime($data['datinha'])),
+				'cmes' => date("n",strtotime($data['datinha'])),
+				'can' => date("Y",strtotime($data['datinha'])),
+				'cdia_fim' => date("j",strtotime($data['datinha_fim'])),
+				'cmes_fim' => date("n",strtotime($data['datinha_fim'])),
+				'can_fim' => date("Y",strtotime($data['datinha_fim'])),
+				'chora_ini' => (int) $data['chora_ini'],
+				'cminuto_ini' => (int) $data['cminuto_ini'],
+				'chora_fim' => (int) $data['chora_fim'],
+				'cminuto_fim' => (int) $data['cminuto_fim'],
+				'OBS' => (string) _isset($data['OBS'], null)
+			];
+		}
+		
 		$cagenda = $connection->insert('eagenda', $eagenda);
 		
 		if(isset($data['cps']) && is_array($data['cps'])) {
@@ -86,26 +113,51 @@ class Calendario extends Table {
 			throw new Exception("Agenda não encontrada.");
 		}
 		
+		$data_local = date("Y-m-d");
 		$cagenda = (int) $data['cagenda'];
 		
 		$connection = new Connection();
-	
-		$eagenda = [
-			'cacao' => (int) $data['cacao'],
-			'subtitulo' => (string) $data['subtitulo'],
-			'cdia' => date("j",strtotime($data['datinha'])),
-			'cmes' => date("n",strtotime($data['datinha'])),
-			'can' => date("Y",strtotime($data['datinha'])),
-			'cdia_fim' => date("j",strtotime($data['datinha_fim'])),
-			'cmes_fim' => date("n",strtotime($data['datinha_fim'])),
-			'can_fim' => date("Y",strtotime($data['datinha_fim'])),
-			'chora_ini' => (int) $data['chora_ini'],
-			'cminuto_ini' => (int) $data['cminuto_ini'],
-			'chora_fim' => (int) $data['chora_fim'],
-			'cminuto_fim' => (int) $data['cminuto_fim'],
-			'OBS' => (string) $data['OBS']
-		];
 		
+		if($data['flg_dia_todo']==1){
+			$eagenda = [
+				'cacao' => (int) $data['cacao'],
+				'subtitulo' => (string) _isset($data['subtitulo'], null),
+				'cacao' => (int) $data['cacao'],
+				'flg_dia_todo' => (int) $data['flg_dia_todo'],
+				'cor' => (string) _isset($data['cor'], null),
+				'cdia' => date("j",strtotime($data['datinha'])),
+				'cmes' => date("n",strtotime($data['datinha'])),
+				'can' => date("Y",strtotime($data['datinha'])),
+				'cdia_fim' => date("j", strtotime($data_local)),
+				'cmes_fim' => date("n", strtotime($data_local)),
+				'can_fim' => date("Y", strtotime($data_local)),
+				'chora_ini' => 0,
+				'cminuto_ini' => 0,
+				'chora_fim' => 23,
+				'cminuto_fim' => 0,
+				'OBS' => (string) _isset($data['OBS'], null)
+			];
+		} else {
+			$eagenda = [
+				'cacao' => (int) $data['cacao'],
+				'subtitulo' => (string) _isset($data['subtitulo'], null),
+				'cacao' => (int) $data['cacao'],
+				'flg_dia_todo' => (int) _isset($data['flg_dia_todo'], 0),
+				'cor' => (string) _isset($data['cor'], null),
+				'cdia' => date("j",strtotime($data['datinha'])),
+				'cmes' => date("n",strtotime($data['datinha'])),
+				'can' => date("Y",strtotime($data['datinha'])),
+				'cdia_fim' => date("j",strtotime($data['datinha_fim'])),
+				'cmes_fim' => date("n",strtotime($data['datinha_fim'])),
+				'can_fim' => date("Y",strtotime($data['datinha_fim'])),
+				'chora_ini' => (int) $data['chora_ini'],
+				'cminuto_ini' => (int) $data['cminuto_ini'],
+				'chora_fim' => (int) $data['chora_fim'],
+				'cminuto_fim' => (int) $data['cminuto_fim'],
+				'OBS' => (string) _isset($data['OBS'], null)
+			];
+		}
+
 		$connection->update('eagenda', $eagenda, "eagenda.cagenda = $cagenda");
 		
 		if(isset($data['cps']) && is_array($data['cps'])) {

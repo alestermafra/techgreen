@@ -36,6 +36,21 @@
 			</div>
 			<div class="card-body">
             	<div class="form-row">
+                	<div class="form-group col-sm-6">
+                    	<input type="checkbox" name="flg_dia_todo" value="0" onchange="duracao_dia()" />
+						<label class="form-check-label">Duração para o dia inteiro</label>
+                    </div>
+                    <div class="form-group col-sm-6">
+                    	<label class="small text-muted">Cor de tarja</label>
+                        <select class="form-control form-control-sm" name="cor">
+                        	<option value="">Sem tarja</option>
+                            <option value="87CEFA" style="background-color:#87CEFA">Ciano</option>
+                            <option value="FFD700" style="background-color:#FFD700">Dourado</option>
+                            <option value="CC99FF" style="background-color:#CC99FF">Malva</option>
+                        </select>
+                    </div>
+                </div>
+            	<div class="form-row">
                     <div class="form-group col-sm-6">
                         <label class="small text-muted">Data de inicio</label>
                         <input title="Data do evento" name="datinha" type="date" class="form-control form-control-sm" value="<?=$datinha?>" required />
@@ -171,6 +186,24 @@ $(document).ready(function() {
 	};
 })();
 
+	function duracao_dia(){ // checa para habilitar e desabilitar o horário
+		if($("[name='flg_dia_todo']"). prop("checked") == true){
+			$("[name='flg_dia_todo']").val(1);
+			$("[name='datinha_fim']").prop( "disabled", true );
+			$("[name='chora_ini']").prop( "disabled", true );
+			$("[name='chora_fim']").prop( "disabled", true );
+			$("[name='cminuto_ini']").prop( "disabled", true );
+			$("[name='cminuto_fim']").prop( "disabled", true );
+		} else {
+			$("[name='flg_dia_todo']").val(0);
+			$("[name='datinha_fim']").prop( "disabled", false );
+			$("[name='chora_ini']").prop( "disabled", false );
+			$("[name='chora_fim']").prop( "disabled", false );
+			$("[name='cminuto_ini']").prop( "disabled", false );
+			$("[name='cminuto_fim']").prop( "disabled", false );
+		}
+	}
+	
 	function checa_coisas(){
 		var data_ini = $("[name='datinha']").val();
 		var data_fim = $("[name='datinha_fim']").val();
