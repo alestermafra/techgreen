@@ -56,7 +56,7 @@ class Calendario extends Table {
 		
 		$eagenda = array();
 		
-		$data_local = date("Y-m-d");
+		$data_local = $data['datinha'];
 		
 		if($data['flg_dia_todo']==1){
 			$eagenda = [
@@ -113,7 +113,7 @@ class Calendario extends Table {
 			throw new Exception("Agenda não encontrada.");
 		}
 		
-		$data_local = date("Y-m-d");
+		$data_local = $data['datinha'];
 		$cagenda = (int) $data['cagenda'];
 		
 		$connection = new Connection();

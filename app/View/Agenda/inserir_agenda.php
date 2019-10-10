@@ -205,6 +205,7 @@ $(document).ready(function() {
 	}
 	
 	function checa_coisas(){
+		var dia_todo = $("[name='flg_dia_todo']").val();
 		var data_ini = $("[name='datinha']").val();
 		var data_fim = $("[name='datinha_fim']").val();
 		var hora_ini = $("[name='chora_ini']").val();
@@ -212,22 +213,24 @@ $(document).ready(function() {
 		var minut_ini = $("[name='cminuto_ini']").val();
 		var minut_fim = $("[name='cminuto_fim']").val();
 		
-		if(data_ini > data_fim){ //data inicial maior que a data final
-			alert('Data inicial do evento não pode ser maior que a data final');
-			$("[name='datinha_fim']").focus();
-			return;
-		}
-		
-		if(data_ini == data_fim){ //outras verificações
-			if(hora_ini > hora_fim){ //hora inicial maior que a hora final
-				alert('Horário inicial do evento não pode ser maior que o horário final');
-				$("[name='chora_fim']").focus();
+		if(dia_todo == 0){ // só chega se não for para o dia todo
+			if(data_ini > data_fim){ //data inicial maior que a data final
+				alert('Data inicial do evento não pode ser maior que a data final');
+				$("[name='datinha_fim']").focus();
 				return;
-			}else{ //outras verificações
-				if((hora_ini == hora_fim) && (minut_ini > minut_fim)){ //minuto inicial maior que minuto final quando a hora for igual
+			}
+			
+			if(data_ini == data_fim){ //outras verificações
+				if(hora_ini > hora_fim){ //hora inicial maior que a hora final
 					alert('Horário inicial do evento não pode ser maior que o horário final');
-					$("[name='cminuto_fim']").focus();
+					$("[name='chora_fim']").focus();
 					return;
+				}else{ //outras verificações
+					if((hora_ini == hora_fim) && (minut_ini > minut_fim)){ //minuto inicial maior que minuto final quando a hora for igual
+						alert('Horário inicial do evento não pode ser maior que o horário final');
+						$("[name='cminuto_fim']").focus();
+						return;
+					}
 				}
 			}
 		}
