@@ -258,7 +258,14 @@
 							if($td['cdia']==$dia && $td['cmes']==$mes && $td['can']==$ano && $td['cdia']==$td['cdia_fim'] && $td['cmes']==$td['cmes_fim'] && $td['can']==$td['can_fim']):
 						?>
                           <div class="card-body">
-						  <div><?=$td['nacao'] .' / '. $td['chora_ini'].'h'.$td['cminuto_ini'].'-'.$td['chora_fim'].'h'.$td['cminuto_fim']?></div>
+						  <div><?=$td['nacao'] .' / ' ?> 
+						  <?php if($td['flg_dia_todo']==0) {
+						  	echo $td['chora_ini'].'h'.$td['cminuto_ini'].'-'.$td['chora_fim'].'h'.$td['cminuto_fim'] ;
+						  }else {
+							echo 'Dia todo';
+						  }
+						  ?>
+                          </div>
 						  <?php 
 						  	foreach($pessoas_ag as $pp){
 								if($td['cagenda']==$td['cagenda'] && $pp['cps']){
@@ -345,7 +352,13 @@
 							<div class="card-body py-2">
                               <div><?=$tdp['nacao']?></div>
 							  <div>
-                                  <?=$tdp['cdia'].'/'.$tdp['cmes'].'/'.$tdp['can']?> | <?=$tdp['chora_ini'].'h'.$tdp['cminuto_ini']?>
+                                  <?=$tdp['cdia'].'/'.$tdp['cmes'].'/'.$tdp['can']?> | 
+								  <?php if($tdp['flg_dia_todo']==0) {
+                                    echo $tdp['chora_ini'].'h'.$tdp['cminuto_ini'] ;
+                                  } else {
+								  	echo 'Dia todo';
+								  }
+                                  ?>
                               </div>
 							  <?php 
 								foreach($pessoas_dp as $pdp){
