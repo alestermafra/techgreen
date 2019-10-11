@@ -30,6 +30,7 @@
 ?>
 
 	<input type="hidden" name="cagenda" value="<?=$agenda['cagenda']?>"/>
+    <input type="hidden" name="subtitulo" value="<?=$agenda['subtitulo']?>"/>
 
 	<div class="container-fluid">
 		<div class="card">

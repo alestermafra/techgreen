@@ -300,12 +300,12 @@ class AgendaController extends AppController {
 		}
 		
 		if($dados['nplano'] == "2h"){ $h_intervalo = 2; $m_intervalo = 0;}
-		if($dados['nplano'] == "2h30"){ $h_intervalo = 3; $m_intervalo = 30;}
+		if($dados['nplano'] == "2h30"){ $h_intervalo = 2; $m_intervalo = 30;}
 		if($dados['nplano'] == "3h"){ $h_intervalo = 3; $m_intervalo = 0;}
 		
 		$datinha = date("Y-m-d", strtotime($dados['can']."-".$dados['cmes']."-".$dados['cdia']));
 		
-		$subtitulo = $dados['subtitulo'].' - Instr:'.$dados['instrutor']; //para gerar subtitulo
+		$subtitulo = $dados['subtitulo'].' - Instr: '.$dados['instrutor']; //para gerar subtitulo
 				
 		$data = [
 			'subtitulo' => $subtitulo,
