@@ -1,3 +1,12 @@
+<?php
+	$interesses_por_categoria = array();
+	foreach($interesses as $interesse) {
+		$categoria = $interesse->getCategoria();
+		$interesses_por_categoria[$categoria] = _isset($interesses_por_categoria[$categoria], array());
+		array_push($interesses_por_categoria[$categoria], $interesse);
+	}
+?>
+
 <form action="<?php echo $this->url('/painel/inserir_pf') ?>" method="POST">
 
 <nav class="navbar navbar-light">
@@ -176,16 +185,19 @@
 				Interesses
 			</div>
 			<div class="card-body">
-				<div class="form-row">
-				<?php foreach($interesses as $i => $inte): ?>
-					<div class="col-md-3">
-						<div class="form-check">
-							<input type="checkbox" name="interesses[<?php echo $i ?>][ctinteresse]" value="<?php echo $inte['ctinteresse'] ?>"<?= isset($_POST['interesses'][$i]['ctinteresse'])? 'checked' : '' ?>></input>
-							<label class="form-check-label"><?php echo $inte['ntinteresse'] ?></label>
-						</div>
+				<?php foreach($interesses_por_categoria as $categoria => $interesses): ?>
+					<h5><?= $categoria ?></h5>
+					<div class="form-row">
+						<?php foreach($interesses as $interesse): ?>
+							<div class="col-md-3">
+								<div class="form-check">
+									<input type="checkbox" name="interesses[<?= $interesse->getId(); ?>][ctinteresse]" value="<?= $interesse->getId(); ?>"<?= isset($_POST['interesses'][$interesse->getId()]['ctinteresse'])? 'checked' : '' ?>></input>
+									<label class="form-check-label"><?= $interesse->getNome(); ?></label>
+								</div>
+							</div>
+						<?php endforeach; ?>
 					</div>
-				<?php endforeach ?>
-				</div>
+				<?php endforeach; ?>
 			</div>
 		</div>
 	

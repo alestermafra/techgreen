@@ -24,6 +24,8 @@ App::import('Ocorrencia', 'Model');
 
 App::import("Attachment", "Model");
 
+App::import("InteresseRepository", "Model");
+
 class PainelController extends AppController {
 	
 	public function pf() {
@@ -90,7 +92,7 @@ class PainelController extends AppController {
 			}
 		}
 		
-		$this->view->set('interesses', Interesse::find());
+		$this->view->set('interesses', (new InteresseRepository())->find());
 		$this->view->set('canais', Canal::find());
 		$this->view->set('segmentacoes', Segmentacao::find());
 		$this->view->set('tipos_telefone', TipoTelefone::find());
