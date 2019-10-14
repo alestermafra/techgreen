@@ -117,6 +117,15 @@ class AulaController extends AppController {
 		$this->view->set('parcelas_pagamento', FormaPagamento::parcelas());
 	}
 	
+	public function remover($caula = null) {
+		if($caula === null || !$aula = Aula::findById($caula)) {
+			return $this->redirect('/aula');
+		}else{
+			Aula::remover($caula);
+			return $this->redirect('/aula');
+		}
+	}
+	
 	public function participantes(int $caula = null) {
 		if($this->request->method === 'POST') {
 			$data = $_POST;

@@ -95,6 +95,7 @@
 						</div>
 					</div>
                     <div class="text-right">
+                    	<a title="Remove aula e seus participantes (caso haja)" href="<?php echo $this->url('/aula/remover/'.$aula['caula']) ?>" class="btn btn-sm btn-danger">Remover aula</a>
 						<a href="<?php echo $this->url('/agenda/agendar_aula/'.$aula['caula']) ?>" class="btn btn-sm btn-success">Agendar aula</a>
 					</div>
 				</div>

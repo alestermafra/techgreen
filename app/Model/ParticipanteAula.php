@@ -55,6 +55,11 @@ class ParticipanteAula extends Table {
 		$connection->remove('zaula', "zaula.cps = ".$cps." AND zaula.caula = ".$caula);
 	}
 	
+	public static function removerTodos(int $caula){
+		$connection = new Connection();		
+		$connection->remove('zaula', "zaula.caula = ".$caula);
+	}
+	
 	/*criação*/
 	public static function create($data) {
 		if(!isset($data['caula']) || !Aula::findById($data['caula'], 'first')) {

@@ -4,6 +4,7 @@ App::import('Table', 'Model');
 App::import('Produto', 'Model');
 App::import('Plano', 'Model');
 App::import('FormaPagamento', 'Model');
+App::import('ParticipanteAula', 'Model');
 
 class Aula extends Table {
 	
@@ -115,6 +116,14 @@ class Aula extends Table {
 		$connection->update('eaula', $eaula, "eaula.caula = $caula");
 		
 		return $aula;
+	}
+	
+	public static function remover(int $caula) {
+		$aula = static::findById($caula);
+		
+		ParticipanteAula::removerTodos($caula);
+		$connection = new Connection();
+		$connection->remove('eaula', "eaula.caula = ".$caula);
 	}
 	
 	
