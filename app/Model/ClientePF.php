@@ -164,12 +164,12 @@ class ClientePF extends Table {
 	
 	public static function search($value, string $type = 'all', array $params = array()) {
 		$value = trim($value);
-		//$value = preg_quote($value);
+		$value = preg_replace("/[^0-9a-zA-Z ]/i", "", $value);
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND (
 			eps.cps LIKE '$value%'
 			OR eps.nps LIKE '%$value%'
-			OR upsf.cpf = $value
+			OR upsf.cpf LIKE '$value%'
 		)";
 		return static::find($type, $params);
 	}
