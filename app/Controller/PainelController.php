@@ -36,18 +36,23 @@ class PainelController extends AppController {
 			'data' => 'eps.ts',
 		);
 		
+		$conditions = " ";
+		$cpf = _isset($_GET['cpf'], 'todos');
+		if($cpf == "com") {$conditions = $conditions . " AND LENGTH(upsf.cpf) > 1 ";}
+		if($cpf == "sem") {$conditions = $conditions . " AND LENGTH(upsf.cpf) = 0 ";}
+		
 		$ativo = _isset($_GET['ativo'], 1);
 		
 		$page = (int) _isset($_GET['page'], 1);
 		$limit = (int) _isset($_GET['limit'], 20);
 		
 		if($search_value) {
-			$list = ClientePF::search($search_value, 'all', array('page' => $page, 'limit' => $limit, 'conditions' => ' AND zpainel.ativo = ' . $ativo, 'order' => _isset($order_values[$order], $order_values['default'])));
-			$count = ClientePF::search($search_value, 'count', array('conditions' => ' AND zpainel.ativo = '.$ativo));
+			$list = ClientePF::search($search_value, 'all', array('page' => $page, 'limit' => $limit, 'conditions' => ' AND zpainel.ativo = ' . $ativo . $conditions, 'order' => _isset($order_values[$order], $order_values['default'])));
+			$count = ClientePF::search($search_value, 'count', array('conditions' => ' AND zpainel.ativo = '.$ativo . $conditions));
 		}
 		else {
-			$list = ClientePF::find('all', array('page' => $page, 'limit' => $limit, 'conditions' => ' AND zpainel.ativo = ' . $ativo, 'order' => _isset($order_values[$order], $order_values['default'])));
-			$count = ClientePF::find('count');
+			$list = ClientePF::find('all', array('page' => $page, 'limit' => $limit, 'conditions' => ' AND zpainel.ativo = ' . $ativo . $conditions, 'order' => _isset($order_values[$order], $order_values['default'])));
+			$count = ClientePF::find('count', array('conditions' => ' AND zpainel.ativo = '.$ativo . $conditions));
 		}
 		
 		$this->view->set('list', $list);

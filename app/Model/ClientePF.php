@@ -169,6 +169,7 @@ class ClientePF extends Table {
 		$params['conditions'] .= " AND (
 			eps.cps LIKE '$value%'
 			OR eps.nps LIKE '%$value%'
+			OR upsf.cpf = $value
 		)";
 		return static::find($type, $params);
 	}

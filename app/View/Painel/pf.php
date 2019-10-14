@@ -37,8 +37,15 @@
 					<div class="form-group col-12 col-sm-6 col-md-4 col-lg-2 d-none d-lg-block"></div>
 					
 					<div class="form-group col-12 col-sm-6 col-md-4 col-lg-2 d-none d-lg-block"></div>
-					
-					<div class="form-group col-12 col-sm-6 col-md-4 col-lg-2 d-none d-lg-block"></div>
+                    
+                    <div class="form-group col-12 col-sm-6 col-md-4 col-lg-2">
+						<label class="small text-muted">Registros</label>
+						<select name="cpf" class="form-control form-control-sm" onchange="this.form.submit()">
+                        	<option value="todos" <?php echo isset($_GET['cpf']) && $_GET['cpf'] === "todos" ? ' selected':'' ?> >Todos</option>
+                            <option value="com" <?php echo isset($_GET['cpf']) && $_GET['cpf'] === "com" ? ' selected':'' ?> >Com CPF</option>
+                            <option value="sem" <?php echo isset($_GET['cpf']) && $_GET['cpf'] === "sem" ? ' selected':'' ?> >Sem CPF</option>
+                        </select>
+					</div>
 					
 					<div class="form-group col-12 col-sm-6 col-md-4 col-lg-2">
 						<label class="small text-muted">Ordenação</label>
@@ -82,6 +89,7 @@
 					<th scope="col" class="small">id</th>
 					<th scope="col" class="small">Nome</th>
 					<th scope="col" class="small">Classificação</th>
+                    <th scope="col" class="small">CPF</th>
 					<th scope="col" class="small">Telefone</th>
 				</tr>
 			</thead>
@@ -91,6 +99,7 @@
 					<td nowrap><?php echo $d['cps'] ?></td>
 					<td nowrap><?php echo $d['nps'] ?></td>
 					<td nowrap><?php echo $d['nseg'] ?></td>
+                    <td nowrap><input type="text" readonly class="form-control-plaintext p-0 m-0 cpf-mask" value="<?php echo $d['cpf'] ?>" /></td>
 					<td nowrap><input type="text" readonly class="form-control-plaintext p-0 m-0 phone" value="<?php echo $d['fone'] ?>"></input></td>
 				</tr>
 				<?php endforeach; ?>
@@ -128,6 +137,7 @@
 	
 	function bindEvents() {
 		bindPhoneMask();
+		bindCPFMask();
 	};
 	
 	function bindPhoneMask() {
@@ -155,5 +165,10 @@
 		};
 		$('.phone').mask(fone_mask);
 	};
+	
+	function bindCPFMask() {
+		$('.cpf-mask').mask('000.000.000-00');
+	};
+	
 })();
 </script>
