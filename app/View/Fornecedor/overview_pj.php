@@ -236,7 +236,7 @@
 					
 					<tbody>
 						<?php foreach($ocorrencia as $ocorr):?>
-							<tr>
+							<tr style="cursor: pointer" onclick="window.location = '<?php echo $this->url('/ocorrencia/editar/'.$ocorr['cocorrencia'].'/'.$ocorr['codigo'].'/'.str_replace('/','-',$_SERVER["REQUEST_URI"])) ?>'">
 								<td><?php echo $ocorr['cocorrencia'] ?></td>
 								<td><?php echo $ocorr['assunto'] ?></td>
 								<td><?php echo $ocorr['descricao'] ?></td>

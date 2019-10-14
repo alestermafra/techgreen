@@ -69,7 +69,8 @@
 		<table class="table table-sm table-hover">
 			<thead class="thead-light">
 				<tr>
-					<td><label><small><b>id</b></small></label></td>
+					<td><label><small><b>#</b></small></label></td>
+                    <td><label><small>ID</small></label></td>
 					<td><label><small>Nome</small></label></td>
 					<td><label><small>Equipamento</small></label></td>
 					<td><label><small>Assunto</small></label></td>
@@ -79,10 +80,11 @@
 			</thead>
 			<tbody>
 				<?php foreach($list as $d): ?> 
-					<tr>
+					<tr style="cursor: pointer" onclick="window.location = '<?php echo $this->url('/ocorrencia/editar/'.$d['cocorrencia'].'/'.$d['codigo'].'/'.str_replace('/','-',$_SERVER["REQUEST_URI"])) ?>'">
 						<td><b><?php echo $d['cocorrencia'] ?></b></td>
+                        <td><?php echo $d['codigo'] ?></td>
 						<td><?php if($d['ctocorrencia']==1) { echo '';} else { echo $d['nps'] ;} ?></td>
-						<td><?php if($d['ctocorrencia']==1) { echo $d['nome'];} else { echo '' ;} ?></td>
+						<td><?php if($d['ctocorrencia']==1) { echo $d['nome'] .' ('.$d['responsavel'].')';} else { echo '' ;} ?></td>
                         <td><?php echo $d['assunto'] ?></td>
                         <td><?php echo $d['descricao'] ?></td>
 						<td><?php echo $d['data'] ?></td>

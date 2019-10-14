@@ -19,6 +19,7 @@ class Ocorrencia extends Table {
 			INNER JOIN tocorrencia ON (tocorrencia.ctocorrencia = eocorrencia. ctocorrencia)
 			LEFT JOIN eequipe ON (eequipe.cequipe = eocorrencia.codigo)
 			LEFT JOIN eps ON (eps.cps = eocorrencia.codigo)
+			LEFT JOIN eps psE ON (psE.cps = eequipe.cps)
 		WHERE eocorrencia.RA = 1
 			{{conditions}}
 		{{group}}
@@ -32,11 +33,13 @@ class Ocorrencia extends Table {
 		'tocorrencia.ctocorrencia',
 		'tocorrencia.ntocorrencia',
 		'eocorrencia.assunto',
+		'eocorrencia.codigo',
 		'eocorrencia.descricao',
 		'eocorrencia.data',
 		'eequipe.cequipe',
 		'eequipe.nome',
 		'eequipe.marca',
+		'psE.nps as responsavel', 
 		'eps.cps',
 		'eps.nps',
 	);
@@ -44,9 +47,12 @@ class Ocorrencia extends Table {
 	
 	/* métodos de criação de edição */
 	public static function save($data) {
-		return static::create($data);
+		if(!isset($data['cocorrencia'])) {
+			return static::create($data);
+		}
+		return static::edit($data);
 	}
-	
+		
 	public static function create($data) {
 		if(!isset($data['codigo'])) {
 			throw new Exception('Cliente / Equipamento inválido');
@@ -66,6 +72,30 @@ class Ocorrencia extends Table {
 		return static::findById($cocorrencia);
 	}
 	
+	public static function edit($data) {
+		if(!isset($data['cocorrencia'])) {
+			throw new Exception('Erro ao resgatar código de ocorrência');
+		}
+		
+		if(!isset($data['codigo'])) {
+			throw new Exception('Cliente / Equipamento inválido');
+		}
+		
+		$cocorrencia = $data['cocorrencia'];
+		
+		$connection = new Connection();
+		
+		$ocorrencia = [
+			'assunto' => (string) _isset($data['assunto'], null),
+			'descricao' => (string) _isset($data['descricao'], null),
+			'data' => (string) _isset($data['data'], null),
+			'codigo' => (int) _isset($data['codigo'], null),
+			'ctocorrencia' => (int) _isset($data['ctocorrencia'], null),
+		];		
+		$connection->update('eocorrencia', $ocorrencia, "eocorrencia.cocorrencia = $cocorrencia");
+		
+		return $ocorrencia;
+	}	
 	
 	/*specials*/
 	public static function tipo() {
@@ -133,6 +163,7 @@ class Ocorrencia extends Table {
 		$params['conditions'] .= " OR eequipe.nome LIKE '%$value%'";
 		$params['conditions'] .= " OR eequipe.marca LIKE '%$value%'";
 		$params['conditions'] .= " OR eocorrencia.assunto LIKE '%$value%'";
+		$params['conditions'] .= " OR eocorrencia.data LIKE '%$value%'";
 		$params['conditions'] .= ")";
 		return static::_find($type, $params);
 	}

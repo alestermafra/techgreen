@@ -6,13 +6,13 @@
 	}
 </style>
 
-<form action="<?php echo $this->url('/ocorrencia/inserir/'.$target.'/'.$cod.'/'.str_replace('/','-',$onde)) ?>" method="POST">
+<form action="<?php echo $this->url('/ocorrencia/editar/'.$ocorrencia['cocorrencia'].'/'.$cod.'/'.str_replace('/','-',$onde)) ?>" method="POST">
 
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Inserir Ocorrência</span>
+	<span class="navbar-brand">Editar Ocorrência</span>
 	<div>
 		<a class="btn btn-sm btn-light" role="button" style="width: 100px;" href="<?php echo $this->url($onde) ?>">Cancelar</a>
-		<input type="submit" class="btn btn-sm btn-success" style="width: 100px;" value="Concluir"></input>
+		<input type="submit" class="btn btn-sm btn-success" style="width: 100px;" value="Concluir">
 	</div>
 </nav>
 
@@ -29,6 +29,16 @@
 <?php endif ?>
 
 
+<input type="hidden" name="cocorrencia" value="<?=$ocorrencia['cocorrencia']?>" />
+
+<?php
+	if($ocorrencia['ctocorrencia'] == 2){
+		$target = "pessoa";
+	}
+	else if($ocorrencia['ctocorrencia'] == 1){
+		$target = "equipamento";
+	}
+?>
 
 <div class="container-fluid">
 	<div class="card">
@@ -66,7 +76,7 @@
 									echo '<option value="'.$l['cequipe'].'" ';
 									if($l['cequipe']==$cod){echo 'selected';}
 									echo ' >';
-									echo $l['nome'].' (#'.$l['cequipe'].')';
+									echo $l['nome'].' (#'.$l['cequipe'].') ('.$l['nps'].')';
 									echo '</option>';
 								}
 							} 
@@ -87,12 +97,12 @@
 		<div class="card-body">
 			<div class="form-group">
 				<label for="assunto-input"><small>Assunto</small></label>
-				<input name="assunto" id="assunto-input" type="text" class="form-control form-control-sm" placeholder="Assunto resumido" autocomplete="off" value="<?php echo _isset($_POST['assunto'], '') ?>" />
+				<input name="assunto" id="assunto-input" type="text" class="form-control form-control-sm" placeholder="Assunto resumido" autocomplete="off" value="<?php echo _isset($_POST['assunto'], $ocorrencia['assunto']) ?>" />
 			</div>
                 
 			<div class="form-group">
 				<label for="descricao-textarea"><small>Descrição</small></label>
-				<textarea name="descricao" id="descricao-textarea" class="form-control form-control-sm" rows="2" placeholder="Observações e descrição geral"><?php echo _isset($_POST['descricao'], '') ?></textarea>
+				<textarea name="descricao" id="descricao-textarea" class="form-control form-control-sm" rows="2" placeholder="Observações e descrição geral"><?php echo _isset($_POST['descricao'], $ocorrencia['descricao']) ?></textarea>
 			</div>
                 
             <div class="form-group">
