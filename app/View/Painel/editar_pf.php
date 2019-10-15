@@ -1,3 +1,21 @@
+<?php
+	$interesses_por_categoria = array();
+	foreach($interesses as $interesse) {
+		$ex = explode(" - ", $interesse["ntinteresse"], 2);
+		if(!isset($ex[1])) {
+			$categoria = "Categoria Desconhecida";
+			$nome = $ex[0];
+		}
+		else {
+			$categoria = $ex[0];
+			$nome = $ex[1];
+		}
+		$interesse["ntinteresse"] = $nome;
+		$interesses_por_categoria[$categoria] = _isset($interesses_por_categoria[$categoria], array());
+		array_push($interesses_por_categoria[$categoria], $interesse);
+	}
+?>
+
 <form action="<?php echo $this->url('/painel/editar_pf/' . $clientepf['cps']) ?>" method="POST">
 
 <nav class="navbar navbar-light">
@@ -225,29 +243,33 @@
 			Interesses
 		</div>
 		<div class="card-body">
-			<div class="form-row">
-			<?php foreach($interesses as $i => $inte): ?>
-				<?php
-					$czinteresse = false;
-					foreach($clientepf['interesses'] as $cliente_inte) {
-						if($cliente_inte['ctinteresse'] == $inte['ctinteresse']) {
-							$czinteresse = $cliente_inte['czinteresse'];
-						}
-					}
-				?>
-				<div class="col-md-3">
-					<div class="form-check">
-						<?php if($czinteresse): ?>
-							<input type="hidden" name="interesses[<?php echo $i ?>][czinteresse]" value="<?php echo $czinteresse ?>"></input>
-						<?php endif ?>
-						<input type="checkbox" name="interesses[<?php echo $i ?>][ctinteresse]" value="<?php echo $inte['ctinteresse'] ?>"<?= $czinteresse? 'checked' : '' ?>></input>
-						<label class="form-check-label"><?php echo $inte['ntinteresse'] ?></label>
-					</div>
+			<?php $i = 0; foreach($interesses_por_categoria as $categoria => $interesses): ?>
+				<h5><?= $categoria ?></h5>
+				<div class="form-row">
+					<?php foreach($interesses as $interesse): ?>
+						<?php
+							$czinteresse = false;
+							foreach($clientepf['interesses'] as $cliente_interesse) {
+								if($cliente_interesse['ctinteresse'] == $interesse['ctinteresse']) {
+									$czinteresse = $cliente_interesse['czinteresse'];
+								}
+							}
+						?>
+						<div class="col-md-3">
+							<div class="form-check">
+								<?php if($czinteresse): ?>
+									<input type="hidden" name="interesses[<?php echo $i ?>][czinteresse]" value="<?php echo $czinteresse ?>"></input>
+								<?php endif ?>
+								<input type="checkbox" name="interesses[<?= $i; ?>][ctinteresse]" value="<?= $interesse["ctinteresse"] ?>"<?= _isset($_POST['interesses'][$i]['ctinteresse'], $czinteresse)? 'checked' : '' ?>></input>
+								<label class="form-check-label"><?= $interesse["ntinteresse"] ?></label>
+							</div>
+						</div>
+					<?php $i++; endforeach; ?>
 				</div>
-			<?php endforeach ?>
-			</div>
+			<?php endforeach; ?>
 		</div>
 	</div>
+
 	
 	<div class="form-group text-right">
 		<a class="btn btn-sm btn-light" role="button" style="width: 100px;" href="<?php echo $this->url('/painel/overview_pf/'.$clientepf['cps']) ?>">Cancelar</a>

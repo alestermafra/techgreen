@@ -24,6 +24,8 @@ App::import('Ocorrencia', 'Model');
 
 App::import("Attachment", "Model");
 
+App::import("InteresseRepository", "Model");
+
 class PainelController extends AppController {
 	
 	public function pf() {
