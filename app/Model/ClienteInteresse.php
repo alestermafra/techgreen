@@ -98,18 +98,19 @@ class ClienteInteresse extends Table {
 	
 	/* métodos de busca */
 	public static function find(string $type = 'all', array $params = array()) {
+		$params["order"] = _isset($params["order"], "tinteresse.ctinteresse asc");
 		return parent::_find($type, $params);
 	}
 	
 	public static function findById(int $id, string $type = 'first', array $params = array()) {
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND zinteresse.czinteresse = $id";
-		return static::_find($type, $params);
+		return static::find($type, $params);
 	}
 	
 	public static function findByCps(int $cps, string $type = 'first', array $params = array()) {
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND eps.cps = $cps";
-		return static::_find($type, $params);
+		return static::find($type, $params);
 	}
 }
