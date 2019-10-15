@@ -1,7 +1,16 @@
 <?php
 	$interesses_por_categoria = array();
 	foreach($interesses as $interesse) {
-		$categoria = $interesse->getCategoria();
+		$ex = explode(" - ", $interesse["ntinteresse"], 2);
+		if(!isset($ex[1])) {
+			$categoria = "Categoria Desconhecida";
+			$nome = $ex[0];
+		}
+		else {
+			$categoria = $ex[0];
+			$nome = $ex[1];
+		}
+		$interesse["ntinteresse"] = $nome;
 		$interesses_por_categoria[$categoria] = _isset($interesses_por_categoria[$categoria], array());
 		array_push($interesses_por_categoria[$categoria], $interesse);
 	}
@@ -185,17 +194,17 @@
 				Interesses
 			</div>
 			<div class="card-body">
-				<?php foreach($interesses_por_categoria as $categoria => $interesses): ?>
+				<?php $i = 0; foreach($interesses_por_categoria as $categoria => $interesses): ?>
 					<h5><?= $categoria ?></h5>
 					<div class="form-row">
 						<?php foreach($interesses as $interesse): ?>
 							<div class="col-md-3">
 								<div class="form-check">
-									<input type="checkbox" name="interesses[<?= $interesse->getId(); ?>][ctinteresse]" value="<?= $interesse->getId(); ?>"<?= isset($_POST['interesses'][$interesse->getId()]['ctinteresse'])? 'checked' : '' ?>></input>
-									<label class="form-check-label"><?= $interesse->getNome(); ?></label>
+									<input type="checkbox" name="interesses[<?= $i; ?>][ctinteresse]" value="<?= $interesse["ctinteresse"] ?>"<?= isset($_POST['interesses'][$i]['ctinteresse'])? 'checked' : '' ?>></input>
+									<label class="form-check-label"><?= $interesse["ntinteresse"] ?></label>
 								</div>
 							</div>
-						<?php endforeach; ?>
+						<?php $i++; endforeach; ?>
 					</div>
 				<?php endforeach; ?>
 			</div>

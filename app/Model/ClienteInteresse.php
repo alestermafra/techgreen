@@ -1,7 +1,5 @@
 <?php
 App::import('Table', 'Model');
-App::import('Connection', 'Model');
-
 App::import('Interesse', 'Model');
 
 class ClienteInteresse extends Table {
@@ -62,7 +60,7 @@ class ClienteInteresse extends Table {
 			}
 		}
 		else if($mode === 'edit') {
-			if(!isset($data['ctinteresse'])) { /* remove o canal se vier sem ccanal (se vier desmarcado) */
+			if(!isset($data['ctinteresse'])) { /* remove o interesse se vier sem interesse (se vier desmarcado) */
 				static::remove("zinteresse.czinteresse = {$data['czinteresse']}");
 				return array();
 			}

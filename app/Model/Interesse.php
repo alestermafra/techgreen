@@ -1,39 +1,51 @@
 <?php
+App::import('Table', 'Model');
+App::import('Connection', 'Model');
 
 class Interesse extends Table {
-	public $ctinteresse; /* int */
-	public $ntinteresse; /* string */
 	
-	public $categoria; /* string */
+	public static $_table = 'tinteresse';
+
+	public static $_qry = '
+		SELECT
+			{{fields}}
+		FROM tinteresse
+		WHERE tinteresse.RA = 1
+			{{conditions}}
+		{{group}}
+		{{order}}
+		{{limit}}
+		{{offset}}
+	';
 	
-	public function set_ctinteresse(int $ctinteresse) {
-		$this->ctinteresse = $ctinteresse;
-		return $this;
+	public static $_fields = array(
+		'tinteresse.ctinteresse',
+		'tinteresse.ntinteresse',
+	);
+	
+	
+	/* métodos de criação de edição */
+	public static function save($data) {
+		/* implementar se necessario */
 	}
 	
-	public function get_ctinteresse() {
-		return $this->ctinteresse;
+	public static function create($data) {
+		/* implementar se necessario */
 	}
 	
-	public function set_ntinteresse(string $ntinteresse) {
-		$this->ntinteresse = $ntinteresse;
-		return $this;
+	public static function edit($data) {
+		/* implementar se necessario */
 	}
 	
-	public function get_ntinteresse() {
-		return $this->ntinteresse;
+	
+	/* métodos de busca */
+	public static function find(string $type = 'all', array $params = array()) {
+		return parent::_find($type, $params);
 	}
 	
-	public function set_categoria(string $categoria) {
-		$this->categoria = $categoria;
-		return $this;
-	}
-	
-	public function get_categoria() {
-		return $this->categoria;
-	}
-	
-	public function save() {
-		
+	public static function findById(int $id, string $type = 'first', array $params = array()) {
+		$params['conditions'] = _isset($params['conditions'], '');
+		$params['conditions'] .= " AND tinteresse.ctinteresse = $id";
+		return static::_find($type, $params);
 	}
 }
