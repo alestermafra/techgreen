@@ -140,7 +140,6 @@ class ClientePF extends Table {
 	/* métodos de busca */
 	public static function find(string $type = 'all', array $params = array()) {
 		$params["order"] = _isset($params["order"], "eps.nps");
-		$params["limit"] = _isset($params["limit"], 1000);
 		return parent::_find($type, $params);
 	}
 	
