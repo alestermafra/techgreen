@@ -94,7 +94,7 @@ class PainelController extends AppController {
 		
 		$this->view->set('interesses', Interesse::find());
 		$this->view->set('canais', Canal::find());
-		$this->view->set('segmentacoes', Segmentacao::find());
+		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'eseg.ordem')));
 		$this->view->set('tipos_telefone', TipoTelefone::find());
 		$this->view->set('tipos_endereco', Endereco::tipoEndereco());
 	}
@@ -141,7 +141,7 @@ class PainelController extends AppController {
 		$clientepf['interesses'] = ClientePF::interesses($clientepf['cps']);
 		
 		$this->view->set('clientepf', $clientepf);
-		$this->view->set('segmentacoes', Segmentacao::find());
+		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'eseg.ordem')));
 		$this->view->set('interesses', Interesse::find());
 		$this->view->set('canais', Canal::find());
 		$this->view->set('tipos_telefone', TipoTelefone::find());
@@ -202,7 +202,7 @@ class PainelController extends AppController {
 			}
 		}
 		
-		$this->view->set('segmentacoes', Segmentacao::find());
+		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'eseg.ordem')));
 		$this->view->set('tipos_telefone', TipoTelefone::find());
 		$this->view->set('tipos_endereco', Endereco::tipoEndereco());
 	}
@@ -227,7 +227,7 @@ class PainelController extends AppController {
 		}
 		
 		$this->view->set('clientepj', $clientepj);
-		$this->view->set('segmentacoes', Segmentacao::find());
+		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'eseg.ordem')));
 	}
 	
 	public function ajax_cps_to_clientepj($cps = null) {
@@ -263,7 +263,7 @@ class PainelController extends AppController {
 		$this->view->set('list', $list);
 		$this->view->set('count', $count);
 		$this->view->set('excel', $excel);
-		$this->view->set('segmentacoes', Segmentacao::find());
+		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'eseg.ordem')));
 	}
 	
 	/*
