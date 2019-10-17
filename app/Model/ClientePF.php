@@ -3,6 +3,7 @@ App::import('Table', 'Model');
 
 App::import('PessoaFisica', 'Model');
 App::import('ClienteCanal', 'Model');
+App::import('ClienteCanalContato', 'Model');
 App::import('ClienteInteresse', 'Model');
 
 class ClientePF extends Table {
@@ -83,6 +84,15 @@ class ClientePF extends Table {
 				$canal['cps'] = $data['cps'];
 				try {
 					ClienteCanal::save($canal);
+				}
+				catch(Exception $e) {}
+			}
+		}
+		if(isset($data['canais_contato']) && is_array($data['canais_contato'])) {
+			foreach($data['canais_contato'] as $canalcontato) {
+				$canalcontato['cps'] = $data['cps'];
+				try {
+					ClienteCanalContato::save($canalcontato);
 				}
 				catch(Exception $e) {}
 			}
@@ -185,6 +195,10 @@ class ClientePF extends Table {
 	
 	public static function canais(int $cps, string $type = 'all', array $params = array()) {
 		return ClienteCanal::findByCps($cps, $type, $params);
+	}
+	
+	public static function canais_contato(int $cps, string $type = 'all', array $params = array()) {
+		return ClienteCanalContato::findByCps($cps, $type, $params);
 	}
 	
 	public static function interesses(int $cps, string $type = 'all', array $params = array()) {

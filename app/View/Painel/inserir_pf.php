@@ -81,7 +81,7 @@
 						<div class="col">
 							<select name="m_nasc" class="form-control form-control-sm">
 								<option value="0">Mês</option>
-								<?php $nome_meses = [1 => 'Janeiro', 'Fevereiro', 'Abril', 'Março', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']; ?>
+								<?php $nome_meses = [1 => 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']; ?>
 								<?php for($m = 1; $m <= 12; $m++): ?>
 									<option value="<?php echo $m ?>"<?php echo isset($_POST['m_nasc']) && $m == $_POST['m_nasc']? ' selected' : '' ?>><?php echo $nome_meses[$m] ?></option>
 								<?php endfor ?>
@@ -169,6 +169,27 @@
 		</div>
 		
 		<div class="card">
+			<div class="card-header bg-dark text-white">
+				Canais de contato
+			</div>
+			<div class="card-body">
+				<div class="form-row">
+				<?php foreach($canais_contato as $i => $c_c): ?>
+					<div class="col-md-3">
+						<div class="form-check">
+							<input type="checkbox" name="canais_contato[<?php echo $i ?>][ccanalcontato]" value="<?php echo $c_c['ccanalcontato'] ?>"></input>
+							<label class="form-check-label"><?php echo $c_c['ncanalcontato'] ?></label>
+							<?php if($c_c['flg_obs']): ?>
+								<input type="text" class="form-control form-control-sm" name="canais_contato[<?php echo $i ?>][OBS]" value="<?php echo _isset($_POST['canais_contato'][$i]['OBS']) ?>"></input>
+							<?php endif ?>
+						</div>
+					</div>
+				<?php endforeach ?>
+				</div>
+			</div>
+		</div>
+        
+        <div class="card">
 			<div class="card-header bg-dark text-white">
 				Canais de conhecimento
 			</div>

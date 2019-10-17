@@ -8,6 +8,7 @@ App::import('ClientePF', 'Model');
 App::import('ClientePJ', 'Model');
 
 App::import('Canal', 'Model');
+App::import('CanalContato', 'Model');
 App::import('ClienteCanal', 'Model');
 App::import('Interesse', 'Model');
 App::import('ClienteInteresse', 'Model');
@@ -71,6 +72,7 @@ class PainelController extends AppController {
 		$clientepf['telefones'] = ClientePF::telefones($clientepf['cps']);
 		$clientepf['enderecos'] = ClientePF::enderecos($clientepf['cps']);
 		$clientepf['canais'] = ClientePF::canais($cps);
+		$clientepf['canais_contato'] = ClientePF::canais_contato($cps);
 		$clientepf['interesses'] = ClientePF::interesses($cps);
 		$clientepf['aulas'] = ParticipanteAula::findByCps($cps);
 		$clientepf['equipamentos'] = Equipamento::findByCps($cps);
@@ -94,7 +96,8 @@ class PainelController extends AppController {
 		
 		$this->view->set('interesses', Interesse::find());
 		$this->view->set('canais', Canal::find());
-		$this->view->set('segmentacoes', Segmentacao::find());
+		$this->view->set('canais_contato', CanalContato::find());
+		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'ordem')));
 		$this->view->set('tipos_telefone', TipoTelefone::find());
 		$this->view->set('tipos_endereco', Endereco::tipoEndereco());
 	}
@@ -124,6 +127,7 @@ class PainelController extends AppController {
 			$clientepf['telefones'] = _isset($data['telefones'], array());
 			$clientepf['cseg'] = _isset($data['cseg'], $clientepf['cseg']);
 			$clientepf['canais'] = _isset($data['canais'], array());
+			$clientepf['canais_contato'] = _isset($data['canais_contato'], array());
 			$clientepf['interesses'] = _isset($data['interesses'], array());
 			$clientepf['ativo'] = _isset($data['ativo'], $clientepf['ativo']);
 			try {
@@ -138,12 +142,14 @@ class PainelController extends AppController {
 		$clientepf['telefones'] = ClientePF::telefones($clientepf['cps']);
 		$clientepf['enderecos'] = ClientePF::enderecos($clientepf['cps']);
 		$clientepf['canais'] = ClientePF::canais($clientepf['cps']);
+		$clientepf['canais_contato'] = ClientePF::canais_contato($clientepf['cps']);
 		$clientepf['interesses'] = ClientePF::interesses($clientepf['cps']);
 		
 		$this->view->set('clientepf', $clientepf);
-		$this->view->set('segmentacoes', Segmentacao::find());
+		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'ordem')));
 		$this->view->set('interesses', Interesse::find());
 		$this->view->set('canais', Canal::find());
+		$this->view->set('canais_contato', CanalContato::find());
 		$this->view->set('tipos_telefone', TipoTelefone::find());
 		$this->view->set('tipos_endereco', Endereco::tipoEndereco());
 	}
@@ -202,7 +208,7 @@ class PainelController extends AppController {
 			}
 		}
 		
-		$this->view->set('segmentacoes', Segmentacao::find());
+		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'ordem')));
 		$this->view->set('tipos_telefone', TipoTelefone::find());
 		$this->view->set('tipos_endereco', Endereco::tipoEndereco());
 	}
@@ -227,7 +233,7 @@ class PainelController extends AppController {
 		}
 		
 		$this->view->set('clientepj', $clientepj);
-		$this->view->set('segmentacoes', Segmentacao::find());
+		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'ordem')));
 	}
 	
 	public function ajax_cps_to_clientepj($cps = null) {
@@ -263,7 +269,7 @@ class PainelController extends AppController {
 		$this->view->set('list', $list);
 		$this->view->set('count', $count);
 		$this->view->set('excel', $excel);
-		$this->view->set('segmentacoes', Segmentacao::find());
+		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'ordem')));
 	}
 	
 	/*
