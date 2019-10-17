@@ -171,6 +171,16 @@ class ClientePF extends Table {
 		return static::find($type, $params);
 	}
 	
+	public static function aniversariantes(string $type = 'all', array $params = array()){
+		$d_selecionada = date("d-m-Y", strtotime(date("d")."-".date("m")."-".date("Y"))); // prepara a data selecionada
+		$d_inicio = date('d-m-Y', strtotime('sunday last week', strtotime($d_selecionada))); //data inicial da semana
+		$d_fim = date("d-m-Y", strtotime('saturday this week', strtotime($d_selecionada))); //data final da semana
+		
+		$params['conditions'] = _isset($params['conditions'], '');
+		$params['conditions'] .= ' AND ( upsf.m_nasc in('.date("n", strtotime($d_inicio)).','.date("n", strtotime($d_fim)).')  AND upsf.d_nasc between '.date("j", strtotime($d_inicio)).' and '.date("j", strtotime($d_fim)).' ) AND zpainel.ativo = 1';
+		return static::find($type, $params);
+	}
+	
 	public static function search($value, string $type = 'all', array $params = array()) {
 		$value = trim($value);
 		$value = preg_replace("/[^0-9a-zA-Z ]/i", "", $value);
