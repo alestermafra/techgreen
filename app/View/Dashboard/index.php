@@ -226,7 +226,7 @@
 							<table class="table">
 								<?php foreach($aniversariantes as $aniv): ?>
 									<tr>
-										<td><small><a href="<?= $this->url("/overview_pf/{$aniv["cps"]}") ?>"><?php echo $aniv['nps'] ?></a></small></td>
+										<td><small><a href="<?= $this->url("/painel/overview_pf/{$aniv["cps"]}") ?>"><?php echo $aniv['nps'] ?></a></small></td>
 										<td><small><?php echo $aniv['d_nasc'].'/'.$aniv['m_nasc'].'/'.$aniv['a_nasc'] ?></small></td>
 									</tr>
 								<?php endforeach ?>

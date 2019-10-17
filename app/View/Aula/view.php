@@ -131,7 +131,7 @@
 					<?php foreach($participantes as $i => $pct):?>
 						<div class="participante-container">
 							<div>
-								<a href="<?= $this->url("/overview_pf/{$pct["cps"]}") ?>"><?= $pct["nps"] ?></a>
+								<a href="<?= $this->url("/painel/overview_pf/{$pct["cps"]}") ?>"><?= $pct["nps"] ?></a>
 								<span style="font-weight: bold">(<?= $pct["nprod"] ?>)</span>
 							</div>
 							<div class="row">
