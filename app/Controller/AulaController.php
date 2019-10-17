@@ -16,8 +16,9 @@ class AulaController extends AppController {
 		$search_value = _isset($_GET['search_value'], null);
 		$order = _isset($_GET['order'], 'default');
 		$order_values = array(
-			'default' => 'eaula.TS DESC',
-			'data' => 'eaula.TS DESC',
+			'default' => 'eaula.cdia, eaula.cmes, eaula.can',
+			'data' => 'eaula.cdia, eaula.cmes, eaula.can', 
+			'TS' => 'eaula.TS DESC',
 			'plano' => 'eplano.nplano ASC',
 		);
 		
