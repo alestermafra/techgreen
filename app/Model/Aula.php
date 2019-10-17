@@ -22,7 +22,7 @@ class Aula extends Table {
 					caula,
 					cps
 				FROM zaula
-				WHERE RA = 1
+				WHERE RA = 1 AND cps NOT IN (0)
 				GROUP BY caula
 			) zaula ON zaula.caula = eaula.caula
 		WHERE eaula.RA = 1 

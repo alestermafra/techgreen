@@ -61,7 +61,8 @@
 					<div class="form-group col-xl-2">
 						<label class="small text-muted">Ordenação</label>
 						<select name="order" class="form-control form-control-sm" onchange="this.form.submit()">
-							<option value="data"<?php echo isset($_GET['order']) && $_GET['order'] === "data"? ' selected':'' ?>>Data de Criação</option>
+							<option value="data"<?php echo isset($_GET['order']) && $_GET['order'] === "data"? ' selected':'' ?>>Data de aula</option>
+                            <option value="TS"<?php echo isset($_GET['order']) && $_GET['order'] === "TS"? ' selected':'' ?>>Data de criação</option>
 							<option value="plano"<?php echo isset($_GET['order']) && $_GET['order'] === "plano"? ' selected':'' ?>>Plano</option>
 						</select>
 					</div>

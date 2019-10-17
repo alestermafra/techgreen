@@ -1,3 +1,14 @@
+<style>
+	.lista-participantes .participante-container {
+		margin-top: 1rem;
+	}
+	
+	.lista-participantes .participante-container:first-child {
+		margin-top: 0;
+	}
+</style>
+
+
 <nav class="navbar navbar-light">
 	<span class="navbar-brand">Aula / Curso</span>
 	<div>
@@ -115,15 +126,44 @@
                         </a>
                     </div>
 				</div>
-				<div class="card-body">
-					<?php  if(!$participantes){ echo '<div> Sem participantes para essa aula / curso </div>';} ?>
-					<?php foreach($participantes as $pct):?>
-                        <div class="row form-group">
-                            <div class="col-md-12"><?php echo $pct['nps'].' <b>('.$pct['nprod'].')</b>' ?></div>
-                        </div>
+				<div class="card-body lista-participantes">
+					<?php if(!$participantes){ echo '<div>Sem participantes para essa aula/curso</div>';} ?>
+					<?php foreach($participantes as $i => $pct):?>
+						<div class="participante-container">
+							<div>
+								<a href="<?= $this->url("/overview_pf/{$pct["cps"]}") ?>"><?= $pct["nps"] ?></a>
+								<span style="font-weight: bold">(<?= $pct["nprod"] ?>)</span>
+							</div>
+							<div class="row">
+								<div class="col">
+									<textarea data-id="<?= $pct["czaula"] ?>" type="text" class="form-control descricao-participante-textarea" style="height: 60px;"><?= $pct["descricao_participante"] ?></textarea>
+									<small class="invisible">status</small>
+								</div>
+							</div>
+						</div>
 					<?php endforeach ?>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+(function() {
+	$(document).ready(function() {
+		$(".descricao-participante-textarea").change(function() {
+			var $textarea = $(this);
+			clearTimeout($textarea.data("timeout"));
+			$textarea.data("timeout") = setTimeout(function(){ save_descricao($textarea); }, 2000);
+		});
+	});
+	
+	function save_descricao($el) {
+		let zaula = $el.data("zaula");
+		let descricao = $el.val();
+		
+		alert("saving " + zaula + ": " + descricao);
+	};
+})();
+</script>

@@ -81,7 +81,7 @@
 					<div class="col">
 						<select name="m_nasc" class="form-control form-control-sm">
 							<option value="0">Mês</option>
-							<?php $nome_meses = [1 => 'Janeiro', 'Fevereiro', 'Abril', 'Março', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']; ?>
+							<?php $nome_meses = [1 => 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']; ?>
 							<?php for($m = 1; $m <= 12; $m++): ?>
 								<option value="<?php echo $m ?>"<?php echo $m == _isset($_POST['m_nasc'], $clientepf['m_nasc'])? ' selected' : '' ?>><?php echo $nome_meses[$m] ?></option>
 							<?php endfor ?>
