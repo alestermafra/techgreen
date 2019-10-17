@@ -117,7 +117,7 @@
 						<?php endif; ?>
 						<?php if(!empty($clientepf['canais'])): ?>
 						<tr>
-							<td class="text-muted">Canais</td>
+							<td class="text-muted">Canais de Conhecimento</td>
 							<td>
 								<?php foreach($clientepf['canais'] as $i => $canal): ?>
 									<div><span class="text-muted"><?php echo ($i + 1) ?>. </span> <?php echo $canal['ncanal'] . ' ' . $canal['OBS'] ?></div>

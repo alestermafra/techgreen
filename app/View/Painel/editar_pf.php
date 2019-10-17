@@ -201,6 +201,43 @@
 		</div>
 	</div>
 	
+    <div class="card">
+		<div class="card-header bg-dark text-white">
+			Canais de Contato
+		</div>
+		<div class="card-body">
+			<div class="form-row">
+			<?php foreach($canais_contato as $a => $c_c): ?>
+				<?php
+					$czcanalcontato = false;
+					$obscontato = '';
+					foreach($clientepf['canais_contato'] as $cliente_canalcontato) {
+						if($cliente_canalcontato['ccanalcontato'] == $c_c['ccanalcontato']) {
+							$czcanalcontato = $cliente_canalcontato['czcanalcontato'];
+							if($c_c['flg_obs'] == 1) {
+								$obscontato = $cliente_canalcontato['OBS'];
+							}
+							break;
+						}
+					}
+				?>
+				<div class="col-md-3">
+					<div class="form-check">
+						<?php if($czcanalcontato): ?>
+							<input type="hidden" name="canais_contato[<?php echo $a ?>][czcanalcontato]" value="<?php echo $czcanalcontato ?>"></input>
+						<?php endif ?>
+						<input type="checkbox" name="canais_contato[<?php echo $a ?>][ccanalcontato]" value="<?php echo $c_c['ccanalcontato'] ?>"<?php echo $czcanalcontato? ' checked' : '' ?>></input>
+						<label class="form-check-label"><?php echo $c_c['ncanalcontato'] ?></label>
+						<?php if($c_c['flg_obs']): ?>
+							<input type="text" class="form-control form-control-sm" name="canais_contato[<?php echo $a ?>][OBS]" value="<?php echo $obscontato ?>"></input>
+						<?php endif ?>
+					</div>
+				</div>
+			<?php endforeach ?>
+			</div>
+		</div>
+	</div>
+    
 	<div class="card">
 		<div class="card-header bg-dark text-white">
 			Canais de conhecimento
