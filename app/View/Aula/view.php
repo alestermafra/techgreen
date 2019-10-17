@@ -152,18 +152,39 @@
 <script type="text/javascript">
 (function() {
 	$(document).ready(function() {
-		$(".descricao-participante-textarea").change(function() {
+		$(".descricao-participante-textarea").keyup(function() {
 			var $textarea = $(this);
+			var $status = $textarea.next();
 			clearTimeout($textarea.data("timeout"));
-			$textarea.data("timeout") = setTimeout(function(){ save_descricao($textarea); }, 2000);
+			$textarea.data("timeout", setTimeout(function(){ save_descricao($textarea, $status); }, 1000));
+			$status.text("Salvando...");
+			$status.removeClass("invisible");
 		});
 	});
 	
-	function save_descricao($el) {
-		let zaula = $el.data("zaula");
+	function save_descricao($el, $status) {
+		let czaula = $el.data("id");
 		let descricao = $el.val();
 		
-		alert("saving " + zaula + ": " + descricao);
+		$.ajax({
+			url: "<?= $this->url('/aula/ajax_set_descricao_participante') ?>",
+			method: "POST",
+			data: {
+				"czaula": czaula,
+				"descricao": descricao
+			},
+			success: function(result) {
+				if(result === "success") {
+					$status.text("Salvo!");
+				}
+				else {
+					$status.text("Erro ao salvar. Tente novamente.");
+				}
+			},
+			error: function(err) {
+				$status.text("Erro ao salvar. Tente novamente. err");
+			}
+		});
 	};
 })();
 </script>
