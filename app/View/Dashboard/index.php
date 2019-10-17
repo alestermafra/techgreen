@@ -124,7 +124,7 @@
 	</div>
 	
 	<div class="row">
-		<div class="col-xl-5">
+		<div class="col-xl-8">
 			<?php
 				$estoque_color = 'green';
 				foreach($estoque_acabando as $estoque) {
@@ -211,6 +211,28 @@
 						<h5 class="py-0 text-muted">Alguma coisa</h5>
 					</div>
 					<canvas id="grafico3"></canvas>
+				</div>
+			</div>
+			
+			<div class="card">
+				<div class="card-body pt-0 pb-3">
+					<div class="py-3">
+						<h5 class="py-0 text-muted">Aniversariantes da semana</h5>
+					</div>
+					<?php if(empty($aniversariantes)): ?>
+						<div class="small text-muted">Nenhum registro para exibir.</div>
+					<?php else: ?>
+						<div class="table-responsive" style="max-height: 300px; overflow-y: scroll;">
+							<table class="table">
+								<?php foreach($aniversariantes as $aniv): ?>
+									<tr>
+										<td><small><a href="<?= $this->url("/overview_pf/{$aniv["cps"]}") ?>"><?php echo $aniv['nps'] ?></a></small></td>
+										<td><small><?php echo $aniv['d_nasc'].'/'.$aniv['m_nasc'].'/'.$aniv['a_nasc'] ?></small></td>
+									</tr>
+								<?php endforeach ?>
+							</table>
+						</div>
+					<?php endif ?>
 				</div>
 			</div>
 		</div>
@@ -397,31 +419,6 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="col-xl-3">
-			<div class="card">
-				<div class="card-header bg-transparent border-0">
-					<h5 class="py-0 text-muted">Aniversariantes da semana</h5>
-				</div>
-				<div class="card-body p-0">
-					<?php if(empty($aniversariantes)): ?>
-						<div class="small text-muted">Nenhum registro para exibir.</div>
-					<?php else: ?>
-						<div class="table-responsive">
-							<table class="table">
-								<?php foreach($aniversariantes as $aniv): ?>
-									<tr>
-										<td><small><?php echo $aniv['nps'] ?></small></td>
-										<td><small><?php echo $aniv['d_nasc'].'/'.$aniv['m_nasc'].'/'.$aniv['a_nasc'] ?></small></td>
-									</tr>
-								<?php endforeach ?>
-							</table>
-						</div>
-					<?php endif ?>
-				</div>
-			</div>
-		</div>
-		
 	</div>
 </div>
 

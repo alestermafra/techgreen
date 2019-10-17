@@ -46,6 +46,6 @@ class DashboardController extends AppController {
 		$this->view->set('tarefas_dia', $tarefas_dia);
 		$this->view->set('tarefas_dp', $tarefas_dp);
 		$this->view->set('last_clients', Cliente::last_clients(5));
-		$this->view->set('aniversariantes', ClientePF::aniversariantes('all', array('order' => ' upsf.d_nasc, upsf.m_nasc, eps.nps, upsf.a_nasc')));
+		$this->view->set('aniversariantes', ClientePF::aniversariantes('all', array('order' => 'upsf.d_nasc, upsf.m_nasc, eps.nps')));
 	}
 }
