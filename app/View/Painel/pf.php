@@ -12,7 +12,7 @@
 ?>
 
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Clientes (Pessoa Física)</span>
+	<span class="navbar-brand">Velejadores (Pessoa Física)</span>
     
 	<div>
     	<div class="btn-group" role="group">
@@ -50,7 +50,7 @@
 					<div class="form-group col-12 col-sm-6 col-md-4 col-lg-2">
 						<label class="small text-muted">Ordenação</label>
 						<select name="order" class="form-control form-control-sm" onchange="this.form.submit()">
-							<option value="nome"<?php echo isset($_GET['order']) && $_GET['order'] === "nome"? ' selected':'' ?>>Nome do Cliente</option>
+							<option value="nome"<?php echo isset($_GET['order']) && $_GET['order'] === "nome"? ' selected':'' ?>>Nome do Velejador</option>
                             <option value="segmentacao"<?php echo isset($_GET['order']) && $_GET['order'] === "segmentacao"? ' selected':'' ?>>Classificação</option>
                             <option value="data"<?php echo isset($_GET['order']) && $_GET['order'] === "data"? ' selected':'' ?>>Data de Inserção</option>
 						</select>

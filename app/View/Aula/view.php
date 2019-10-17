@@ -127,7 +127,7 @@
                     </div>
 				</div>
 				<div class="card-body lista-participantes">
-					<?php if(!$participantes){ echo '<div>Sem participantes para essa aula/curso</div>';} ?>
+					<?php if(!$participantes){ echo '<div>Sem participantes para essa aula</div>';} ?>
 					<?php foreach($participantes as $i => $pct):?>
 						<div class="participante-container">
 							<div>

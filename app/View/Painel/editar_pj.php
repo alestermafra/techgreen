@@ -1,7 +1,7 @@
 <form action="<?php echo $this->url('/painel/editar_pj/' . $clientepj['cps']) ?>" method="POST">
 
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Editar cliente</span>
+	<span class="navbar-brand">Editar velejador</span>
 </nav>
 
 <?php if(isset($error)): ?>

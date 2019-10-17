@@ -28,8 +28,8 @@
 			<div class="card-body">
             	<div class="form-group">
 					<input type="hidden" id="cps" name="cps"></input>
-					<label for="cps-autocomplete" class="small text-muted">Cliente</label>
-					<input type="text" id="cps-autocomplete" class="form-control form-control-sm" placeholder="Procurar cliente"></input>
+					<label for="cps-autocomplete" class="small text-muted">Velejador</label>
+					<input type="text" id="cps-autocomplete" class="form-control form-control-sm" placeholder="Procurar velejador"></input>
 				</div>
 				<div id="cps-autocomplete-details" style="display: none;">
 					<span id="cps-autocomplete-nps">cli</span> <span style="color: #CCC">(#<span id="cps-autocomplete-cps">id</span>)</span>

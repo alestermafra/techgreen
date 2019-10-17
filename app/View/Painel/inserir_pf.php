@@ -19,7 +19,7 @@
 <form action="<?php echo $this->url('/painel/inserir_pf') ?>" method="POST">
 
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Cadastrar cliente</span>
+	<span class="navbar-brand">Cadastrar velejador</span>
 </nav>
 
 <?php if(isset($error)): ?>
@@ -55,17 +55,17 @@
 					<div class="form-row">
 						<div class="col-sm-6">
 							<label class="small text-muted">CPF</label>
-							<input name="cpf" type="text" class="form-control form-control-sm" placeholder="Insira o CPF do cliente" value="<?php echo _isset($_POST['cpf'], '') ?>" autocomplete="off">
+							<input name="cpf" type="text" class="form-control form-control-sm" placeholder="Insira o CPF do velejador" value="<?php echo _isset($_POST['cpf'], '') ?>" autocomplete="off">
 						</div>
 						<div class="col-sm-6">
 							<label class="small text-muted">RG</label>
-							<input name="rg" type="text" class="form-control form-control-sm" placeholder="Insira o RG do cliente" value="<?php echo _isset($_POST['rg'], '') ?>" autocomplete="off">
+							<input name="rg" type="text" class="form-control form-control-sm" placeholder="Insira o RG do velejador" value="<?php echo _isset($_POST['rg'], '') ?>" autocomplete="off">
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="small text-muted">Profissão</label>
-					<input name="profissao" type="text" class="form-control form-control-sm" placeholder="Profissão do cliente" value="<?php echo _isset($_POST['profissao'], '') ?>">
+					<input name="profissao" type="text" class="form-control form-control-sm" placeholder="Profissão do velejador" value="<?php echo _isset($_POST['profissao'], '') ?>">
 				</div>
 				<div class="form-group">
 					<label class="small text-muted">Data de Nascimento</label>

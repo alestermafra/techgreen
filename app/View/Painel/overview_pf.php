@@ -14,7 +14,7 @@
 </style>
 
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Cliente</span>
+	<span class="navbar-brand">Velejador</span>
 	<div>
 		<a href="<?php echo $this->url('/painel/pf') ?>" class="btn btn-sm btn-secondary">Ir para a lista</a>
 		<a href="<?php echo $this->url('/painel/editar_pf/' . $clientepf['cps']) ?>" class="btn btn-sm btn-primary" role="button">Editar</a>
@@ -34,7 +34,7 @@
 							<td><?= $clientepf['cps'] ?></td>
 						</tr>
 						<tr>
-							<td class="text-muted">Cliente</td>
+							<td class="text-muted">Velejador</td>
 							<td><?= $clientepf['nps'] ?></td>
 						</tr>
 						<tr>
@@ -217,7 +217,7 @@
 									  <small><?= $aula['cdia']; ?>/<?= $aula['cmes']; ?>/<?= $aula['can']; ?></small>
 									</div>
 									<?php if($aula['descricao']) { echo '<p>Descrição aula:'.$aula['descricao'].'</p>';} ?>
-                                    <?php echo '<p>AQUI VAI A DESCRIÇÃO DA ZAULA</p>';?>
+                                    <?php if($aula['descricao_participante']) { echo '<p>'.$aula['descricao_participante'].'</p>';}?>
 									<small>Instrutor <?= $aula['instrutor']; ?></small>
 								</li>
 							<?php endforeach ?>

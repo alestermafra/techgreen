@@ -26,7 +26,7 @@
 
 <?php if(!$excel): //excel?>
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Relatório de Clientes</span>
+	<span class="navbar-brand">Relatório de Velejadores</span>
 </nav>
 
 <div class="container-fluid">

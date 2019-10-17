@@ -84,7 +84,7 @@
 				</div>
 				<div class="card-body">
 					<h3 class="py-0"><?php echo $cliente_ytd_month[date('n') - 1]['quantidade'] ?></h3>
-					<span class="text-muted">Novos clientes</span>
+					<span class="text-muted">Novos Veljadores</span>
 				</div>
 			</div>
 		</div>
@@ -169,7 +169,7 @@
 						<div class="card" style="background-color: #26a69a">
 							<div class="card-body text-white">
 								<h3 class="py-0"><?php echo $clientes_quantidade ?></h3>
-								Clientes cadastrados
+								Velejadores cadastrados
 							</div>
 						</div>
 					</a>
@@ -377,7 +377,7 @@
 			
 			<div class="card">
 				<div class="card-header bg-transparent border-0">
-					<h5 class="py-0 text-muted">Novos clientes</h5>
+					<h5 class="py-0 text-muted">Novos Velejadores</h5>
 				</div>
 				<div class="card-body p-0">
 					<?php if(empty($last_clients)): ?>

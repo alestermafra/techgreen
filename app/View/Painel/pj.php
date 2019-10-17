@@ -11,7 +11,7 @@
 	}
 ?>
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Clientes (Pessoa Jurídica)</span>
+	<span class="navbar-brand">Velejadores (Pessoa Jurídica)</span>
     
 	<div>
     	<div class="btn-group" role="group">

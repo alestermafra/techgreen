@@ -25,7 +25,7 @@
 		<div class="card">
 			<div class="card-body">
 				<div>
-					<input type="text" id="participantes-autocomplete" class="form-control" placeholder="Procurar cliente"></input>
+					<input type="text" id="participantes-autocomplete" class="form-control" placeholder="Procurar velejador"></input>
 				</div>
 				<div id="participante-detalhes" style="display: none; padding-top: 10px;">
 					<div class="form-group">
