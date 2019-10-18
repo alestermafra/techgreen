@@ -384,7 +384,7 @@
                               </div>
 							  <?php 
 								foreach($pessoas_dp as $pdp){
-									if($tdp['cagenda']==$tdp['cagenda'] && $pdp['cps']){
+									if($tdp['cagenda']==$pdp['cagenda'] && $pdp['cps']){
 										echo '<div> > '.$pdp['nps'].'</div>';
 									}
 								}
