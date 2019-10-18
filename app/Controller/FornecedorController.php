@@ -103,6 +103,16 @@ class FornecedorController extends AppController {
 		$this->view->set('ocorrencia', Ocorrencia::findByCodigoPessoa($fornecedor['cps']));
 	}
 	
+	public function tornar_cliente(int $cps){
+		if(!$cps || !$fornecedor = FornecedorPF::findByCps($cps)) {
+			return $this->redirect('/fornecedor/fornecedores_pf/');
+		}
+		if($fornecedor = FornecedorPF::findByCps($cps)) {
+			$cliente = FornecedorPF::tornarCliente($cps);
+			return $this->redirect('/painel/overview_pf/' . $cliente['cps']);
+		}
+	}
+	
 	public function inserir_pj() {
 		if($this->request->method === 'POST') {
 			$data = $_POST;
