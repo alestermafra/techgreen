@@ -51,9 +51,9 @@
 								<div class="row">
 									<div class="col"> 
                                     	<?php if(!$fornecedor['cliente']):?>
-                                    	<a href="<?php echo $this->url('/fornecedor/tornar_cliente/' . $fornecedor['cps']) ?>" class="btn btn-sm btn-primary" role="button">Tornar cliente</a>
+                                    	<a href="<?php echo $this->url('/fornecedor/tornar_cliente/' . $fornecedor['cps']) ?>" class="btn btn-sm btn-primary" role="button">Tornar velejador</a>
                                         <?php else: ?>
-                                        <button class="btn btn-sm btn-secondary" disabled>Já é um cliente</button>
+                                        <button class="btn btn-sm btn-secondary" disabled>Já é um velejador</button>
                                         <?php endif ?>
                                         
 										<?php if($fornecedor['ativo'] == 1): ?>

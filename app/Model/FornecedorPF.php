@@ -2,6 +2,7 @@
 App::import('Table', 'Model');
 
 App::import('PessoaFisica', 'Model');
+App::import('ClientePF', 'Model');
 
 class FornecedorPF extends Table {
 	public static $_table = 'zfornec';
@@ -104,6 +105,10 @@ class FornecedorPF extends Table {
 	
 	/*tornar cliente*/
 	public static function tornarCliente($cps) {
+		if(ClientePF::findByCps($cps, 'count')){
+			throw new Exception("Já é um velejador.");
+		} 
+		
 		$zpainel = [
 			'cps' => $cps,
 			'ativo' => 1,
@@ -112,7 +117,7 @@ class FornecedorPF extends Table {
 		
 		$connection = new Connection();
 		$cpainel = $connection->insert('zpainel', $zpainel);
-		
+			
 		return static::findById($cpainel);
 	}
 	
