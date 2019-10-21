@@ -136,7 +136,6 @@ class ParticipanteAula extends Table {
 	public static function findByCps(int $cps, string $type = 'all', array $params = array()) {
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND zaula.cps = $cps";
-		$params['order'] = 'eaula.cdia, eaula.cmes, eaula.can';
 		return static::_find($type, $params);
 	}
 }
