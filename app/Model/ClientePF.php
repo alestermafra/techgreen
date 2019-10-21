@@ -17,6 +17,7 @@ class ClientePF extends Table {
 			INNER JOIN upsf ON (upsf.cps = eps.cps)
 			LEFT JOIN eseg ON (eseg.cseg = zpainel.cseg)
 			LEFT JOIN zfone ON (zfone.cps = eps.cps AND zfone.flg_principal = 1)
+			LEFT JOIN zinteresse ON (zinteresse.cps = zpainel.cps)
 		WHERE eps.RA = 1
 			AND upsf.RA = 1
 			AND zpainel.RA = 1

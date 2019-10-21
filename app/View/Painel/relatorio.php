@@ -1,4 +1,21 @@
 <?php
+	/* interesses */
+	$interesses_por_categoria = array();
+	foreach($interesses as $interesse) {
+		$ex = explode(" - ", $interesse["ntinteresse"], 2);
+		if(!isset($ex[1])) {
+			$categoria = "Categoria Desconhecida";
+			$nome = $ex[0];
+		}
+		else {
+			$categoria = $ex[0];
+			$nome = $ex[1];
+		}
+		$interesse["ntinteresse"] = $nome;
+		$interesses_por_categoria[$categoria] = _isset($interesses_por_categoria[$categoria], array());
+		array_push($interesses_por_categoria[$categoria], $interesse);
+	}
+	
 	/* parametros para inserir na paginação. */
 	$url_get = '?';
 	foreach($_GET as $k => $v) {
@@ -62,6 +79,24 @@
                         </button>
                     </div>
 				</div>	
+                
+                <div class="form-row">
+                	<div class="form-group col-xl">
+                    <?php $i = 0; foreach($interesses_por_categoria as $categoria => $interesses): ?>
+                        <label class="small text-muted"><?= $categoria ?></label>
+                        <div class="form-row">
+                            <?php foreach($interesses as $interesse): ?>
+                                <div class="col-md-3">
+                                    <div class="form-check">
+                                        <input type="checkbox"  name="ctinteresse<?=$interesse["ctinteresse"]?>"  value="<?=$interesse["ctinteresse"]?>" <?= _isset($_GET['ctinteresse'.$interesse["ctinteresse"]])? 'checked' : '' ?>  onchange="this.form.submit()">
+                                        <label class="form-check-label form-control-sm"><?= $interesse["ntinteresse"] ?></label>
+                                    </div>
+                                </div>
+                            <?php $i++; endforeach; ?>
+                        </div>
+                    <?php endforeach; ?>
+                    </div>
+                </div>
 			</form>
 		</div>
 	</div>

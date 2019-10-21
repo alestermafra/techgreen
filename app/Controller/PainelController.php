@@ -255,7 +255,7 @@ class PainelController extends AppController {
 		if($excel==1){
 			$this->layout = false;
 		}
-		
+			
 		$ativo = (int) _isset($_GET['ativo'], 1);
 		$filter .= " AND zpainel.ativo = $ativo";
 		
@@ -263,13 +263,26 @@ class PainelController extends AppController {
 			$filter .= " AND eseg.cseg = $cseg";
 		}
 		
+		$interesse = Interesse::find();
+		$in = '';
+		foreach($interesse as $inter){
+			$now = _isset($_GET['ctinteresse'.$inter['ctinteresse']]);
+			if($now == $inter['ctinteresse']){
+				$in .= ','.$inter['ctinteresse'];
+			}
+		}
+		if($in){
+			$tamanho = strlen($in);
+			$filter .= " AND zinteresse.ctinteresse IN (".substr($in,1,$tamanho).")";
+		}
 		
-		$list = ClientePF::find('all', array('order' => ' eps.nps ', 'conditions' => $filter));
-		$count = ClientePF::find('count');
+		$list = ClientePF::find('all', array('order' => ' eps.nps ', 'conditions' => $filter, 'group' => 'eps.cps'));
+		$count = ClientePF::find('count', array('conditions' => $filter));
 		
 		$this->view->set('list', $list);
 		$this->view->set('count', $count);
 		$this->view->set('excel', $excel);
+		$this->view->set('interesses', $interesse);
 		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'eseg.ordem')));
 	}
 	
