@@ -42,6 +42,7 @@ class Table {
 		$fields = _isset($params['fields']);
 		$conditions = _isset($params['conditions'], false);
 		$group = _isset($params['group'], false);
+		$having = _isset($params['having'], false);
 		$order = _isset($params['order'], false);
 		$limit = _isset($params['limit'], false);
 		$page = _isset($params['page'], false);
@@ -76,6 +77,9 @@ class Table {
 		}
 		if($order) {
 			$qry = str_replace('{{order}}', "ORDER BY $order", $qry);
+		}
+		if($having) {
+			$qry = str_replace('{{having}}', "HAVING $having", $qry);
 		}
 		if($limit) {
 			$qry = str_replace('{{limit}}', "LIMIT $limit", $qry);
