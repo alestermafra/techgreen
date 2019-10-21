@@ -84,7 +84,7 @@
 				</div>
 				<div class="card-body">
 					<h3 class="py-0"><?php echo $cliente_ytd_month[date('n') - 1]['quantidade'] ?></h3>
-					<span class="text-muted">Novos clientes</span>
+					<span class="text-muted">Novos Veljadores</span>
 				</div>
 			</div>
 		</div>
@@ -169,7 +169,7 @@
 						<div class="card" style="background-color: #26a69a">
 							<div class="card-body text-white">
 								<h3 class="py-0"><?php echo $clientes_quantidade ?></h3>
-								Clientes cadastrados
+								Velejadores cadastrados
 							</div>
 						</div>
 					</a>
@@ -211,6 +211,28 @@
 						<h5 class="py-0 text-muted">Alguma coisa</h5>
 					</div>
 					<canvas id="grafico3"></canvas>
+				</div>
+			</div>
+			
+			<div class="card">
+				<div class="card-body pt-0 pb-3">
+					<div class="py-3">
+						<h5 class="py-0 text-muted">Aniversariantes da semana</h5>
+					</div>
+					<?php if(empty($aniversariantes)): ?>
+						<div class="small text-muted">Nenhum registro para exibir.</div>
+					<?php else: ?>
+						<div class="table-responsive" style="max-height: 300px; overflow-y: scroll;">
+							<table class="table">
+								<?php foreach($aniversariantes as $aniv): ?>
+									<tr>
+										<td><small><a href="<?= $this->url("/painel/overview_pf/{$aniv["cps"]}") ?>"><?php echo $aniv['nps'] ?></a></small></td>
+										<td><small><?php echo $aniv['d_nasc'].'/'.$aniv['m_nasc'].'/'.$aniv['a_nasc'] ?></small></td>
+									</tr>
+								<?php endforeach ?>
+							</table>
+						</div>
+					<?php endif ?>
 				</div>
 			</div>
 		</div>
@@ -362,7 +384,7 @@
                               </div>
 							  <?php 
 								foreach($pessoas_dp as $pdp){
-									if($tdp['cagenda']==$tdp['cagenda'] && $pdp['cps']){
+									if($tdp['cagenda']==$pdp['cagenda'] && $pdp['cps']){
 										echo '<div> > '.$pdp['nps'].'</div>';
 									}
 								}
@@ -377,7 +399,7 @@
 			
 			<div class="card">
 				<div class="card-header bg-transparent border-0">
-					<h5 class="py-0 text-muted">Novos clientes</h5>
+					<h5 class="py-0 text-muted">Novos Velejadores</h5>
 				</div>
 				<div class="card-body p-0">
 					<?php if(empty($last_clients)): ?>
@@ -473,6 +495,7 @@
 			},
 
 			// Configuration options go here
+
 			options: {
 				tooltips: {
 					mode: 'index', /* mostra o tooltip da posicao que o mouse estiver. */
@@ -852,6 +875,7 @@
 					setCookie('weather-wind_velocity', weather.data.wind_velocity);
 					set_weather(weather.data);
 				})
+
 				.fail(function(e) {
 					$("[data-id='weather-error']").removeClass("d-none");
 				})

@@ -43,7 +43,7 @@
 				<div class="form-group">
 					<input type="hidden" id="cps" name="cps" value="<?= $equipamento["cps"] ?>"></input>
 					<label for="cps-autocomplete" class="small text-muted">Responsável</label>
-					<input type="text" id="cps-autocomplete" class="form-control form-control-sm" placeholder="Procurar cliente"></input>
+					<input type="text" id="cps-autocomplete" class="form-control form-control-sm" placeholder="Procurar velejador"></input>
 				</div>
 				<div id="cps-autocomplete-details">
 					<span id="cps-autocomplete-nps"><?= $equipamento["nps"] ?></span> <span style="color: #CCC">(#<span id="cps-autocomplete-cps"><?= $equipamento["cps"] ?></span>)</span>

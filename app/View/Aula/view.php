@@ -1,3 +1,14 @@
+<style>
+	.lista-participantes .participante-container {
+		margin-top: 1rem;
+	}
+	
+	.lista-participantes .participante-container:first-child {
+		margin-top: 0;
+	}
+</style>
+
+
 <nav class="navbar navbar-light">
 	<span class="navbar-brand">Aula / Curso</span>
 	<div>
@@ -115,15 +126,65 @@
                         </a>
                     </div>
 				</div>
-				<div class="card-body">
-					<?php  if(!$participantes){ echo '<div> Sem participantes para essa aula / curso </div>';} ?>
-					<?php foreach($participantes as $pct):?>
-                        <div class="row form-group">
-                            <div class="col-md-12"><?php echo $pct['nps'].' <b>('.$pct['nprod'].')</b>' ?></div>
-                        </div>
+				<div class="card-body lista-participantes">
+					<?php if(!$participantes){ echo '<div>Sem participantes para essa aula</div>';} ?>
+					<?php foreach($participantes as $i => $pct):?>
+						<div class="participante-container">
+							<div>
+								<a href="<?= $this->url("/painel/overview_pf/{$pct["cps"]}") ?>"><?= $pct["nps"] ?></a>
+								<span style="font-weight: bold">(<?= $pct["nprod"] ?>)</span>
+							</div>
+							<div class="row">
+								<div class="col">
+									<textarea data-id="<?= $pct["czaula"] ?>" type="text" class="form-control descricao-participante-textarea" style="height: 60px;"><?= $pct["descricao_participante"] ?></textarea>
+									<small class="invisible">status</small>
+								</div>
+							</div>
+						</div>
 					<?php endforeach ?>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+(function() {
+	$(document).ready(function() {
+		$(".descricao-participante-textarea").keyup(function() {
+			var $textarea = $(this);
+			var $status = $textarea.next();
+			clearTimeout($textarea.data("timeout"));
+			$textarea.data("timeout", setTimeout(function(){ save_descricao($textarea, $status); }, 1000));
+			$status.text("Salvando...");
+			$status.removeClass("invisible");
+		});
+	});
+	
+	function save_descricao($el, $status) {
+		let czaula = $el.data("id");
+		let descricao = $el.val();
+		
+		$.ajax({
+			url: "<?= $this->url('/aula/ajax_set_descricao_participante') ?>",
+			method: "POST",
+			data: {
+				"czaula": czaula,
+				"descricao": descricao
+			},
+			success: function(result) {
+				if(result === "success") {
+					$status.text("Salvo!");
+				}
+				else {
+					$status.text("Erro ao salvar. Tente novamente.");
+				}
+			},
+			error: function(err) {
+				$status.text("Erro ao salvar. Tente novamente. err");
+			}
+		});
+	};
+})();
+</script>

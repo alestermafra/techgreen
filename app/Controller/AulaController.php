@@ -80,6 +80,7 @@ class AulaController extends AppController {
 		if($caula === null || !$aula = Aula::findById($caula)) {
 			return $this->redirect('/aula');
 		}
+		
 		$this->view->set('aula', $aula);
 		$this->view->set('participantes', ParticipanteAula::FindByCaula($aula['caula']));
 	}
@@ -195,6 +196,31 @@ class AulaController extends AppController {
 		$this->view->set('cmes', Calendario::emes());
 		$this->view->set('ano', $ano);
 		$this->view->set('mes', $mes);
+	}
+	
+	
+	
+	
+	public function ajax_set_descricao_participante() {
+		$this->autoRender = false;
+		
+		$czaula = _isset($_POST["czaula"], null);
+		$descricao = _isset($_POST["descricao"], '');
+		
+		if($czaula !== null) {
+			$data["czaula"] = $czaula;
+			$data["descricao"] = $descricao;
+			$participanteAula = ParticipanteAula::save($data);
+			if(!$participanteAula) {
+				echo "error 1";
+			}
+			else {
+				echo "success";
+			}
+		}
+		else {
+			echo "error 2";
+		}
 	}
 	
 }

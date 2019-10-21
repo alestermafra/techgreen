@@ -1,7 +1,7 @@
 <form action="<?php echo $this->url('/painel/inserir_pj') ?>" method="POST">
 
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Cadastrar cliente</span>
+	<span class="navbar-brand">Cadastrar velejador</span>
 </nav>
 
 <?php if(isset($error)): ?>

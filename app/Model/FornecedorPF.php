@@ -2,6 +2,7 @@
 App::import('Table', 'Model');
 
 App::import('PessoaFisica', 'Model');
+App::import('ClientePF', 'Model');
 
 class FornecedorPF extends Table {
 	public static $_table = 'zfornec';
@@ -13,6 +14,7 @@ class FornecedorPF extends Table {
 			INNER JOIN upsf ON (upsf.cps = zfornec.cps)
 			INNER JOIN eps ON (eps.cps = upsf.cps)
 			LEFT JOIN tfornec ON (tfornec.ctfornec = zfornec.ctfornec)
+			LEFT JOIN zpainel ON (zpainel.cps = zfornec.cps)
 		WHERE eps.RA = 1
 			AND upsf.RA = 1
 			AND zfornec.RA = 1
@@ -34,7 +36,8 @@ class FornecedorPF extends Table {
 		'zfornec.czfornec',
 		'zfornec.ativo',
 		'tfornec.ctfornec',
-		'tfornec.ntfornec'
+		'tfornec.ntfornec',
+		'zpainel.cps as cliente'
 	);
 	
 	
@@ -98,6 +101,24 @@ class FornecedorPF extends Table {
 	
 	protected static function edit($data) {
 		static::update($data, "zfornec.czfornec = {$data['czfornec']}");
+	}
+	
+	/*tornar cliente*/
+	public static function tornarCliente($cps) {
+		if(ClientePF::findByCps($cps, 'count')){
+			throw new Exception("Já é um velejador.");
+		} 
+		
+		$zpainel = [
+			'cps' => $cps,
+			'ativo' => 1,
+			'cseg' => 1
+		];
+		
+		$connection = new Connection();
+		$cpainel = $connection->insert('zpainel', $zpainel);
+			
+		return static::findById($cpainel);
 	}
 	
 	

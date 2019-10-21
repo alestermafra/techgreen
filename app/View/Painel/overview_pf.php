@@ -14,7 +14,7 @@
 </style>
 
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Cliente</span>
+	<span class="navbar-brand">Velejador</span>
 	<div>
 		<a href="<?php echo $this->url('/painel/pf') ?>" class="btn btn-sm btn-secondary">Ir para a lista</a>
 		<a href="<?php echo $this->url('/painel/editar_pf/' . $clientepf['cps']) ?>" class="btn btn-sm btn-primary" role="button">Editar</a>
@@ -34,7 +34,7 @@
 							<td><?= $clientepf['cps'] ?></td>
 						</tr>
 						<tr>
-							<td class="text-muted">Cliente</td>
+							<td class="text-muted">Velejador</td>
 							<td><?= $clientepf['nps'] ?></td>
 						</tr>
 						<tr>
@@ -117,10 +117,20 @@
 						<?php endif; ?>
 						<?php if(!empty($clientepf['canais'])): ?>
 						<tr>
-							<td class="text-muted">Canais</td>
+							<td class="text-muted">Canais de Conhecimento</td>
 							<td>
 								<?php foreach($clientepf['canais'] as $i => $canal): ?>
 									<div><span class="text-muted"><?php echo ($i + 1) ?>. </span> <?php echo $canal['ncanal'] . ' ' . $canal['OBS'] ?></div>
+								<?php endforeach ?>
+							</td>
+						</tr>
+						<?php endif; ?>
+                        <?php if(!empty($clientepf['canais_contato'])): ?>
+						<tr>
+							<td class="text-muted">Canais de Contato</td>
+							<td>
+								<?php foreach($clientepf['canais_contato'] as $i => $canal_contato): ?>
+									<div><span class="text-muted"><?php echo ($i + 1) ?>. </span> <?php echo $canal_contato['ncanalcontato'] . ' ' . $canal_contato['OBS'] ?></div>
 								<?php endforeach ?>
 							</td>
 						</tr>
@@ -199,10 +209,15 @@
 							<?php foreach($clientepf['aulas'] as $aula): ?>
 								<li class="list-group-item">
 									<div class="d-flex w-100 justify-content-between">
-									  <h5><?= $aula['nlinha'] ?> <small>(<?= $aula['subtitulo']; ?>)</small></h5>
+									  <h6>
+                                      	<a title="Ver detalhes da aula" href="<?php echo $this->url('/aula/view/' . $aula['caula']) ?>">
+									  		<?= $aula['nlinha'] ?> <small>(<?= $aula['subtitulo']; ?>)</small>
+                                        </a>
+                                      </h6>
 									  <small><?= $aula['cdia']; ?>/<?= $aula['cmes']; ?>/<?= $aula['can']; ?></small>
 									</div>
-									<p><?= $aula['descricao']; ?></p>
+									<?php if($aula['descricao']) { echo '<p>Descrição aula:'.$aula['descricao'].'</p>';} ?>
+                                    <?php if($aula['descricao_participante']) { echo '<p>'.$aula['descricao_participante'].'</p>';}?>
 									<small>Instrutor <?= $aula['instrutor']; ?></small>
 								</li>
 							<?php endforeach ?>

@@ -19,7 +19,7 @@
 <form action="<?php echo $this->url('/painel/inserir_pf') ?>" method="POST">
 
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Cadastrar cliente</span>
+	<span class="navbar-brand">Cadastrar velejador</span>
 </nav>
 
 <?php if(isset($error)): ?>
@@ -55,17 +55,17 @@
 					<div class="form-row">
 						<div class="col-sm-6">
 							<label class="small text-muted">CPF</label>
-							<input name="cpf" type="text" class="form-control form-control-sm" placeholder="Insira o CPF do cliente" value="<?php echo _isset($_POST['cpf'], '') ?>" autocomplete="off">
+							<input name="cpf" type="text" class="form-control form-control-sm" placeholder="Insira o CPF do velejador" value="<?php echo _isset($_POST['cpf'], '') ?>" autocomplete="off">
 						</div>
 						<div class="col-sm-6">
 							<label class="small text-muted">RG</label>
-							<input name="rg" type="text" class="form-control form-control-sm" placeholder="Insira o RG do cliente" value="<?php echo _isset($_POST['rg'], '') ?>" autocomplete="off">
+							<input name="rg" type="text" class="form-control form-control-sm" placeholder="Insira o RG do velejador" value="<?php echo _isset($_POST['rg'], '') ?>" autocomplete="off">
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="small text-muted">Profissão</label>
-					<input name="profissao" type="text" class="form-control form-control-sm" placeholder="Profissão do cliente" value="<?php echo _isset($_POST['profissao'], '') ?>">
+					<input name="profissao" type="text" class="form-control form-control-sm" placeholder="Profissão do velejador" value="<?php echo _isset($_POST['profissao'], '') ?>">
 				</div>
 				<div class="form-group">
 					<label class="small text-muted">Data de Nascimento</label>
@@ -169,6 +169,27 @@
 		</div>
 		
 		<div class="card">
+			<div class="card-header bg-dark text-white">
+				Canais de contato
+			</div>
+			<div class="card-body">
+				<div class="form-row">
+				<?php foreach($canais_contato as $i => $c_c): ?>
+					<div class="col-md-3">
+						<div class="form-check">
+							<input type="checkbox" name="canais_contato[<?php echo $i ?>][ccanalcontato]" value="<?php echo $c_c['ccanalcontato'] ?>"></input>
+							<label class="form-check-label"><?php echo $c_c['ncanalcontato'] ?></label>
+							<?php if($c_c['flg_obs']): ?>
+								<input type="text" class="form-control form-control-sm" name="canais_contato[<?php echo $i ?>][OBS]" value="<?php echo _isset($_POST['canais_contato'][$i]['OBS']) ?>"></input>
+							<?php endif ?>
+						</div>
+					</div>
+				<?php endforeach ?>
+				</div>
+			</div>
+		</div>
+        
+        <div class="card">
 			<div class="card-header bg-dark text-white">
 				Canais de conhecimento
 			</div>

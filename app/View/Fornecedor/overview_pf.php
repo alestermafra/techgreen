@@ -50,6 +50,12 @@
 							<form action="<?php echo $this->url('/fornecedor/editar_pf/' . $fornecedor['cps']) ?>" method="POST">
 								<div class="row">
 									<div class="col"> 
+                                    	<?php if(!$fornecedor['cliente']):?>
+                                    	<a href="<?php echo $this->url('/fornecedor/tornar_cliente/' . $fornecedor['cps']) ?>" class="btn btn-sm btn-primary" role="button">Tornar velejador</a>
+                                        <?php else: ?>
+                                        <button class="btn btn-sm btn-secondary" disabled>Já é um velejador</button>
+                                        <?php endif ?>
+                                        
 										<?php if($fornecedor['ativo'] == 1): ?>
 											<input name="ativo" type="hidden" value="0"></input>
 											<input type="submit" class="btn btn-sm btn-danger" value="Inativar" style="width: 100px;"></input>

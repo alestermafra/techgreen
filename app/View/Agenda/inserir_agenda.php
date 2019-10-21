@@ -107,7 +107,7 @@
 			</div>
 			<div class="card-body">
 				<div class="form-group">
-					<input type="text" id="cps-autocomplete" class="form-control form-control-sm" placeholder="Procurar cliente (opcional)"></input>
+					<input type="text" id="cps-autocomplete" class="form-control form-control-sm" placeholder="Procurar velejador (opcional)"></input>
 				</div>
 				
 				<div id="outros-cps-container"></div>

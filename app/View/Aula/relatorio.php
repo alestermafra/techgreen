@@ -53,7 +53,7 @@
 					</div>
                 
                     <div class="form-group col-xl-4">
-						<label class="small text-muted">Aula/Curso</label>
+						<label class="small text-muted">Aula</label>
 						<select name="produto" class="form-control form-control-sm" onchange="this.form.submit()">
 							<option value="todos">Todos</option>
 							<?php foreach($linhas as $prod): ?>
@@ -101,7 +101,7 @@
 					<th scope="col" class="small">Qtd Part</th>
                     <th scope="col" class="small">Instrutor</th>
                     <th scope="col" class="small">Subtitulo</th>
-					<th scope="col" class="small">Tipo Aula/Curso</th>
+					<th scope="col" class="small">Tipo Aula</th>
 					<th scope="col" class="small">Plano/Carga H</th>
                     <th scope="col" class="small">Horário</th>
                     <th scope="col" class="small">Data</th>

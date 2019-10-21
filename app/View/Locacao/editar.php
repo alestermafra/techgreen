@@ -29,8 +29,8 @@
 			<div class="card-body">
 				<div class="form-group">
 					<input type="hidden" id="cps" name="cps" value="<?=$locacao['cps']?>"></input>
-					<label for="cps-autocomplete" class="small text-muted">Cliente</label>
-					<input type="text" id="cps-autocomplete" class="form-control form-control-sm" placeholder="Procurar cliente"></input>
+					<label for="cps-autocomplete" class="small text-muted">Velejador</label>
+					<input type="text" id="cps-autocomplete" class="form-control form-control-sm" placeholder="Procurar velejador"></input>
 				</div>
 				<div class="form-group" id="cps-autocomplete-details">
 					<span id="cps-autocomplete-nps"><?=$locacao['nps']?></span> <span style="color: #CCC">(#<span id="cps-autocomplete-cps"><?=$locacao['cps']?></span>)</span>

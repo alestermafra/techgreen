@@ -39,6 +39,7 @@ class ParticipanteAula extends Table {
 		'eps.cps',
 		'eps.nps',
 		'zaula.czaula',
+		'zaula.descricao AS descricao_participante',
 		'eprod.cprod',
 		'eprod.nprod',
 	);
@@ -46,7 +47,10 @@ class ParticipanteAula extends Table {
 	
 	/* métodos de criação de edição */
 	public static function save($data) {
-		return static::create($data);
+		if(!isset($data["czaula"])) {
+			return static::create($data);
+		}
+		return static::edit($data);
 	}
 	
 	/*remover*/
@@ -84,6 +88,33 @@ class ParticipanteAula extends Table {
 		return static::findById($czaula);
 	}
 	
+	/* update */
+	public static function edit($data) {
+		$czaula = (int) $data["czaula"];
+		$zaula = array();
+		
+		if(isset($data["caula"])) {
+			$zaula["caula"] = (int) $data["caula"];
+		}
+		if(isset($data["cps"])) {
+			$zaula["caula"] = (int) $data["cps"];
+		}
+		if(isset($data["cprod"])) {
+			$zaula["caula"] = (int) $data["cps"];
+		}
+		if(isset($data["descricao"])) {
+			$zaula["descricao"] = (string) $data["descricao"];
+		}
+		
+		if(empty($zaula)) {
+			return null;
+		}
+		
+		$res = static::update($zaula, "czaula = $czaula");
+
+		return static::findById($czaula);
+	}
+	
 	
 	/* métodos de busca */
 	public static function find(string $type = 'all', array $params = array()) {
@@ -105,7 +136,6 @@ class ParticipanteAula extends Table {
 	public static function findByCps(int $cps, string $type = 'all', array $params = array()) {
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND zaula.cps = $cps";
-		$params['order'] = 'eaula.cdia, eaula.cmes, eaula.can';
 		return static::_find($type, $params);
 	}
 }

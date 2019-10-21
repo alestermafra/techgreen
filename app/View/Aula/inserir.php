@@ -66,7 +66,7 @@
                 
                 <div class="form-row">
                     <div class="form-group col-sm-6">
-                        <label class="small text-muted">Data de aula/curso</label> 
+                        <label class="small text-muted">Data de aula</label> 
                         <input type="date" value="<?=date("Y-m-d")?>" name="datinha" id="datinha-select" class="form-control form-control-sm"/>
                     </div>
                     
