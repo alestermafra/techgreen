@@ -74,7 +74,7 @@ class PainelController extends AppController {
 		$clientepf['canais'] = ClientePF::canais($cps);
 		$clientepf['canais_contato'] = ClientePF::canais_contato($cps);
 		$clientepf['interesses'] = ClientePF::interesses($cps);
-		$clientepf['aulas'] = ParticipanteAula::findByCps($cps);
+		$clientepf['aulas'] = ParticipanteAula::findByCps($cps, 'all', array('order' => 'eaula.cdia, eaula.cmes, eaula.can, eaula.subtitulo'));
 		$clientepf['equipamentos'] = Equipamento::findByCps($cps);
 		$clientepf['attachments'] = Attachment::get_attachments(WEBROOT . DS . "attachments" . DS . "painel" . DS . "pf" . DS . $cps);
 		
