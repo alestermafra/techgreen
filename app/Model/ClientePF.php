@@ -17,7 +17,6 @@ class ClientePF extends Table {
 			INNER JOIN upsf ON (upsf.cps = eps.cps)
 			LEFT JOIN eseg ON (eseg.cseg = zpainel.cseg)
 			LEFT JOIN zfone ON (zfone.cps = eps.cps AND zfone.flg_principal = 1)
-			LEFT JOIN zinteresse ON (zinteresse.cps = zpainel.cps)
 		WHERE eps.RA = 1
 			AND upsf.RA = 1
 			AND zpainel.RA = 1
@@ -194,6 +193,60 @@ class ClientePF extends Table {
 		return static::find($type, $params);
 	}
 	
+	public static function findByInteresses(array $interesses, string $type = 'all', array $params = array()){
+		$params['qry'] = 'SELECT
+			{{fields}}
+		FROM zpainel
+			INNER JOIN eps ON (eps.cps = zpainel.cps)
+			INNER JOIN upsf ON (upsf.cps = eps.cps)
+			LEFT JOIN eseg ON (eseg.cseg = zpainel.cseg)
+			LEFT JOIN zfone ON (zfone.cps = eps.cps AND zfone.flg_principal = 1)
+			LEFT JOIN zinteresse ON (zinteresse.cps = zpainel.cps)
+		WHERE eps.RA = 1
+			AND upsf.RA = 1
+			AND zpainel.RA = 1
+			{{conditions}}
+		{{group}}
+		{{having}}
+		{{order}}
+		{{limit}}
+		{{offset}}';
+		
+		$params['fields'] = array(
+			'eps.cps',
+			'eps.nps',
+			'upsf.cpsf',
+			'upsf.d_nasc',
+			'upsf.m_nasc',
+			'upsf.a_nasc',
+			'upsf.rg',
+			'upsf.cpf',
+			'upsf.email',
+			'upsf.profissao',
+			'upsf.equipe',
+			'upsf.peso',
+			'upsf.dependente1',
+			'upsf.dependente2',
+			'upsf.dependente3',
+			'upsf.dependente4',
+			'upsf.dependente5',
+			'zpainel.czpainel',
+			'zpainel.ativo',
+			'eseg.cseg',
+			'eseg.nseg',
+			'zfone.cfone',
+			'zfone.fone',
+			'IFNULL(SUM(pow(2, zinteresse.ctinteresse - 1)),0) as bit_flg_interesses',
+		);
+		
+		$params['group'] = 'eps.cps';
+		$params['having'] = '1 = 1';
+		foreach($interesses as $inter){
+			$params['having'] .= ' AND bit_flg_interesses&pow(2, '.$inter.'-1)>0 ';
+		}
+		
+		return static::find($type, $params);
+	}
 	
 	
 	public static function telefones(int $cps, string $type = 'all', array $params = array()) {

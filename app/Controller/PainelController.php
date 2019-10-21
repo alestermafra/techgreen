@@ -250,6 +250,7 @@ class PainelController extends AppController {
 	
 	public function relatorio() {
 		$filter = '';
+		
 		$excel = (int) _isset($_GET['excel'], 0);
 		
 		if($excel==1){
@@ -264,23 +265,17 @@ class PainelController extends AppController {
 		}
 		
 		$interesse = Interesse::find();
-		$in = '';
+		$in = array();
 		foreach($interesse as $inter){
 			$now = _isset($_GET['ctinteresse'.$inter['ctinteresse']]);
 			if($now == $inter['ctinteresse']){
-				$in .= ','.$inter['ctinteresse'];
+				array_push($in, $inter['ctinteresse']);
 			}
 		}
-		if($in){
-			$tamanho = strlen($in);
-			$filter .= " AND zinteresse.ctinteresse IN (".substr($in,1,$tamanho).")";
-		}
 		
-		$list = ClientePF::find('all', array('order' => ' eps.nps ', 'conditions' => $filter, 'group' => 'eps.cps'));
-		$count = ClientePF::find('count', array('conditions' => $filter));
+		$list = ClientePF::findByInteresses($in, 'all', array('order' => ' eps.nps ', 'conditions' => $filter));
 		
 		$this->view->set('list', $list);
-		$this->view->set('count', $count);
 		$this->view->set('excel', $excel);
 		$this->view->set('interesses', $interesse);
 		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'eseg.ordem')));

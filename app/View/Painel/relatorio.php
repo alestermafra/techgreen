@@ -145,12 +145,6 @@
 			</tbody>
 		</table>
 	</div>
-
-	<?php if(!$excel): //excel?>		
-        <div class="container-fluid text-right small">
-            Total de registros: <?php echo $count ?>
-        </div>
-    <?php endif//excel?>
 <?php endif ?>
 
 
