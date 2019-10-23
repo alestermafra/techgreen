@@ -84,7 +84,7 @@
 				</div>
 				<div class="card-body">
 					<h3 class="py-0"><?php echo $cliente_ytd_month[date('n') - 1]['quantidade'] ?></h3>
-					<span class="text-muted">Novos Veljadores</span>
+					<span class="text-muted">Novos Velejadores</span>
 				</div>
 			</div>
 		</div>
