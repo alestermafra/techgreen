@@ -173,7 +173,13 @@
                         <td nowrap><?php echo $d['nseg'] ?></td>
                         <td nowrap><?php echo $fn_ativo($d['ativo']) ?></td>
 						<td nowrap><?php echo $d['email'] ?></td>
-                        <td nowrap><input type="text" readonly class="form-control-plaintext p-0 m-0 phone" value="<?php echo $d['fone'] ?>"></input></td>
+                        <td nowrap>
+                        	<?php if($_GET['excel']): ?>
+                            <?php echo $d['fone']; ?>
+                            <?php else:?>
+                        	<input type="text" readonly class="form-control-plaintext p-0 m-0 phone" value="<?php echo $d['fone'] ?>" />
+                            <?php endif;?>
+                        </td>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>

@@ -46,7 +46,7 @@
                     
                     <div class="form-group col-xl-1">
 						<label class="small text-muted">Dia</label>
-						<select name="dia" class="form-control form-control-sm" onchange="this.form.submit()">
+						<select name="dia" class="form-control form-control-sm" onchange="this.form.submit()" title="Dia de Aniversário">
 							<?php foreach($cdia as $cdia): ?>
 								<option value="<?php echo $cdia['cdia'] ?>"<?php echo _isset($_GET['dia'], date("j")) === $cdia['cdia']? ' selected' : '' ?>><?php echo $cdia['cdia'] ?></option>
 							<?php endforeach ?>
@@ -55,7 +55,7 @@
                     
                     <div class="form-group col-xl-1">
 						<label class="small text-muted">Mês</label>
-						<select name="mes" class="form-control form-control-sm" onchange="this.form.submit()">
+						<select name="mes" class="form-control form-control-sm" onchange="this.form.submit()"  title="Mês de Aniversário">
 							<?php foreach($cmes as $cmes): ?>
 								<option value="<?php echo $cmes['cmes'] ?>"<?php echo _isset($_GET['mes'], date("n")) === $cmes['cmes']? ' selected' : '' ?>><?php echo $cmes['smes'] ?></option>
 							<?php endforeach ?>
@@ -93,6 +93,7 @@
 					<th scope="col" class="small">Id</th>
 					<th scope="col" class="small">Nome</th>
                     <th scope="col" class="small">Aniversário</th>
+                    <th scope="col" class="small">Data contato</th>
                     <th scope="col" class="small">Email</th>
                     <th scope="col" class="small">Telefone</th>
 				</tr>
@@ -103,8 +104,15 @@
 						<td nowrap><?php echo $d['cps'] ?></td>
 						<td nowrap><?php echo $d['nps'] ?></td>
                         <td nowrap><?php echo $d['d_nasc'].'/'.$d['m_nasc'].'/'.$d['a_nasc'] ?></td>
+                        <td nowrap><?php if($d['d_contato'] && $d['m_contato'] && $d['a_contato']) {echo $d['d_contato'].'/'.$d['m_contato'].'/'.$d['a_contato'];} ?></td>
 						<td nowrap><?php if($d['email']) { echo '<a href=mailto:'.$d['email'].'>'.$d['email'].'</a>';} ?></td>
-                        <td nowrap><input type="text" readonly class="form-control-plaintext p-0 m-0 phone" value="<?php echo $d['fone'] ?>"></input></td>
+                        <td nowrap>
+                        	<?php if($_GET['excel']): ?>
+                            <?php echo $d['fone']; ?>
+                            <?php else:?>
+                        	<input type="text" readonly class="form-control-plaintext p-0 m-0 phone" value="<?php echo $d['fone'] ?>" />
+                            <?php endif;?>
+                        </td>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>

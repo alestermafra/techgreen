@@ -321,8 +321,8 @@ class PainelController extends AppController {
 		
 		$list = ClientePF::find('all', array('order' => ' eps.nps ', 'conditions' => $filter));
 		
-		$this->view->set('list', $list);
 		$this->view->set('excel', $excel);
+		$this->view->set('list', $list);
 		$this->view->set('cmes', Calendario::emes());
 		$this->view->set('cdia', Calendario::edia());
 		$this->view->set('mes', $mes);
