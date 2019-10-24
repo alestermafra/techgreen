@@ -1,21 +1,4 @@
 <?php
-	/* interesses */
-	$interesses_por_categoria = array();
-	foreach($interesses as $interesse) {
-		$ex = explode(" - ", $interesse["ntinteresse"], 2);
-		if(!isset($ex[1])) {
-			$categoria = "Categoria Desconhecida";
-			$nome = $ex[0];
-		}
-		else {
-			$categoria = $ex[0];
-			$nome = $ex[1];
-		}
-		$interesse["ntinteresse"] = $nome;
-		$interesses_por_categoria[$categoria] = _isset($interesses_por_categoria[$categoria], array());
-		array_push($interesses_por_categoria[$categoria], $interesse);
-	}
-	
 	/* parametros para inserir na paginação. */
 	$url_get = '?';
 	foreach($_GET as $k => $v) {
@@ -27,7 +10,7 @@
 	
 	//excel
 	if($excel == 1){
-		$arquivo_nome = "Relatório_Painel_PF_".date("d/m/Y");
+		$arquivo_nome = "Aniversariantes-dia".$_GET['dia']."-mes".$_GET['mes']."__gerado_em_".date("d/m/Y");
 		 
 		header ("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
 		header ("Cache-Control: no-cache, must-revalidate");
@@ -43,13 +26,13 @@
 
 <?php if(!$excel): //excel?>
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Relatório de Velejadores</span>
+	<span class="navbar-brand">Aniversariantes do dia</span>
 </nav>
 
 <div class="container-fluid">
 	<div class="card">
 		<div class="card-body py-2">
-			<form action="<?php echo $this->url('/painel/relatorio') ?>" method="GET" id="form">
+			<form action="<?php echo $this->url('/painel/relatorio_aniversariantes') ?>" method="GET" id="form">
 				<div class="form-row">
                 	<div class="form-group col-xl-2">
 						<label class="small text-muted">Mostrar</label>
@@ -59,49 +42,27 @@
                         </select>
 					</div>
 					
-					<div class="form-group col-xl-2">
-						<label class="small text-muted">Classificação</label>
-						<select name="seg" class="form-control form-control-sm" onchange="this.form.submit()">
-							<option value="todos">Todos</option>
-							<?php foreach($segmentacoes as $s): ?>
-								<option value="<?php echo $s['cseg'] ?>"<?php echo _isset($_GET['seg'], '') === $s['cseg']? ' selected' : '' ?>><?php echo $s['nseg'] ?></option>
-							<?php endforeach ?>
-						</select>
-					</div>
-                    
                     <div class="col-xl-1"></div>
                     
                     <div class="form-group col-xl-1">
-						<label class="small text-muted">Dia de contato</label>
+						<label class="small text-muted">Dia</label>
 						<select name="dia" class="form-control form-control-sm" onchange="this.form.submit()">
-                        	<option value="0">Todos</option>
 							<?php foreach($cdia as $cdia): ?>
-								<option value="<?php echo $cdia['cdia'] ?>"<?php echo _isset($_GET['dia'], 0) === $cdia['cdia']? ' selected' : '' ?>><?php echo $cdia['cdia'] ?></option>
+								<option value="<?php echo $cdia['cdia'] ?>"<?php echo _isset($_GET['dia'], date("j")) === $cdia['cdia']? ' selected' : '' ?>><?php echo $cdia['cdia'] ?></option>
 							<?php endforeach ?>
 						</select>
 					 </div>
                     
                     <div class="form-group col-xl-1">
-						<label class="small text-muted">Mês de contato</label>
+						<label class="small text-muted">Mês</label>
 						<select name="mes" class="form-control form-control-sm" onchange="this.form.submit()">
-                        	<option value="0">Todos</option>
 							<?php foreach($cmes as $cmes): ?>
-								<option value="<?php echo $cmes['cmes'] ?>"<?php echo _isset($_GET['mes'], 0) === $cmes['cmes']? ' selected' : '' ?>><?php echo $cmes['smes'] ?></option>
+								<option value="<?php echo $cmes['cmes'] ?>"<?php echo _isset($_GET['mes'], date("n")) === $cmes['cmes']? ' selected' : '' ?>><?php echo $cmes['smes'] ?></option>
 							<?php endforeach ?>
 						</select>
 					 </div>
-					 
-					 <div class="form-group col-xl-1">
-						<label class="small text-muted">Ano de contato</label>
-						<select name="ano" class="form-control form-control-sm" onchange="this.form.submit()">
-                        	<option value="0">Todos</option>
-							<?php for($y = date('Y'); $y >= date('Y') - 100; $y--): ?>
-								<option value="<?php echo $y ?>"<?php echo $y == _isset($_GET['ano'], 0)? ' selected' : '' ?>><?php echo $y ?></option>
-							<?php endfor ?>
-						</select>
-					</div>
-                    
-                     <div class="col-xl-2"></div>
+                     
+                     <div class="col-xl-5"></div>
                     
                     <div class="form-group col-xl-2 text-right align-bottom">
                     	<input type="hidden" value="0" name="excel" id="excel"/>
@@ -111,24 +72,6 @@
                         </button>
                     </div>
 				</div>	
-                
-                <div class="form-row">
-                	<div class="form-group col-xl">
-                    <?php $i = 0; foreach($interesses_por_categoria as $categoria => $interesses): ?>
-                        <label class="small text-muted"><?= $categoria ?></label>
-                        <div class="form-row">
-                            <?php foreach($interesses as $interesse): ?>
-                                <div class="col-md-3">
-                                    <div class="form-check">
-                                        <input type="checkbox"  name="ctinteresse<?=$interesse["ctinteresse"]?>"  value="<?=$interesse["ctinteresse"]?>" <?= _isset($_GET['ctinteresse'.$interesse["ctinteresse"]])? 'checked' : '' ?>  onchange="this.form.submit()">
-                                        <label class="form-check-label form-control-sm"><?= $interesse["ntinteresse"] ?></label>
-                                    </div>
-                                </div>
-                            <?php $i++; endforeach; ?>
-                        </div>
-                    <?php endforeach; ?>
-                    </div>
-                </div>
 			</form>
 		</div>
 	</div>
@@ -149,30 +92,18 @@
 				<tr>
 					<th scope="col" class="small">Id</th>
 					<th scope="col" class="small">Nome</th>
-                    <th scope="col" class="small">Classificação</th>
-                    <th scope="col" class="small">Status</th>
+                    <th scope="col" class="small">Aniversário</th>
                     <th scope="col" class="small">Email</th>
                     <th scope="col" class="small">Telefone</th>
 				</tr>
 			</thead>
 			<tbody>
-            	<?php 
-				$fn_ativo = function($x) { //funcao pra ativo
-					if($x == 1){
-						$a = 'Ativo';
-					}else{
-						$a= 'Inativo';
-					}
-					return $a;
-				};
-				?>
 				<?php foreach($list as $d): ?>
 					<tr>
 						<td nowrap><?php echo $d['cps'] ?></td>
 						<td nowrap><?php echo $d['nps'] ?></td>
-                        <td nowrap><?php echo $d['nseg'] ?></td>
-                        <td nowrap><?php echo $fn_ativo($d['ativo']) ?></td>
-						<td nowrap><?php echo $d['email'] ?></td>
+                        <td nowrap><?php echo $d['d_nasc'].'/'.$d['m_nasc'].'/'.$d['a_nasc'] ?></td>
+						<td nowrap><?php if($d['email']) { echo '<a href=mailto:'.$d['email'].'>'.$d['email'].'</a>';} ?></td>
                         <td nowrap><input type="text" readonly class="form-control-plaintext p-0 m-0 phone" value="<?php echo $d['fone'] ?>"></input></td>
 					</tr>
 				<?php endforeach; ?>

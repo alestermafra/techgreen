@@ -105,6 +105,12 @@
 							</td>
 						</tr>
 						<?php endif; ?>
+                        <?php if(!empty($clientepf['d_contato']) && !empty($clientepf['m_contato']) && !empty($clientepf['a_contato'])): ?>
+						<tr>
+							<td class="text-muted">Primeiro contato</td>
+							<td><?php echo $clientepf['d_contato'] . '/' . $clientepf['m_contato'] . '/' . $clientepf['a_contato'] ?></td>
+						</tr>
+						<?php endif; ?>
 						<?php if(!empty($clientepf['interesses'])): ?>
 						<tr>
 							<td class="text-muted">Interesse(s)</td>

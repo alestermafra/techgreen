@@ -7,6 +7,7 @@ App::import("Pessoa", "Model");
 App::import('ClientePF', 'Model');
 App::import('ClientePJ', 'Model');
 
+App::import('Calendario', 'Model');
 App::import('Canal', 'Model');
 App::import('CanalContato', 'Model');
 App::import('ClienteCanal', 'Model');
@@ -124,6 +125,9 @@ class PainelController extends AppController {
 			$clientepf['dependente3'] = _isset($data['dependente3'], $clientepf['dependente3']);
 			$clientepf['dependente4'] = _isset($data['dependente4'], $clientepf['dependente4']);
 			$clientepf['dependente5'] = _isset($data['dependente5'], $clientepf['dependente5']);
+			$clientepf['d_contato'] = _isset($data['d_contato'], $clientepf['d_contato']);
+			$clientepf['m_contato'] = _isset($data['m_contato'], $clientepf['m_contato']);
+			$clientepf['a_contato'] = _isset($data['a_contato'], $clientepf['a_contato']);
 			$clientepf['telefones'] = _isset($data['telefones'], array());
 			$clientepf['cseg'] = _isset($data['cseg'], $clientepf['cseg']);
 			$clientepf['canais'] = _isset($data['canais'], array());
@@ -144,7 +148,7 @@ class PainelController extends AppController {
 		$clientepf['canais'] = ClientePF::canais($clientepf['cps']);
 		$clientepf['canais_contato'] = ClientePF::canais_contato($clientepf['cps']);
 		$clientepf['interesses'] = ClientePF::interesses($clientepf['cps']);
-		
+				
 		$this->view->set('clientepf', $clientepf);
 		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'eseg.ordem')));
 		$this->view->set('interesses', Interesse::find());
@@ -260,6 +264,15 @@ class PainelController extends AppController {
 		$ativo = (int) _isset($_GET['ativo'], 1);
 		$filter .= " AND zpainel.ativo = $ativo";
 		
+		if(($dia = (int) _isset($_GET['dia'], 0)) !== 0) {
+			$filter .= " AND upsf.d_contato = $dia ";
+		}
+		if(($mes = (int) _isset($_GET['mes'], 0)) !== 0) {
+			$filter .= " AND upsf.m_contato = $mes ";
+		}
+		if(($ano = (int) _isset($_GET['ano'], 0)) !== 0) {
+			$filter .= " AND upsf.a_contato = $ano ";
+		}
 		if(($cseg = (int) _isset($_GET['seg'], 0)) !== 0) {
 			$filter .= " AND eseg.cseg = $cseg";
 		}
@@ -279,6 +292,41 @@ class PainelController extends AppController {
 		$this->view->set('excel', $excel);
 		$this->view->set('interesses', $interesse);
 		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'eseg.ordem')));
+		$this->view->set('can', Calendario::ean());
+		$this->view->set('cmes', Calendario::emes());
+		$this->view->set('cdia', Calendario::edia());
+		$this->view->set('ano', $ano);
+		$this->view->set('mes', $mes);
+		$this->view->set('dia', $dia);
+	}
+	
+	public function relatorio_aniversariantes() {
+		$filter = '';
+		
+		$excel = (int) _isset($_GET['excel'], 0);
+		
+		if($excel==1){
+			$this->layout = false;
+		}
+			
+		$ativo = (int) _isset($_GET['ativo'], 1);
+		$filter .= " AND zpainel.ativo = $ativo";
+		
+		if(($dia = (int) _isset($_GET['dia'], date("j"))) !== 0) {
+			$filter .= " AND upsf.d_nasc = $dia ";
+		}
+		if(($mes = (int) _isset($_GET['mes'], date("n"))) !== 0) {
+			$filter .= " AND upsf.m_nasc = $mes ";
+		}
+		
+		$list = ClientePF::find('all', array('order' => ' eps.nps ', 'conditions' => $filter));
+		
+		$this->view->set('list', $list);
+		$this->view->set('excel', $excel);
+		$this->view->set('cmes', Calendario::emes());
+		$this->view->set('cdia', Calendario::edia());
+		$this->view->set('mes', $mes);
+		$this->view->set('dia', $dia);
 	}
 	
 	/*

@@ -42,6 +42,9 @@ class PessoaFisica extends Table {
 		'upsf.dependente3',
 		'upsf.dependente4',
 		'upsf.dependente5',
+		'upsf.d_contato',
+		'upsf.m_contato',
+		'upsf.a_contato',
 	);
 	
 	public static function save($data) {
@@ -151,6 +154,15 @@ class PessoaFisica extends Table {
 		}
 		if(isset($data['dependente5'])) {
 			$new_data['dependente5'] = strval($data['dependente5']);
+		}
+		if(isset($data['d_contato'])) {
+			$new_data['d_contato'] = intval($data['d_contato']);
+		}
+		if(isset($data['m_contato'])) {
+			$new_data['m_contato'] = intval($data['m_contato']);
+		}
+		if(isset($data['a_contato'])) {
+			$new_data['a_contato'] = intval($data['a_contato']);
 		}
 		
 		return $new_data;

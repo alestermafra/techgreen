@@ -200,6 +200,44 @@
 			</div>
 		</div>
 	</div>
+    
+    <div class="card">
+    	<div class="card-header bg-dark text-white">
+        	Primeiro contato
+        </div>
+        <div class="card-body">
+        	<div class="form-group">
+            	<label class="small text-muted">Data do primeiro contato</label>
+                	<div class="form-row">
+                    	<div class="col">
+                        	<select name="d_contato" id="d_contato-input" class="form-control form-control-sm">
+                            <option value="0">Dia</option>
+                           <?php for($d = 1; $d <= 31; $d++): ?>
+								<option value="<?php echo $d ?>"<?php echo $d == _isset($_POST['d_contato'], $clientepf['d_contato'])? ' selected' : '' ?>><?php echo str_pad($d, 2, '0', STR_PAD_LEFT) ?></option>
+							<?php endfor ?>
+                            </select>
+                         </div>
+                         <div class="col">
+                         	<select name="m_contato" class="form-control form-control-sm">
+                            <option value="0">Mês</option>
+                            <?php $nome_meses = [1 => 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']; ?>
+							<?php for($m = 1; $m <= 12; $m++): ?>
+								<option value="<?php echo $m ?>"<?php echo $m == _isset($_POST['m_contato'], $clientepf['m_contato'])? ' selected' : '' ?>><?php echo $nome_meses[$m] ?></option>
+							<?php endfor ?>
+                            </select>
+                         </div>
+                         <div class="col">
+                         	<select name="a_contato" class="form-control form-control-sm">
+                            <option value="0">Ano</option>
+                            <?php for($y = date('Y'); $y >= date('Y') - 100; $y--): ?>
+								<option value="<?php echo $y ?>"<?php echo $y == _isset($_POST['a_contato'], $clientepf['a_contato'])? ' selected' : '' ?>><?php echo $y ?></option>
+							<?php endfor ?>
+                            </select>
+                         </div>
+             		</div>
+        		</div>
+    		</div>
+    </div>
 	
     <div class="card">
 		<div class="card-header bg-dark text-white">
