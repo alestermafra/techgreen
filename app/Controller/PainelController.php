@@ -319,7 +319,7 @@ class PainelController extends AppController {
 			$filter .= " AND upsf.m_nasc = $mes ";
 		}
 		
-		$list = ClientePF::find('all', array('order' => ' eps.nps ', 'conditions' => $filter));
+		$list = ClientePF::findByCelular('all', array('order' => ' eps.nps ', 'conditions' => $filter));
 		
 		$this->view->set('excel', $excel);
 		$this->view->set('list', $list);

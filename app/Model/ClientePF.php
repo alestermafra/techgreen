@@ -196,6 +196,63 @@ class ClientePF extends Table {
 		return static::find($type, $params);
 	}
 	
+	public static function findByCelular(string $type = 'all', array $params = array()){
+		$params['qry'] = 'SELECT
+			{{fields}}
+		FROM zpainel
+			INNER JOIN eps ON (eps.cps = zpainel.cps)
+			INNER JOIN upsf ON (upsf.cps = eps.cps)
+			LEFT JOIN eseg ON (eseg.cseg = zpainel.cseg)
+			LEFT JOIN (
+				SELECT
+					zfone.cfone,
+					zfone.fone,
+					zfone.cps,
+					zfone.ctfone
+				FROM zfone
+				WHERE zfone.ctfone = 4
+			) zfone ON (zfone.cps = eps.cps)
+		WHERE eps.RA = 1
+			AND upsf.RA = 1
+			AND zpainel.RA = 1
+			{{conditions}}
+		{{group}}
+		{{order}}
+		{{limit}}
+		{{offset}}';
+	
+		$params['fields'] = array(
+			'eps.cps',
+			'eps.nps',
+			'upsf.cpsf',
+			'upsf.d_nasc',
+			'upsf.m_nasc',
+			'upsf.a_nasc',
+			'upsf.rg',
+			'upsf.cpf',
+			'upsf.email',
+			'upsf.profissao',
+			'upsf.equipe',
+			'upsf.peso',
+			'upsf.dependente1',
+			'upsf.dependente2',
+			'upsf.dependente3',
+			'upsf.dependente4',
+			'upsf.dependente5',
+			'upsf.d_contato',
+			'upsf.m_contato',
+			'upsf.a_contato',
+			'zpainel.czpainel',
+			'zpainel.ativo',
+			'eseg.cseg',
+			'eseg.nseg',
+			'zfone.cfone',
+			'zfone.fone',
+		);
+		
+		return parent::_find($type, $params);
+	}
+	
 	public static function findByInteresses(array $interesses, string $type = 'all', array $params = array()){
 		$params['qry'] = 'SELECT
 			{{fields}}

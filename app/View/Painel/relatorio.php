@@ -151,7 +151,7 @@
 					<th scope="col" class="small">Nome</th>
                     <th scope="col" class="small">Classificação</th>
                     <th scope="col" class="small">Status</th>
-                    <th scope="col" class="small">Email</th>
+                    <th scope="col" class="small">Data Contato</th>
                     <th scope="col" class="small">Telefone</th>
 				</tr>
 			</thead>
@@ -167,12 +167,12 @@
 				};
 				?>
 				<?php foreach($list as $d): ?>
-					<tr>
+					<tr style="cursor: pointer" onclick="window.location = '<?php echo $this->url('/painel/overview_pf/' . $d['cps']) ?>'">
 						<td nowrap><?php echo $d['cps'] ?></td>
 						<td nowrap><?php echo $d['nps'] ?></td>
                         <td nowrap><?php echo $d['nseg'] ?></td>
                         <td nowrap><?php echo $fn_ativo($d['ativo']) ?></td>
-						<td nowrap><?php echo $d['email'] ?></td>
+						<td nowrap><?php if($d['d_contato'] && $d['m_contato'] && $d['a_contato']) {echo $d['d_contato'].'/'.$d['m_contato'].'/'.$d['a_contato'];} ?></td>
                         <td nowrap>
                         	<?php if($_GET['excel']): ?>
                             <?php echo $d['fone']; ?>

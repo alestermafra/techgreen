@@ -75,7 +75,7 @@ class AgendaCruzada extends Table {
 		$czagenda = (int) $data['czagenda'];
 		$cps = (int) $data['cps'];
 		$cagenda = (int) $data['cagenda'];
-		$cprod = (int) _isset($data['cprod'], null);
+		//$cprod = (int) _isset($data['cprod'], null); - não usa edição (até então)
 		
 		$connection = new Connection();
 		
@@ -83,7 +83,7 @@ class AgendaCruzada extends Table {
 			'czagenda' => $czagenda,
 			'cps' => $cps,
 			'cagenda' => $cagenda,
-			'cprod' => $cprod,
+			//'cprod' => $cprod, - não usa edição (até então)
 		];
 		
 		/* remove o cps estiver vazio */
