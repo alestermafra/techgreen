@@ -290,7 +290,7 @@
                           </div>
 						  <?php 
 						  	foreach($pessoas_ag as $pp){
-								if($td['cagenda']==$td['cagenda'] && $pp['cps']){
+								if($td['cagenda']==$pp['cagenda'] && $pp['cps']){
 									echo '<div> > '.$pp['nps'].'</div>';
 								}
 							}
