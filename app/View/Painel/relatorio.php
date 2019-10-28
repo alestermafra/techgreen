@@ -62,10 +62,10 @@
 					<div class="form-group col-xl-2">
 						<label class="small text-muted">Classificação</label>
 						<select name="seg" class="form-control form-control-sm" onchange="this.form.submit()">
-							<option value="todos">Todos</option>
 							<?php foreach($segmentacoes as $s): ?>
 								<option value="<?php echo $s['cseg'] ?>"<?php echo _isset($_GET['seg'], '') === $s['cseg']? ' selected' : '' ?>><?php echo $s['nseg'] ?></option>
 							<?php endforeach ?>
+                            	<option value="todos">Todos</option>
 						</select>
 					</div>
                     

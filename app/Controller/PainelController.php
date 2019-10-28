@@ -273,7 +273,7 @@ class PainelController extends AppController {
 		if(($ano = (int) _isset($_GET['ano'], 0)) !== 0) {
 			$filter .= " AND upsf.a_contato = $ano ";
 		}
-		if(($cseg = (int) _isset($_GET['seg'], 0)) !== 0) {
+		if(($cseg = (int) _isset($_GET['seg'], 6)) !== 0) {
 			$filter .= " AND eseg.cseg = $cseg";
 		}
 		
