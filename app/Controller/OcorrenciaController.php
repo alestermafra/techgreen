@@ -3,8 +3,7 @@ App::import('AppController', 'Controller');
 
 App::import('Ocorrencia', 'Model');
 
-App::import('ClientePF', 'Model');
-App::import('ClientePJ', 'Model');
+App::import('Pessoa', 'Model');
 App::import('Equipamento', 'Model');
 
 class OcorrenciaController extends AppController {
@@ -59,8 +58,8 @@ class OcorrenciaController extends AppController {
 			}
 		}
 		
-		if($target == "pessoa"){
-			$lista_cod = array_merge(ClientePF::find('all', array('order' => 'eps.nps')), ClientePJ::find('all', array('order' => 'eps.nps')));
+		if($target == "pessoa"){	
+			$lista_cod = Pessoa::find('all',array( 'group' => ' eps.nps', 'conditions' => ' AND eps.flg_sys = 0 ' ));
 		}
 		else if($target == "equipamento"){
 			$lista_cod = Equipamento::find('all', array('order' => 'eequipe.nome'));
@@ -97,7 +96,7 @@ class OcorrenciaController extends AppController {
 		}
 		
 		if($ocorrencia['ctocorrencia'] == 2){
-			$lista_cod = array_merge(ClientePF::find('all', array('order' => 'eps.nps')), ClientePJ::find('all', array('order' => 'eps.nps')));
+			$lista_cod = Pessoa::find('all',array( 'group' => ' eps.nps', 'conditions' => ' AND eps.flg_sys = 0 ' ));
 		}
 		else if($ocorrencia['ctocorrencia'] == 1){
 			$lista_cod = Equipamento::find('all', array('order' => 'eequipe.nome'));
