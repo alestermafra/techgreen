@@ -364,6 +364,7 @@ class AgendaController extends AppController {
 		
 		$participantes = [
 			'cps' => $dados['cps'],
+			'cprod' => $dados['cprod'],
 			'cagenda' => $cod_agenda['cagenda'],
 		];
 		
