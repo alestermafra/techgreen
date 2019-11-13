@@ -92,6 +92,7 @@
 				<tr>
 					<th scope="col" class="small">Id</th>
 					<th scope="col" class="small">Nome</th>
+                    <th scope="col" class="small">Classificação</th>
                     <th scope="col" class="small">Aniversário</th>
                     <th scope="col" class="small">Data contato</th>
                     <th scope="col" class="small">Email</th>
@@ -103,6 +104,7 @@
 					<tr>
 						<td nowrap><?php echo $d['cps'] ?></td>
 						<td nowrap><?php echo $d['nps'] ?></td>
+                        <td nowrap><?php echo $d['nseg'] ?></td>
                         <td nowrap><?php echo $d['d_nasc'].'/'.$d['m_nasc'].'/'.$d['a_nasc'] ?></td>
                         <td nowrap><?php if($d['d_contato'] && $d['m_contato'] && $d['a_contato']) {echo $d['d_contato'].'/'.$d['m_contato'].'/'.$d['a_contato'];} ?></td>
 						<td nowrap><?php if($d['email']) { echo '<a href=mailto:'.$d['email'].'>'.$d['email'].'</a>';} ?></td>
