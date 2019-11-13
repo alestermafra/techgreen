@@ -82,7 +82,7 @@ class GuardariaController extends AppController {
 		}
 		
 		$this->view->set('guardaria', $guardaria);
-		$this->view->set('ocorrencia', Ocorrencia::findByCodigoPessoa($guardaria['cequipe'], 'all', array('order' => 'eocorrencia.data DESC')));
+		$this->view->set('ocorrencia', Ocorrencia::findByCodigoEquipamento($guardaria['cequipe'], 'all', array('order' => 'eocorrencia.data DESC')));
 	}
 
 	public function editar($cguardaria = null) {

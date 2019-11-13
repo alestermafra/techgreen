@@ -59,7 +59,7 @@ class OcorrenciaController extends AppController {
 		}
 		
 		if($target == "pessoa"){	
-			$lista_cod = Pessoa::find('all',array( 'group' => ' eps.nps', 'conditions' => ' AND eps.flg_sys = 0 ' ));
+			$lista_cod = Pessoa::find('all', array( 'group' => ' eps.cps', 'conditions' => ' AND eps.flg_sys = 0 ' ));
 		}
 		else if($target == "equipamento"){
 			$lista_cod = Equipamento::find('all', array('order' => 'eequipe.nome'));
