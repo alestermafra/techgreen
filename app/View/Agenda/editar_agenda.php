@@ -50,6 +50,8 @@
                             <option value="87CEFA" <?php if($agenda['cor']=="87CEFA") {echo ' selected ';}?> style="background-color:#87CEFA">Ciano</option>
                             <option value="FFD700" <?php if($agenda['cor']=="FFD700") {echo ' selected ';}?> style="background-color:#FFD700">Dourado</option>
                             <option value="CC99FF" <?php if($agenda['cor']=="CC99FF") {echo ' selected ';}?> style="background-color:#CC99FF">Malva</option>
+                            <option value="32a858" <?php if($agenda['cor']=="68ed93") {echo ' selected ';}?> style="background-color:#68ed93">Verde</option>
+                            <option value="ffaf85" <?php if($agenda['cor']=="e08351") {echo ' selected ';}?> style="background-color:#ffaf85">Laranja</option>
                         </select>
                     </div>
                 </div>

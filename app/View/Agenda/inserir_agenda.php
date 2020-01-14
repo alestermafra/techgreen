@@ -47,6 +47,8 @@
                             <option value="87CEFA" style="background-color:#87CEFA">Ciano</option>
                             <option value="FFD700" style="background-color:#FFD700">Dourado</option>
                             <option value="CC99FF" style="background-color:#CC99FF">Malva</option>
+                            <option value="68ed93" style="background-color:#68ed93">Verde</option>
+                            <option value="ffaf85" style="background-color:#ffaf85">Laranja</option>
                         </select>
                     </div>
                 </div>
