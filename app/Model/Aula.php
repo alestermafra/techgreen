@@ -19,8 +19,7 @@ class Aula extends Table {
 			LEFT JOIN (
 				SELECT
 					COUNT(czaula) as qtd,
-					caula,
-					cps
+					caula
 				FROM zaula
 				WHERE RA = 1 AND cps NOT IN (0)
 				GROUP BY caula
