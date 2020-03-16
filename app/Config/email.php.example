@@ -1,0 +1,10 @@
+<?php
+
+class EmailConfig {
+	public static $default = array(
+		'host' => 'smtp.mailtrap.io',
+		'username' => null,
+		'password' => null,
+		'from' => array('from@example.com.br' => 'From Example'),
+	);
+}
