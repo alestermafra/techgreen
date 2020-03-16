@@ -1,5 +1,10 @@
 # Ignorar arquivos de sessão 
-tmp/sessions/sess_*
+tmp/sessions/
 
 # Ignorar pasta de uploads
 app/webroot/attachments/
+
+# Ignora alterações de servidor
+app/Config/database.php
+app/Config/email.php
+
