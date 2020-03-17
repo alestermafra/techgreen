@@ -70,7 +70,7 @@ class AulaController extends AppController {
 		
 		$val_prod = ProdutoDetalhe::find('all',array('conditions' => ' AND etabela.ctabela = 4 '));
 		
-		$this->view->set('linha', Produto::findByCscat(4, 'all', array('order' => 'elinha.nlinha', 'group' => 'elinha.nlinha')));
+		$this->view->set('linha', Produto::findByCscat(4, 'all', array('order' => 'elinha.nlinha')));
 		$this->view->set('val_prod', $val_prod);
 		$this->view->set('formas_pagamento', FormaPagamento::find());
 		$this->view->set('parcelas_pagamento', FormaPagamento::parcelas());
@@ -111,9 +111,9 @@ class AulaController extends AppController {
 		}
 		
 		$val_prod = ProdutoDetalhe::find('all',array('conditions' => ' AND etabela.ctabela = 4 '));
-		
+       
 		$this->view->set('aula', $aula);
-		$this->view->set('linha', Produto::findByCscat(4, 'all', array('order' => 'elinha.nlinha', 'group' => 'elinha.nlinha')));
+		$this->view->set('linha', Produto::findByCscat(4, 'all', array('order' => 'elinha.nlinha')));
 		$this->view->set('val_prod', $val_prod);
 		$this->view->set('formas_pagamento', FormaPagamento::find());
 		$this->view->set('parcelas_pagamento', FormaPagamento::parcelas());
