@@ -109,5 +109,9 @@
 		<?php //echo $this->element('sql_debug'); ?>
 	</div>
 
+    <div class="content-container">
+        <?= $this->element('sql_debug') ?>
+    </div>
+
 </body>
 </html>

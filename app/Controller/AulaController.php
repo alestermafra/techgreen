@@ -4,6 +4,7 @@ App::import('AppController', 'Controller');
 App::import('Aula', 'Model');
 App::import('ParticipanteAula', 'Model');
 App::import('Produto', 'Model');
+App::import('Linha', 'Model');
 App::import('ProdutoDetalhe', 'Model');
 App::import('Tabela', 'Model');
 App::import('FormaPagamento', 'Model');
@@ -68,9 +69,9 @@ class AulaController extends AppController {
 			}
 		}
 		
-		$val_prod = ProdutoDetalhe::find('all',array('conditions' => ' AND etabela.ctabela = 4 '));
+        $val_prod = ProdutoDetalhe::find('all',array('conditions' => ' AND etabela.ctabela = 4 '));
 		
-		$this->view->set('linha', Produto::findByCscat(4, 'all', array('order' => 'elinha.nlinha')));
+		$this->view->set('linha', Linha::findByCscat(4, 'all', array('order' => 'elinha.nlinha')));
 		$this->view->set('val_prod', $val_prod);
 		$this->view->set('formas_pagamento', FormaPagamento::find());
 		$this->view->set('parcelas_pagamento', FormaPagamento::parcelas());
@@ -113,7 +114,7 @@ class AulaController extends AppController {
 		$val_prod = ProdutoDetalhe::find('all',array('conditions' => ' AND etabela.ctabela = 4 '));
        
 		$this->view->set('aula', $aula);
-		$this->view->set('linha', Produto::findByCscat(4, 'all', array('order' => 'elinha.nlinha')));
+		$this->view->set('linha', Linha::findByCscat(4, 'all', array('order' => 'elinha.nlinha')));
 		$this->view->set('val_prod', $val_prod);
 		$this->view->set('formas_pagamento', FormaPagamento::find());
 		$this->view->set('parcelas_pagamento', FormaPagamento::parcelas());
@@ -190,7 +191,7 @@ class AulaController extends AppController {
 		$this->view->set('count', $count);
 
 		$this->view->set('excel', $excel);
-		$this->view->set('linhas', Produto::findByCscat(4, 'all', array('order' => 'elinha.nlinha', 'group' => 'elinha.clinha')));
+		$this->view->set('linhas', Linha::findByCscat(4, 'all', array('order' => 'elinha.nlinha')));
 		$this->view->set('planos', Plano::aula());
 		$this->view->set('can', Calendario::ean());
 		$this->view->set('cmes', Calendario::emes());
