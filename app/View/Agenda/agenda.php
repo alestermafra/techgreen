@@ -274,6 +274,6 @@ function reload(){
 	var data = document.getElementById('select_mes').value;
 	var ano = data.substring(0, 4);
 	var mes = data.substring(5, 7);
-	window.location.href="/agenda/agenda/"+mes+"/"+ano;
+	window.location.href="<?= $this->url('/agenda/agenda') ?>/"+mes+"/"+ano;
 }
 </script>

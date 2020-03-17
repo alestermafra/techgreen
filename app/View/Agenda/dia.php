@@ -204,6 +204,6 @@ function reload(){
 	var ano = data.substring(0, 4);
 	var mes = data.substring(5, 7);
 	var dia = data.substring(8, 10);
-	window.location.href="/agenda/dia/"+dia+"/"+mes+"/"+ano;
+	window.location.href="<?= $this->url('/agenda/dia') ?>/"+dia+"/"+mes+"/"+ano;
 }
 </script>

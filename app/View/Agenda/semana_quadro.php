@@ -52,7 +52,7 @@
     <div>
     	<div class="btn-group" role="group">
             <a href="<?php echo $this->url('/agenda/agenda/'.$mes[0]['cmes'].'/'.$ano) ?>" class="btn btn-sm btn-secondary" title="Visão mensal">Mês</a>
-            <a href="<?php echo $this->url('/agenda/semana'.$dia.'/'.$mes[0]['cmes'].'/'.$ano) ?>" class="btn btn-sm btn-secondary" title="Visão semanal">Semana</a>
+            <a href="<?php echo $this->url('/agenda/semana/'.$dia.'/'.$mes[0]['cmes'].'/'.$ano) ?>" class="btn btn-sm btn-secondary" title="Visão semanal">Semana</a>
             <a href="<?php echo $this->url('/agenda/dia/'.$dia.'/'.$mes[0]['cmes'].'/'.$ano) ?>" class="btn btn-sm btn-secondary" title="Visão diária">Dia</a>
             <a href="<?php echo $this->url('/agenda/semana_quadro/') ?>" class="btn btn-sm btn-secondary active" title="Visão de quadro semanal">Quadro</a>
 		</div>
@@ -169,6 +169,6 @@ function reload(){
 	var ano = data.substring(0, 4);
 	var mes = data.substring(5, 7);
 	var dia = data.substring(8, 10);
-	window.location.href="/agenda/semana_quadro/"+dia+"/"+mes+"/"+ano;
+	window.location.href="<?= $this->url('/agenda/semana_quadro') ?>/"+dia+"/"+mes+"/"+ano;
 }
 </script>
