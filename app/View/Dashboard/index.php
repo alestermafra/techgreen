@@ -179,7 +179,7 @@
 						<div class="card" style="background-color: #ec407a">
 							<div class="card-body text-white">
 								<h3 class="py-0"><?php echo $guardaria_quantidade ?></h3>
-								Equipamentos na guardaria
+								Equipamentos na guarderia
 							</div>
 						</div>
 					</a>

@@ -12,7 +12,7 @@
 ?>
 
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Guardaria</span>
+	<span class="navbar-brand">Guarderia</span>
 	<div>
 		<a href="<?php echo $this->url('/guardaria/inserir') ?>" class="btn btn-sm btn-success" role="button" title="Novo registro">Adicionar</a>
 	</div>

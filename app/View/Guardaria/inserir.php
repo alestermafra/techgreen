@@ -1,7 +1,7 @@
 <form action="<?php echo $this->url('/guardaria/inserir') ?>" method="POST">
 
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Guardaria</span>
+	<span class="navbar-brand">Guarderia</span>
 	<div>
 		<a class="btn btn-sm btn-light" role="button" style="width: 100px;" href="<?php echo $this->url('/guardaria') ?>">Cancelar</a>
 		<input type="submit" class="btn btn-sm btn-success" style="width: 100px;" value="Concluir"></input>

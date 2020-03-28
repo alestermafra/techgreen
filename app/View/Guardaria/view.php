@@ -1,5 +1,5 @@
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Guardaria</span>
+	<span class="navbar-brand">Guarderia</span>
 	<div>
 		<a href="<?php echo $this->url('/guardaria') ?>" class="btn btn-sm btn-secondary">Ir para a lista</a>
 		<a href="<?php echo $this->url('/guardaria/editar/' . $guardaria['cguardaria']) ?>" class="btn btn-sm btn-primary" role="button">Editar</a>
@@ -10,7 +10,7 @@
 <?php if(isset($_GET['inserido'])): ?>
 	<div class="container-fluid">
 		<div class="alert alert-success alert-dismissible fade show" role="alert">
-			Guardaria inserida com sucesso.
+			Guarderia inserida com sucesso.
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
@@ -59,7 +59,7 @@
 					</div>
 					<div class="row form-group">
 						<div class="col-md-4">
-							<label class="small text-muted">Modelo da Guardaria</label>
+							<label class="small text-muted">Modelo da Guarderia</label>
 						</div>
 						<div class="col-md-8">
 							<?php echo $guardaria['nprod'] ?>

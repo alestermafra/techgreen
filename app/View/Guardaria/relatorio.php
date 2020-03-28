@@ -10,7 +10,7 @@
 	
 	//excel
 	if($excel == 1){
-		$arquivo_nome = "Relatório_Guardaria_".date("d/m/Y");
+		$arquivo_nome = "Relatório_Guarderia_".date("d/m/Y");
 		 
 		header ("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
 		header ("Cache-Control: no-cache, must-revalidate");
@@ -26,7 +26,7 @@
 
 <?php if(!$excel): //excel?>
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Relatório de Guardaria</span>
+	<span class="navbar-brand">Relatório de Guarderia</span>
 </nav>
 
 <div class="container-fluid">
@@ -163,7 +163,7 @@
                 	<td colspan="4"></td>
                 	<td class="text-right" title="Valor total para valores de venda">R$<b> <?php echo $valor_total_venda;?></b></td>
                 	<td colspan="5"></td>
-                    <td class="text-right" title="Valor total para serviço de guardaria">R$<b> <?php echo $valor_total;?></b></td>
+                    <td class="text-right" title="Valor total para serviço de guarderia">R$<b> <?php echo $valor_total;?></b></td>
                 </tr>
 			</tbody>
 		</table>
