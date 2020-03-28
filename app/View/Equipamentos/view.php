@@ -44,28 +44,12 @@
                  </div>
             </div>
             <div class="card-body">
-            	<div class="row form-group">
-                    <div class="col-md-4">
-                        <label class="small text-muted">Nome</label>
-                    </div>
-                    <div class="col-md-8">
-                        <?php echo $equipamento['nome'] ?>
-                    </div>
-                </div>
                 <div class="row form-group">
                     <div class="col-md-4">
-                        <label class="small text-muted">Resp/Dono</label>
+                        <label class="small text-muted">Proprietário</label>
                     </div>
                     <div class="col-md-8">
                         <a href="<?= $this->url('/painel/overview_pf/' . $equipamento['cps']) ?>"><?php echo $equipamento['nps'] ?></a>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-4">
-                        <label class="small text-muted">Marca</label>
-                    </div>
-                    <div class="col-md-8">
-                        <?php echo $equipamento['marca'] ?>
                     </div>
                 </div>
                 <div class="row form-group">
@@ -84,6 +68,43 @@
                         <?php echo $equipamento['nprod'] ?>
                     </div>
                 </div>
+            	<div class="row form-group">
+                    <div class="col-md-4">
+                        <label class="small text-muted">Nome da Embarcação</label>
+                    </div>
+                    <div class="col-md-8">
+                        <?php echo $equipamento['nome'] ?>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <label class="small text-muted">À Venda?</label>
+                    </div>
+                    <div class="col-md-8">
+                        <?php if($equipamento['flg_venda'] == 1) {echo 'Sim';} else {echo 'Não';}  ?>
+                    </div>
+                </div>
+                <?php if($equipamento['flg_venda'] == 1): ?>
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="small text-muted">Valor de venda</label>
+                        </div>
+                        <div class="col-md-8">
+                            R$ <?php echo $equipamento['valor_venda'] ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <?php if(!empty($equipamento['marca'])): ?>
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="small text-muted">Marca</label>
+                        </div>
+                        <div class="col-md-8">
+                            <?php echo $equipamento['marca'] ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <?php if(!empty($equipamento['tamanho'])): ?>
                 <div class="row form-group">
                     <div class="col-md-4">
                         <label class="small text-muted">Tamanho</label>
@@ -92,46 +113,37 @@
                         <?php echo $equipamento['tamanho'] ?>
                     </div>
                 </div>
-                <div class="row form-group">
-                    <div class="col-md-4">
-                        <label class="small text-muted">Cor</label>
+                <?php endif; ?>
+                <?php if(!empty($equipamento['cor'])): ?>
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="small text-muted">Cor</label>
+                        </div>
+                        <div class="col-md-8">
+                            <?php echo $equipamento['cor'] ?>
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <?php echo $equipamento['cor'] ?>
+                <?php endif; ?>
+                <?php if(!empty($equipamento['ano'])): ?>
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="small text-muted">Ano</label>
+                        </div>
+                        <div class="col-md-8">
+                            <?php echo $equipamento['ano'] ?>
+                        </div>
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-4">
-                        <label class="small text-muted">Ano</label>
+                <?php endif; ?>
+                <?php if(!empty($equipamento['estado_geral'])): ?>
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="small text-muted">Estado geral</label>
+                        </div>
+                        <div class="col-md-8">
+                            <?php echo $equipamento['estado_geral'] ?>
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <?php echo $equipamento['ano'] ?>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-4">
-                        <label class="small text-muted">Estado geral</label>
-                    </div>
-                    <div class="col-md-8">
-                        <?php echo $equipamento['estado_geral'] ?>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-4">
-                        <label class="small text-muted">Venda?</label>
-                    </div>
-                    <div class="col-md-8">
-                        <?php if($equipamento['flg_venda'] ==1) {echo 'Sim';} else {echo 'Não';}  ?>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-4">
-                        <label class="small text-muted">Valor de venda</label>
-                    </div>
-                    <div class="col-md-8">
-                        <?php echo $equipamento['valor_venda'] ?>
-                    </div>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
         </div>
