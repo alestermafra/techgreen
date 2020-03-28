@@ -23,239 +23,256 @@
 
 
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8">
-		
-			<div class="card">
-				<div class="card-body">
-					<table class="table table-sm table-borderless p-0 m-0">
-                    	<tr>
-							<td class="text-muted">Id</td>
-							<td><?= $clientepf['cps'] ?></td>
-						</tr>
-						<tr>
-							<td class="text-muted">Velejador</td>
-							<td><?= $clientepf['nps'] ?></td>
-						</tr>
-						<tr>
-							<td class="text-muted">Classificação</td>
-							<td><?= $clientepf['nseg'] ?></td>
-						</tr>
-						<?php if(!empty($clientepf['email'])): ?>
-						<tr>
-							<td class="text-muted"><label class="text-muted">E-mail</label></td>
-							<td><a href="mailto:<?= $clientepf['email'] ?>"><?= $clientepf['email'] ?></a></td>
-						</tr>
-						<?php endif; ?>
-						<?php if(!empty($clientepf['rg'])): ?>
-						<tr>
-							<td class="text-muted">RG</td>
-							<td><?php echo $clientepf['rg'] ?></td>
-						</tr>
-						<?php endif; ?>
-						<?php if(!empty($clientepf['cpf'])): ?>
-						<tr>
-							<td class="text-muted">CPF</td>
-							<td><input type="text" readonly class="form-control-plaintext p-0 m-0 cpf-mask" value="<?php echo $clientepf['cpf'] ?>" data-value="<?php echo $clientepf['cpf'] ?>"></td>
-						</tr>
-						<?php endif; ?>
-						<?php if(!empty($clientepf['d_nasc']) && !empty($clientepf['m_nasc']) && !empty($clientepf['a_nasc'])): ?>
-						<tr>
-							<td class="text-muted">Data de Nascimento</td>
-							<td><?php echo $clientepf['d_nasc'] . '/' . $clientepf['m_nasc'] . '/' . $clientepf['a_nasc'] ?></td>
-						</tr>
-						<?php endif; ?>
-						<?php if(!empty($clientepf['peso'])): ?>
-						<tr>
-							<td class="text-muted">Peso</td>
-							<td><?php echo $clientepf['peso'] ?></td>
-						</tr>
-						<?php endif; ?>
-						<?php if(!empty($clientepf['profissao'])): ?>
-						<tr>
-							<td class="text-muted">Profissão</td>
-							<td><?php echo $clientepf['profissao'] ?></td>
-						</tr>
-						<?php endif; ?>
-						<?php if(!empty($clientepf['equipe'])): ?>
-						<tr>
-							<td class="text-muted">Equipe</td>
-							<td><?php echo $clientepf['equipe'] ?></td>
-						</tr>
-						<?php endif; ?>
-						<?php if(!empty($clientepf['dependente1']) || !empty($clientepf['dependente2']) || !empty($clientepf['dependente3']) || !empty($clientepf['dependente4']) || !empty($clientepf['dependente5'])): ?> 
-						<tr>
-							<td class="text-muted">Dependente(s)</td>
-							<td>
-								<?php if(!empty($clientepf['dependente1'])): ?>
-									<div><span class="text-muted">1.</span> <?php echo $clientepf['dependente1'] ?></div>
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item">
+			<a class="nav-link active" id="dados-pessoais-tab" data-toggle="tab" href="#dados-pessoais-content" role="tab" aria-controls="dados-pessoais-content" aria-selected="true">Dados Pessoais</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="embarcacoes-tab" data-toggle="tab" href="#embarcacoes-content" role="tab" aria-controls="embarcacoes-content" aria-selected="false">Embarcações</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="anexos-tab" data-toggle="tab" href="#anexos-content" role="tab" aria-controls="anexos-content" aria-selected="false">Anexos</a>
+		</li>
+	</ul>
+
+	<div class="tab-content">
+		<div class="tab-pane fade show active" id="dados-pessoais-content" role="tabpanel" aria-labelledby="dados-pessoais-tab">
+			<div class="row mt-2">
+				<div class="col-md-8">
+					<div class="card">
+						<div class="card-body">
+							<table class="table table-sm table-borderless p-0 m-0">
+								<tr>
+									<td class="text-muted">Id</td>
+									<td><?= $clientepf['cps'] ?></td>
+								</tr>
+								<tr>
+									<td class="text-muted">Velejador</td>
+									<td><?= $clientepf['nps'] ?></td>
+								</tr>
+								<tr>
+									<td class="text-muted">Classificação</td>
+									<td><?= $clientepf['nseg'] ?></td>
+								</tr>
+								<?php if(!empty($clientepf['email'])): ?>
+								<tr>
+									<td class="text-muted"><label class="text-muted">E-mail</label></td>
+									<td><a href="mailto:<?= $clientepf['email'] ?>"><?= $clientepf['email'] ?></a></td>
+								</tr>
 								<?php endif; ?>
-								<?php if(!empty($clientepf['dependente2'])): ?>
-									<div><span class="text-muted">2.</span> <?php echo $clientepf['dependente2'] ?></div>
+								<?php if(!empty($clientepf['rg'])): ?>
+								<tr>
+									<td class="text-muted">RG</td>
+									<td><?php echo $clientepf['rg'] ?></td>
+								</tr>
 								<?php endif; ?>
-								<?php if(!empty($clientepf['dependente3'])): ?>
-									<div><span class="text-muted">3.</span> <?php echo $clientepf['dependente3'] ?></div>
+								<?php if(!empty($clientepf['cpf'])): ?>
+								<tr>
+									<td class="text-muted">CPF</td>
+									<td><input type="text" readonly class="form-control-plaintext p-0 m-0 cpf-mask" value="<?php echo $clientepf['cpf'] ?>" data-value="<?php echo $clientepf['cpf'] ?>"></td>
+								</tr>
 								<?php endif; ?>
-								<?php if(!empty($clientepf['dependente4'])): ?>
-									<div><span class="text-muted">4.</span> <?php echo $clientepf['dependente4'] ?></div>
+								<?php if(!empty($clientepf['d_nasc']) && !empty($clientepf['m_nasc']) && !empty($clientepf['a_nasc'])): ?>
+								<tr>
+									<td class="text-muted">Data de Nascimento</td>
+									<td><?php echo $clientepf['d_nasc'] . '/' . $clientepf['m_nasc'] . '/' . $clientepf['a_nasc'] ?></td>
+								</tr>
 								<?php endif; ?>
-								<?php if(!empty($clientepf['dependente5'])): ?>
-									<div><span class="text-muted">5.</span> <?php echo $clientepf['dependente5'] ?></div>
+								<?php if(!empty($clientepf['peso'])): ?>
+								<tr>
+									<td class="text-muted">Peso</td>
+									<td><?php echo $clientepf['peso'] ?></td>
+								</tr>
 								<?php endif; ?>
-							</td>
-						</tr>
-						<?php endif; ?>
-                        <?php if(!empty($clientepf['d_contato']) && !empty($clientepf['m_contato']) && !empty($clientepf['a_contato'])): ?>
-						<tr>
-							<td class="text-muted">Primeiro contato</td>
-							<td><?php echo $clientepf['d_contato'] . '/' . $clientepf['m_contato'] . '/' . $clientepf['a_contato'] ?></td>
-						</tr>
-						<?php endif; ?>
-						<?php if(!empty($clientepf['interesses'])): ?>
-						<tr>
-							<td class="text-muted">Interesse(s)</td>
-							<td>
-								<?php foreach($clientepf['interesses'] as $i => $interesse): ?>
-									<div><span class="text-muted"><?php echo ($i + 1) ?>. </span> <?php echo $interesse['ntinteresse'] ?></div>
-								<?php endforeach ?>
-							</td>
-						</tr>
-						<?php endif; ?>
-						<?php if(!empty($clientepf['canais'])): ?>
-						<tr>
-							<td class="text-muted">Canais de Conhecimento</td>
-							<td>
-								<?php foreach($clientepf['canais'] as $i => $canal): ?>
-									<div><span class="text-muted"><?php echo ($i + 1) ?>. </span> <?php echo $canal['ncanal'] . ' ' . $canal['OBS'] ?></div>
-								<?php endforeach ?>
-							</td>
-						</tr>
-						<?php endif; ?>
-                        <?php if(!empty($clientepf['canais_contato'])): ?>
-						<tr>
-							<td class="text-muted">Canais de Contato</td>
-							<td>
-								<?php foreach($clientepf['canais_contato'] as $i => $canal_contato): ?>
-									<div><span class="text-muted"><?php echo ($i + 1) ?>. </span> <?php echo $canal_contato['ncanalcontato'] . ' ' . $canal_contato['OBS'] ?></div>
-								<?php endforeach ?>
-							</td>
-						</tr>
-						<?php endif; ?>
-					</table>
-					
-					<div class="row">
-						<div class="col text-right">
-							<form action="<?php echo $this->url('/painel/editar_pf/' . $clientepf['cps']) ?>" method="POST">
-								<div class="row">
-									<div class="col"> 
-										<?php if($clientepf['ativo'] == 1): ?>
-											<input name="ativo" type="hidden" value="0"></input>
-											<input type="submit" class="btn btn-sm btn-danger" value="Inativar" style="width: 100px;"></input>
-										<?php else: ?>
-											<input name="ativo" type="hidden" value="1"></input>
-											<input type="submit" class="btn btn-sm btn-success" value="Ativar" style="width: 100px;"></input>
-										<?php endif ?>
-									</div>
+								<?php if(!empty($clientepf['profissao'])): ?>
+								<tr>
+									<td class="text-muted">Profissão</td>
+									<td><?php echo $clientepf['profissao'] ?></td>
+								</tr>
+								<?php endif; ?>
+								<?php if(!empty($clientepf['equipe'])): ?>
+								<tr>
+									<td class="text-muted">Equipe</td>
+									<td><?php echo $clientepf['equipe'] ?></td>
+								</tr>
+								<?php endif; ?>
+								<?php if(!empty($clientepf['dependente1']) || !empty($clientepf['dependente2']) || !empty($clientepf['dependente3']) || !empty($clientepf['dependente4']) || !empty($clientepf['dependente5'])): ?> 
+								<tr>
+									<td class="text-muted">Dependente(s)</td>
+									<td>
+										<?php if(!empty($clientepf['dependente1'])): ?>
+											<div><span class="text-muted">1.</span> <?php echo $clientepf['dependente1'] ?></div>
+										<?php endif; ?>
+										<?php if(!empty($clientepf['dependente2'])): ?>
+											<div><span class="text-muted">2.</span> <?php echo $clientepf['dependente2'] ?></div>
+										<?php endif; ?>
+										<?php if(!empty($clientepf['dependente3'])): ?>
+											<div><span class="text-muted">3.</span> <?php echo $clientepf['dependente3'] ?></div>
+										<?php endif; ?>
+										<?php if(!empty($clientepf['dependente4'])): ?>
+											<div><span class="text-muted">4.</span> <?php echo $clientepf['dependente4'] ?></div>
+										<?php endif; ?>
+										<?php if(!empty($clientepf['dependente5'])): ?>
+											<div><span class="text-muted">5.</span> <?php echo $clientepf['dependente5'] ?></div>
+										<?php endif; ?>
+									</td>
+								</tr>
+								<?php endif; ?>
+								<?php if(!empty($clientepf['d_contato']) && !empty($clientepf['m_contato']) && !empty($clientepf['a_contato'])): ?>
+								<tr>
+									<td class="text-muted">Primeiro contato</td>
+									<td><?php echo $clientepf['d_contato'] . '/' . $clientepf['m_contato'] . '/' . $clientepf['a_contato'] ?></td>
+								</tr>
+								<?php endif; ?>
+								<?php if(!empty($clientepf['interesses'])): ?>
+								<tr>
+									<td class="text-muted">Interesse(s)</td>
+									<td>
+										<?php foreach($clientepf['interesses'] as $i => $interesse): ?>
+											<div><span class="text-muted"><?php echo ($i + 1) ?>. </span> <?php echo $interesse['ntinteresse'] ?></div>
+										<?php endforeach ?>
+									</td>
+								</tr>
+								<?php endif; ?>
+								<?php if(!empty($clientepf['canais'])): ?>
+								<tr>
+									<td class="text-muted">Canais de Conhecimento</td>
+									<td>
+										<?php foreach($clientepf['canais'] as $i => $canal): ?>
+											<div><span class="text-muted"><?php echo ($i + 1) ?>. </span> <?php echo $canal['ncanal'] . ' ' . $canal['OBS'] ?></div>
+										<?php endforeach ?>
+									</td>
+								</tr>
+								<?php endif; ?>
+								<?php if(!empty($clientepf['canais_contato'])): ?>
+								<tr>
+									<td class="text-muted">Canais de Contato</td>
+									<td>
+										<?php foreach($clientepf['canais_contato'] as $i => $canal_contato): ?>
+											<div><span class="text-muted"><?php echo ($i + 1) ?>. </span> <?php echo $canal_contato['ncanalcontato'] . ' ' . $canal_contato['OBS'] ?></div>
+										<?php endforeach ?>
+									</td>
+								</tr>
+								<?php endif; ?>
+							</table>
+							
+							<div class="row">
+								<div class="col text-right">
+									<form action="<?php echo $this->url('/painel/editar_pf/' . $clientepf['cps']) ?>" method="POST">
+										<div class="row">
+											<div class="col"> 
+												<?php if($clientepf['ativo'] == 1): ?>
+													<input name="ativo" type="hidden" value="0"></input>
+													<input type="submit" class="btn btn-sm btn-danger" value="Inativar" style="width: 100px;"></input>
+												<?php else: ?>
+													<input name="ativo" type="hidden" value="1"></input>
+													<input type="submit" class="btn btn-sm btn-success" value="Ativar" style="width: 100px;"></input>
+												<?php endif ?>
+											</div>
+										</div>
+									</form>
 								</div>
-							</form>
+							</div>
+						</div>
+					</div>
+					
+					<div class="card">
+						<div class="card-header bg-dark text-white">
+							Endereços
+							<div class="float-right">
+								<a
+									href="<?php echo $this->url("/endereco/inserir/{$clientepf['cps']}?redirect={$this->controller->request->url}") ?>"
+									class="btn btn-sm btn-primary"
+									role="button"
+									title="Adicionar novo endereço"
+								>
+									<i class="material-icons align-middle md-18">add</i>
+									<span class="align-middle">Endereço</span>
+								</a>
+							</div>
+						</div>
+						<div class="card-body">
+							<?php if(!isset($clientepf['enderecos']) || isset($clientepf['enderecos']) && empty($clientepf['enderecos'])): ?>
+								<small>Nenhum endereço cadastrado.</small>
+							<?php else: ?>
+								<table class="table table-sm table-borderless p-0 m-0">
+									<?php foreach($clientepf['enderecos'] as $end): ?>
+										<tr>
+											<td class="text-muted"><?php echo $end['ntpsend'] ?></td>
+											<td><?php echo endereco_short($end) ?></td>
+											<td>
+												<a href="<?php echo $this->url("/endereco/editar/{$end['cpsend']}?redirect={$this->controller->request->url}") ?>" class="btn btn-link btn-sm" title="Editar endereço">
+													<i class='material-icons md-18'>edit</i>
+												</a>
+												<a href="<?php echo $this->url("/endereco/remover/{$end['cpsend']}?redirect={$this->controller->request->url}") ?>" class="btn btn-link btn-sm text-danger" title="Remover endereço">
+													<i class='material-icons md-18'>clear</i>
+												</a>
+											</td>
+										</tr>
+									<?php endforeach ?>
+								</table>
+
+							<?php endif ?>
+						</div>
+					</div>
+					
+					<div class="card">
+						<div class="card-header bg-dark text-white">
+							Aulas
+						</div>
+						<div class="card-body">
+							<?php if(empty($clientepf['aulas'])): ?>
+								<small>Não participou de nenhuma aula.</small>
+							<?php else: ?>
+								<ul class="list-group list-group-flush">
+									<?php foreach($clientepf['aulas'] as $aula): ?>
+										<li class="list-group-item">
+											<div class="d-flex w-100 justify-content-between">
+											<h6>
+												<a title="Ver detalhes da aula" href="<?php echo $this->url('/aula/view/' . $aula['caula']) ?>">
+													<?= $aula['nlinha'] ?> <small>(<?= $aula['subtitulo']; ?>)</small>
+												</a>
+											</h6>
+											<small><?= $aula['cdia']; ?>/<?= $aula['cmes']; ?>/<?= $aula['can']; ?></small>
+											</div>
+											<?php if($aula['descricao']) { echo '<p>Descrição aula:'.$aula['descricao'].'</p>';} ?>
+											<?php if($aula['descricao_participante']) { echo '<p>'.$aula['descricao_participante'].'</p>';}?>
+											<small>Instrutor <?= $aula['instrutor']; ?></small>
+										</li>
+									<?php endforeach ?>
+								</ul>
+							<?php endif ?>
+						</div>
+					</div>
+				</div>
+			
+				
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header bg-dark text-white">
+							Telefones
+						</div>
+						<div class="card-body">
+							<?php if(!isset($clientepf['telefones']) || isset($clientepf['telefones']) && empty($clientepf['telefones'])): ?>
+								<small>Nenhum telefone cadastrado.</small>
+							<?php else: ?>
+								<table class="table table-sm table-borderless p-0 m-0">
+									<?php foreach($clientepf['telefones'] as $tel): ?>
+										<tr>
+											<td class="text-muted"><?= $tel['ntfone'] ?></td>
+											<td><input type="text" readonly class="form-control-plaintext p-0 m-0 phone w-auto" value="<?php echo $tel['fone'] ?>"data-value="<?php echo $tel['fone'] ?>"></input></td>
+										</tr>
+									<?php endforeach ?>
+								</table>
+							<?php endif ?>
 						</div>
 					</div>
 				</div>
 			</div>
-			
-			<div class="card">
-				<div class="card-header bg-dark text-white">
-					Endereços
-					<div class="float-right">
-						<a
-							href="<?php echo $this->url("/endereco/inserir/{$clientepf['cps']}?redirect={$this->controller->request->url}") ?>"
-							class="btn btn-sm btn-primary"
-							role="button"
-							title="Adicionar novo endereço"
-						>
-							<i class="material-icons align-middle md-18">add</i>
-							<span class="align-middle">Endereço</span>
-						</a>
-					</div>
-				</div>
-				<div class="card-body">
-					<?php if(!isset($clientepf['enderecos']) || isset($clientepf['enderecos']) && empty($clientepf['enderecos'])): ?>
-						<small>Nenhum endereço cadastrado.</small>
-					<?php else: ?>
-						<table class="table table-sm table-borderless p-0 m-0">
-							<?php foreach($clientepf['enderecos'] as $end): ?>
-								<tr>
-									<td class="text-muted"><?php echo $end['ntpsend'] ?></td>
-									<td><?php echo endereco_short($end) ?></td>
-									<td>
-										<a href="<?php echo $this->url("/endereco/editar/{$end['cpsend']}?redirect={$this->controller->request->url}") ?>" class="btn btn-link btn-sm" title="Editar endereço">
-											<i class='material-icons md-18'>edit</i>
-										</a>
-										<a href="<?php echo $this->url("/endereco/remover/{$end['cpsend']}?redirect={$this->controller->request->url}") ?>" class="btn btn-link btn-sm text-danger" title="Remover endereço">
-											<i class='material-icons md-18'>clear</i>
-										</a>
-									</td>
-								</tr>
-							<?php endforeach ?>
-						</table>
-
-					<?php endif ?>
-				</div>
-			</div>
-			
-			<div class="card">
-				<div class="card-header bg-dark text-white">
-					Aulas
-				</div>
-				<div class="card-body">
-					<?php if(empty($clientepf['aulas'])): ?>
-						<small>Não participou de nenhuma aula.</small>
-					<?php else: ?>
-						<ul class="list-group list-group-flush">
-							<?php foreach($clientepf['aulas'] as $aula): ?>
-								<li class="list-group-item">
-									<div class="d-flex w-100 justify-content-between">
-									  <h6>
-                                      	<a title="Ver detalhes da aula" href="<?php echo $this->url('/aula/view/' . $aula['caula']) ?>">
-									  		<?= $aula['nlinha'] ?> <small>(<?= $aula['subtitulo']; ?>)</small>
-                                        </a>
-                                      </h6>
-									  <small><?= $aula['cdia']; ?>/<?= $aula['cmes']; ?>/<?= $aula['can']; ?></small>
-									</div>
-									<?php if($aula['descricao']) { echo '<p>Descrição aula:'.$aula['descricao'].'</p>';} ?>
-                                    <?php if($aula['descricao_participante']) { echo '<p>'.$aula['descricao_participante'].'</p>';}?>
-									<small>Instrutor <?= $aula['instrutor']; ?></small>
-								</li>
-							<?php endforeach ?>
-						</ul>
-					<?php endif ?>
-				</div>
-			</div>
 		</div>
-	
-		
-		<div class="col-md-4">
-			<div class="card">
-				<div class="card-header bg-dark text-white">
-					Telefones
-				</div>
-				<div class="card-body">
-					<?php if(!isset($clientepf['telefones']) || isset($clientepf['telefones']) && empty($clientepf['telefones'])): ?>
-						<small>Nenhum telefone cadastrado.</small>
-					<?php else: ?>
-						<table class="table table-sm table-borderless p-0 m-0">
-							<?php foreach($clientepf['telefones'] as $tel): ?>
-								<tr>
-									<td class="text-muted"><?= $tel['ntfone'] ?></td>
-									<td><input type="text" readonly class="form-control-plaintext p-0 m-0 phone w-auto" value="<?php echo $tel['fone'] ?>"data-value="<?php echo $tel['fone'] ?>"></input></td>
-								</tr>
-							<?php endforeach ?>
-						</table>
-					<?php endif ?>
-				</div>
-			</div>
-			
-			<div class="card">
+
+		<div class="tab-pane fade" id="embarcacoes-content" role="tabpanel" aria-labelledby="embarcacoes-tab">
+			<div class="card mt-2">
 				<div class="card-header bg-dark text-white">
 					Embarcações
 				</div>
@@ -274,8 +291,10 @@
 					<?php endif ?>
 				</div>
 			</div>
-			
-			<div class="card">
+		</div>
+
+		<div class="tab-pane fade" id="anexos-content" role="tabpanel" aria-labelledby="anexos-tab">
+			<div class="card mt-2">
 				<div class="card-header bg-dark text-white">
 					Anexos
 					<div class="float-right">
@@ -317,9 +336,6 @@
 				</div>
 			</div>
 		</div>
-        
-
-		
 	</div>
 </div>
 
