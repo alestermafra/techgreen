@@ -170,7 +170,7 @@ class PainelController extends AppController {
 		
 		$ativo = (int) _isset($_GET['ativo'], 1);
 		$page = (int) _isset($_GET['page'], 1);
-		$limit = (int) _isset($_GET['limit'], 13);
+		$limit = (int) _isset($_GET['limit'], 20);
 		
 		if($search_value) {
 			$list = ClientePJ::search($search_value, 'all', array('page' => $page, 'limit' => $limit, 'conditions' => ' AND zpainel.ativo = ' . $ativo, 'order' => _isset($order_values[$order], $order_values['default'])));

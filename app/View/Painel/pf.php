@@ -35,8 +35,6 @@
 					</div>
 					
 					<div class="form-group col-12 col-sm-6 col-md-4 col-lg-2 d-none d-lg-block"></div>
-					
-					<div class="form-group col-12 col-sm-6 col-md-4 col-lg-2 d-none d-lg-block"></div>
                     
                     <div class="form-group col-12 col-sm-6 col-md-4 col-lg-2">
 						<label class="small text-muted">Registros</label>
@@ -57,10 +55,20 @@
 					</div>
 					
 					<div class="form-group col-12 col-sm-6 col-md-4 col-lg-2">
-						<label class="small text-muted">Mostrar</label>
+						<label class="small text-muted">Ativos/Inativos</label>
 						<select name="ativo" class="form-control form-control-sm" onchange="this.form.submit()">
                             <option value="1" <?php echo isset($_GET['ativo']) && $_GET['ativo'] == 1 ? ' selected':'' ?> >Ativos</option>
                             <option value="0" <?php echo isset($_GET['ativo']) && $_GET['ativo'] == 0 ? ' selected':'' ?> >Inativos</option>
+                        </select>
+					</div>
+					
+					<div class="form-group col-12 col-sm-6 col-md-4 col-lg-2">
+						<label class="small text-muted">Mostrar</label>
+						<select name="limit" class="form-control form-control-sm" onchange="this.form.submit()">
+                            <option value="20" <?php echo isset($_GET['limit']) && $_GET['limit'] == 20 ? ' selected':'' ?> >20 itens por página</option>
+                            <option value="50" <?php echo isset($_GET['limit']) && $_GET['limit'] == 50 ? ' selected':'' ?> >50 itens por páginas</option>
+                            <option value="100" <?php echo isset($_GET['limit']) && $_GET['limit'] == 100 ? ' selected':'' ?> >100 itens por páginas</option>
+                            <option value="1000" <?php echo isset($_GET['limit']) && $_GET['limit'] == 1000 ? ' selected':'' ?> >1000 itens por páginas</option>
                         </select>
 					</div>
 				</div>	
