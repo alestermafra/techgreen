@@ -41,7 +41,7 @@
                 Detalhes
                 
                 <div class="float-right">
-                 	<a role="button" class="btn btn-sm btn-primary" target="_blank" href="<?php echo $this->url('/equipamentos/gerar_relacao/' . $equipamento['cequipe']) ?>">Qualificação</a>
+                 	<a role="button" class="btn btn-sm btn-primary" target="_blank" href="<?php echo $this->url('/equipamentos/gerar_relacao/' . $equipamento['cequipe']) ?>">Vistoria</a>
                  </div>
             </div>
             <div class="card-body">
