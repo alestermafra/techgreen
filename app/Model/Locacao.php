@@ -191,15 +191,18 @@ class Locacao extends Table {
 	}
 	
 	public static function search($value, string $type = 'all', array $params = array()) {
+		$value = trim($value);
+		$value = preg_replace("/[^0-9a-zA-Z ]/i", "", $value);
 		$params['conditions'] = _isset($params['conditions'], '');
-		$params['conditions'] .= " AND ( eps.cps = '$value'";
-		$params['conditions'] .= " OR eps.nps LIKE '%$value%'";
-		$params['conditions'] .= " OR eplano.nplano LIKE '%$value%'";
-		$params['conditions'] .= " OR eprod.nprod LIKE '%$value%'";
-		$params['conditions'] .= " OR epgt.pgt LIKE '%$value%'";
-		$params['conditions'] .= " OR elocacao.descricao LIKE '%$value%'";
-		$params['conditions'] .= " OR elocacao.valor LIKE '%$value%'";
-		$params['conditions'] .= ")";
-		return static::_find($type, $params);
+		$params['conditions'] .= " AND (
+			eps.cps LIKE '$value%'
+			OR eps.nps LIKE '%$value%'
+			OR etabela.ntabela LIKE '%$value%'
+			OR eplano.nplano LIKE '%$value%'
+			OR eprod.nprod LIKE '%$value%'
+			OR elinha.nlinha LIKE '%$value%'
+			OR elocacao.descricao LIKE '%$value%'
+		)";
+		return static::find($type, $params);
 	}
 }

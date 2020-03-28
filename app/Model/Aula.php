@@ -138,13 +138,16 @@ class Aula extends Table {
 	}
 	
 	public static function search($value, string $type = 'all', array $params = array()) {
+		$value = trim($value);
+		$value = preg_replace("/[^0-9a-zA-Z ]/i", "", $value);
 		$params['conditions'] = _isset($params['conditions'], '');
-		$params['conditions'] .= " AND ( tequipe.ntequipe LIKE '%$value%'";
-		$params['conditions'] .= " OR eplano.nplano LIKE '%$value%'";
-		$params['conditions'] .= " OR elinha.nlinha LIKE '%$value%'";
-		$params['conditions'] .= " OR eaula.descricao LIKE '%$value%'";
-		$params['conditions'] .= " OR eaula.valor LIKE '%$value%'";
-		$params['conditions'] .= ")";
-		return static::_find($type, $params);
+		$params['conditions'] .= " AND (
+			eaula.instrutor LIKE '$value%'
+			OR eaula.subtitulo LIKE '%$value%'
+			OR eplano.nplano LIKE '%$value%'
+			OR elinha.nlinha LIKE '%$value%'
+			OR eaula.descricao LIKE '%$value%'
+		)";
+		return static::find($type, $params);
 	}
 }

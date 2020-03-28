@@ -192,6 +192,8 @@ class ClientePF extends Table {
 			eps.cps LIKE '$value%'
 			OR eps.nps LIKE '%$value%'
 			OR upsf.cpf LIKE '$value%'
+			OR eseg.nseg LIKE '%$value%'
+			OR upsf.equipe LIKE '%$value%'
 		)";
 		return static::find($type, $params);
 	}

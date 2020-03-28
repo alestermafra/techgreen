@@ -42,8 +42,6 @@ class Guardaria extends Table {
 		'eps.nps',
 		'eplano.cplano',
 		'eplano.nplano',
-		'eprod.cprod',
-		'eprod.nprod',
 		'elinha.clinha',
 		'elinha.nlinha',
 		'escat.cscat',
@@ -123,10 +121,18 @@ class Guardaria extends Table {
 	}
 	
 	public static function search($value, string $type = 'all', array $params = array()) {
+		$value = trim($value);
+		$value = preg_replace("/[^0-9a-zA-Z ]/i", "", $value);
 		$params['conditions'] = _isset($params['conditions'], '');
-		$params['conditions'] .= " AND ( eps.cps = '$value'";
-		$params['conditions'] .= " OR eps.nps LIKE '%$value%'";
-		$params['conditions'] .= ")";
-		return static::_find($type, $params);
+		$params['conditions'] .= " AND (
+			eps.cps LIKE '$value%'
+			OR eps.nps LIKE '%$value%'
+			OR eequipe.nome LIKE '%$value%'
+			OR eprod.nprod LIKE '%$value%'
+			OR eplano.nplano LIKE '%$value%'
+			OR elinha.nlinha LIKE '%$value%'
+			OR escat.nscat LIKE '%$value%'
+		)";
+		return static::find($type, $params);
 	}
 }

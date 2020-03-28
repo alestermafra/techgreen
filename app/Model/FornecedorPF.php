@@ -144,10 +144,16 @@ class FornecedorPF extends Table {
 	}
 	
 	public static function search($value, string $type = 'all', array $params = array()) {
+		$value = trim($value);
+		$value = preg_replace("/[^0-9a-zA-Z ]/i", "", $value);
 		$params['conditions'] = _isset($params['conditions'], '');
-		$params['conditions'] .= " AND ( eps.cps = '$value'";
-		$params['conditions'] .= " OR eps.nps LIKE '%$value%'";
-		$params['conditions'] .= ")";
-		return static::_find($type, $params);
+		$params['conditions'] .= " AND (
+			eps.cps LIKE '$value%'
+			OR eps.nps LIKE '%$value%'
+			OR upsf.cpf LIKE '$value%'
+			OR upsf.equipe LIKE '%$value%'
+			OR zfornec.espec LIKE '%$value%'
+		)";
+		return static::find($type, $params);
 	}
 }
