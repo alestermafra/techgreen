@@ -33,123 +33,134 @@
 
 
 <div class="container-fluid">
-<div class="row">
-		<div class="col-md-6">
-        <div class="card">
-            <div class="card-header bg-dark text-white">
-                Detalhes
-                
-                <div class="float-right">
-                 	<a role="button" class="btn btn-sm btn-primary" target="_blank" href="<?php echo $this->url('/equipamentos/gerar_relacao/' . $equipamento['cequipe']) ?>">Vistoria</a>
-                 </div>
-            </div>
-            <div class="card-body">
-                <div class="row form-group">
-                    <div class="col-md-4">
-                        <label class="small text-muted">Proprietário</label>
-                    </div>
-                    <div class="col-md-8">
-                        <a href="<?= $this->url('/painel/overview_pf/' . $equipamento['cps']) ?>"><?php echo $equipamento['nps'] ?></a>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-4">
-                        <label class="small text-muted">Tipo</label>
-                    </div>
-                    <div class="col-md-8">
-                        <?php echo $equipamento['nlinha'] ?>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="detalhes-tab" data-toggle="tab" href="#detalhes-content" role="tab" aria-controls="detalhes-content" aria-selected="true">Detalhes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="equipamentos-tab" data-toggle="tab" href="#equipamentos-content" role="tab" aria-controls="equipamentos-content" aria-selected="false">Equipamentos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="galeria-tab" data-toggle="tab" href="#galeria-content" role="tab" aria-controls="galeria-content" aria-selected="false">Galeria</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="detalhes-content" role="tabpanel" aria-labelledby="detalhes-tab">
+            <div class="card mt-2">
+                <div class="card-header bg-dark text-white">
+                    Detalhes
+                    
+                    <div class="float-right">
+                        <a role="button" class="btn btn-sm btn-primary" target="_blank" href="<?php echo $this->url('/equipamentos/gerar_relacao/' . $equipamento['cequipe']) ?>">Vistoria</a>
                     </div>
                 </div>
-                <div class="row form-group">
-                    <div class="col-md-4">
-                        <label class="small text-muted">Modelo</label>
-                    </div>
-                    <div class="col-md-8">
-                        <?php echo $equipamento['nprod'] ?>
-                    </div>
-                </div>
-            	<div class="row form-group">
-                    <div class="col-md-4">
-                        <label class="small text-muted">Nome da Embarcação</label>
-                    </div>
-                    <div class="col-md-8">
-                        <?php echo $equipamento['nome'] ?>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-4">
-                        <label class="small text-muted">À Venda?</label>
-                    </div>
-                    <div class="col-md-8">
-                        <?php if($equipamento['flg_venda'] == 1) {echo 'Sim';} else {echo 'Não';}  ?>
-                    </div>
-                </div>
-                <?php if($equipamento['flg_venda'] == 1): ?>
+                <div class="card-body">
                     <div class="row form-group">
                         <div class="col-md-4">
-                            <label class="small text-muted">Valor de venda</label>
+                            <label class="small text-muted">Proprietário</label>
                         </div>
                         <div class="col-md-8">
-                            R$ <?php echo $equipamento['valor_venda'] ?>
+                            <a href="<?= $this->url('/painel/overview_pf/' . $equipamento['cps']) ?>"><?php echo $equipamento['nps'] ?></a>
                         </div>
                     </div>
-                <?php endif; ?>
-                <?php if(!empty($equipamento['marca'])): ?>
                     <div class="row form-group">
                         <div class="col-md-4">
-                            <label class="small text-muted">Marca</label>
+                            <label class="small text-muted">Tipo</label>
                         </div>
                         <div class="col-md-8">
-                            <?php echo $equipamento['marca'] ?>
+                            <?php echo $equipamento['nlinha'] ?>
                         </div>
                     </div>
-                <?php endif; ?>
-                <?php if(!empty($equipamento['tamanho'])): ?>
-                <div class="row form-group">
-                    <div class="col-md-4">
-                        <label class="small text-muted">Tamanho</label>
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="small text-muted">Modelo</label>
+                        </div>
+                        <div class="col-md-8">
+                            <?php echo $equipamento['nprod'] ?>
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <?php echo $equipamento['tamanho'] ?>
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="small text-muted">Nome da Embarcação</label>
+                        </div>
+                        <div class="col-md-8">
+                            <?php echo $equipamento['nome'] ?>
+                        </div>
                     </div>
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="small text-muted">À Venda?</label>
+                        </div>
+                        <div class="col-md-8">
+                            <?php if($equipamento['flg_venda'] == 1) {echo 'Sim';} else {echo 'Não';}  ?>
+                        </div>
+                    </div>
+                    <?php if($equipamento['flg_venda'] == 1): ?>
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <label class="small text-muted">Valor de venda</label>
+                            </div>
+                            <div class="col-md-8">
+                                R$ <?php echo $equipamento['valor_venda'] ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if(!empty($equipamento['marca'])): ?>
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <label class="small text-muted">Marca</label>
+                            </div>
+                            <div class="col-md-8">
+                                <?php echo $equipamento['marca'] ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if(!empty($equipamento['tamanho'])): ?>
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="small text-muted">Tamanho</label>
+                        </div>
+                        <div class="col-md-8">
+                            <?php echo $equipamento['tamanho'] ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <?php if(!empty($equipamento['cor'])): ?>
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <label class="small text-muted">Cor</label>
+                            </div>
+                            <div class="col-md-8">
+                                <?php echo $equipamento['cor'] ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if(!empty($equipamento['ano'])): ?>
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <label class="small text-muted">Ano</label>
+                            </div>
+                            <div class="col-md-8">
+                                <?php echo $equipamento['ano'] ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if(!empty($equipamento['estado_geral'])): ?>
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <label class="small text-muted">Estado geral</label>
+                            </div>
+                            <div class="col-md-8">
+                                <?php echo $equipamento['estado_geral'] ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
-                <?php endif; ?>
-                <?php if(!empty($equipamento['cor'])): ?>
-                    <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="small text-muted">Cor</label>
-                        </div>
-                        <div class="col-md-8">
-                            <?php echo $equipamento['cor'] ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
-                <?php if(!empty($equipamento['ano'])): ?>
-                    <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="small text-muted">Ano</label>
-                        </div>
-                        <div class="col-md-8">
-                            <?php echo $equipamento['ano'] ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
-                <?php if(!empty($equipamento['estado_geral'])): ?>
-                    <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="small text-muted">Estado geral</label>
-                        </div>
-                        <div class="col-md-8">
-                            <?php echo $equipamento['estado_geral'] ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
             </div>
         </div>
-        </div>
-        
-        <div class="col-md-6">
-        	<div class="card">
+
+        <div class="tab-pane fade" id="equipamentos-content" role="tabpanel" aria-labelledby="equipamentos-tab">
+            <div class="card mt-2">
                 <div class="card-header bg-dark text-white">
                     Equipamentos
                     <div class="float-right">
@@ -160,84 +171,81 @@
                     </div>
                 </div>
                 <div class="card-body">
-                <?php if(!isset($equipamento['pertences']) || empty($equipamento['pertences'])): ?>
-                    <div class="small text-muted">Nenhum equipamento cadastrado.</div>
-                <?php else: ?>
-                    <table class="table table-sm table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="small">Nome</th>
-                                <th scope="col" class="small">Marca</th>
-                                <th scope="col" class="small">Modelo</th>
-                                <th scope="col" class="small">Tamanho</th>
-                                <th scope="col" class="small">Cor</th>
-                                <th scope="col" class="small">Ano</th>
-                                <th scope="col" class="small">Estado Geral</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach($equipamento['pertences'] as $p): ?>
-                                <tr style="cursor: pointer" onclick="window.location = '<?php echo $this->url('/pertences/editar/' . $p['cpertence']) ?>'">
-                                    <td><?php echo $p['npertence'] ?></td>
-                                    <td><?php echo $p['marca'] ?></td>
-                                    <td><?php echo $p['modelo'] ?></td>
-                                    <td><?php echo $p['tamanho'] ?></td>
-                                    <td><?php echo $p['cor'] ?></td>
-                                    <td><?php echo $p['ano'] ?></td>
-                                    <td><?php echo $p['estado_geral'] ?></td>
+                    <?php if(!isset($equipamento['pertences']) || empty($equipamento['pertences'])): ?>
+                        <div class="small text-muted">Nenhum equipamento cadastrado.</div>
+                    <?php else: ?>
+                        <table class="table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="small">Nome</th>
+                                    <th scope="col" class="small">Marca</th>
+                                    <th scope="col" class="small">Modelo</th>
+                                    <th scope="col" class="small">Tamanho</th>
+                                    <th scope="col" class="small">Cor</th>
+                                    <th scope="col" class="small">Ano</th>
+                                    <th scope="col" class="small">Estado Geral</th>
                                 </tr>
-                            <?php endforeach ?>
-                       </tbody>
-                    </table>
-                <?php endif ?>
+                            </thead>
+                            <tbody>
+                                <?php foreach($equipamento['pertences'] as $p): ?>
+                                    <tr style="cursor: pointer" onclick="window.location = '<?php echo $this->url('/pertences/editar/' . $p['cpertence']) ?>'">
+                                        <td><?php echo $p['npertence'] ?></td>
+                                        <td><?php echo $p['marca'] ?></td>
+                                        <td><?php echo $p['modelo'] ?></td>
+                                        <td><?php echo $p['tamanho'] ?></td>
+                                        <td><?php echo $p['cor'] ?></td>
+                                        <td><?php echo $p['ano'] ?></td>
+                                        <td><?php echo $p['estado_geral'] ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+                        </tbody>
+                        </table>
+                    <?php endif ?>
                 </div>
             </div>
-		</div>
-</div>
-</div>
-
-<br />
-
-<div class="container-fluid">
-	<form enctype="multipart/form-data" action="<?php echo $this->url('/equipamentos/image_upload/' . $equipamento['cequipe']) ?>" method="POST">
-		<input id="attachment-input" type="file" name="attachments[]" style="display: none;" onchange="this.form.submit()" accept="image/*" multiple></input>
-	</form>
-	
-	<div class="card">
-		<div class="card-header bg-dark text-white">
-			Galeria
-			<div class="float-right">
-				<label for="attachment-input" class="btn btn-sm btn-primary m-0">
-					<i class="material-icons align-middle md-18">cloud_upload</i>
-					<span class="align-middle">Enviar Imagem</span>
-				</label>
-			</div>
-		</div>
-		<div class="card-body">
-			<div class="row">
-				<?php if(empty($equipamento['attachments'])): ?>
-					<div class="col text-left small text-muted">
-						Nenhuma imagem anexada.
-					</div>
-				<?php endif ?>
-				<?php foreach($equipamento['attachments'] as $image): ?>
-					<div class="col-12 col-sm-6 col-md-3 col-lg-2 p-1 image-container">
-						<div class="image-control">
-							<form action="<?php echo $this->url('/equipamentos/image_delete/' . $equipamento['cequipe']) ?>" method="POST">
-								<input type="hidden" name="image_name" value="<?php echo $image['name'] ?>"></input>
-								<input type="submit" class="btn btn-sm btn-danger" value="Deletar"></input>
-							</form>
-						</div>
-						<div class="image">
-							<a href="<?php echo $this->url($image['url']) ?>" data-fancybox="gallery" style="width: 100%;">
-								<img src="<?php echo $this->url($image['url']) ?>" style="width: 150px; height 150px;" />
-							</a>
-						</div>
-					</div>
-				<?php endforeach ?>
-			</div>
-		</div>
-	</div>
+        </div>
+        <div class="tab-pane fade" id="galeria-content" role="tabpanel" aria-labelledby="galeria-tab">
+            <form enctype="multipart/form-data" action="<?php echo $this->url('/equipamentos/image_upload/' . $equipamento['cequipe']) ?>" method="POST">
+                <input id="attachment-input" type="file" name="attachments[]" style="display: none;" onchange="this.form.submit()" accept="image/*" multiple></input>
+            </form>
+                
+            <div class="card mt-2">
+                <div class="card-header bg-dark text-white">
+                    Galeria
+                    <div class="float-right">
+                        <label for="attachment-input" class="btn btn-sm btn-primary m-0">
+                            <i class="material-icons align-middle md-18">cloud_upload</i>
+                            <span class="align-middle">Enviar Imagem</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <?php if(empty($equipamento['attachments'])): ?>
+                            <div class="col text-left small text-muted">
+                                Nenhuma imagem anexada.
+                            </div>
+                        <?php endif ?>
+                        <?php foreach($equipamento['attachments'] as $image): ?>
+                            <div class="col-12 col-sm-6 col-md-3 col-lg-2 p-1 image-container">
+                                <div class="image-control">
+                                    <form action="<?php echo $this->url('/equipamentos/image_delete/' . $equipamento['cequipe']) ?>" method="POST">
+                                        <input type="hidden" name="image_name" value="<?php echo $image['name'] ?>"></input>
+                                        <input type="submit" class="btn btn-sm btn-danger" value="Deletar"></input>
+                                    </form>
+                                </div>
+                                <div class="image">
+                                    <a href="<?php echo $this->url($image['url']) ?>" data-fancybox="gallery" style="width: 100%;">
+                                        <img src="<?php echo $this->url($image['url']) ?>" style="width: 150px; height 150px;" />
+                                    </a>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <br />
