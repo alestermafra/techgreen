@@ -32,26 +32,7 @@
 				<div class="card-body">
 					<div class="row form-group">
 						<div class="col-md-4">
-							<label class="small text-muted">Embarcação</label>
-						</div>
-						<div class="col-md-8">
-							<a href="<?php echo $this->url('/equipamentos/view/' . $guardaria['cequipe']) ?>"><?php echo $guardaria['nome'] ?></a>
-						</div>
-					</div>
-                    <div class="row form-group">
-						<div class="col-md-4">
-							<label class="small text-muted">Equipamento em venda?</label>
-						</div>
-						<div class="col-md-8">
-							<?php 	
-								if($guardaria['flg_venda'] ==1) {echo 'Sim';} else {echo 'Não';}
-								if($guardaria['flg_venda'] ==1) {echo ' ('.$guardaria['valor_venda'].')';} else {echo '';} 
-							?>
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-md-4">
-							<label class="small text-muted">Pessoa</label>
+							<label class="small text-muted">Proprietário</label>
 						</div>
 						<div class="col-md-8">
 							<a href="<?php echo $this->url('/painel/overview_pf/' . $guardaria['cps']) ?>"><?php echo $guardaria['nps'] ?></a>
@@ -59,10 +40,37 @@
 					</div>
 					<div class="row form-group">
 						<div class="col-md-4">
-							<label class="small text-muted">Modelo da Guarderia</label>
+							<label class="small text-muted">Tipo</label>
 						</div>
 						<div class="col-md-8">
-							<?php echo $guardaria['nprod'] ?>
+							<a href="<?php echo $this->url('/equipamentos/view/' . $guardaria['cequipe']) ?>"><?php echo $guardaria['nlinha'] ?></a>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-md-4">
+							<label class="small text-muted">Modelo</label>
+						</div>
+						<div class="col-md-8">
+						<a href="<?php echo $this->url('/equipamentos/view/' . $guardaria['cequipe']) ?>"><?php echo $guardaria['nprod'] ?></a>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-md-4">
+							<label class="small text-muted">Nome</label>
+						</div>
+						<div class="col-md-8">
+							<a href="<?php echo $this->url('/equipamentos/view/' . $guardaria['cequipe']) ?>"><?php echo $guardaria['nome'] ?></a>
+						</div>
+					</div>
+                    <div class="row form-group">
+						<div class="col-md-4">
+							<label class="small text-muted">À Venda?</label>
+						</div>
+						<div class="col-md-8">
+							<?php 	
+								if($guardaria['flg_venda'] == 1) {echo 'Sim';} else {echo 'Não';}
+								if($guardaria['flg_venda'] == 1) {echo ' (R$ '.$guardaria['valor_venda'].')';} else {echo '';} 
+							?>
 						</div>
 					</div>
 					<div class="row form-group">
@@ -72,7 +80,7 @@
 						<div class="col-md-8">
 							<?php if($guardaria['descricao'] === ''): ?>
 								<span class="small text-muted">
-									Nenhuma. <small>Clique em <a href="<?php echo $this->url('/guardaria/editar/' . $guardaria['cguardaria']) ?>">editar</a> para adicionar uma descrição.</small>
+									Nenhuma
 								</span>
 							<?php else: ?>
 								<?php echo $guardaria['descricao'] ?>
