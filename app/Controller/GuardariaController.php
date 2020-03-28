@@ -18,9 +18,9 @@ class GuardariaController extends AppController {
 		$search_value = _isset($_GET['search_value'], false);
 		$order = _isset($_GET['order'], 'default');
 		$order_values = array(
-			'default' => 'eps.nps ASC',
-			'nome' => 'eps.nps ASC',
-			'equipamento' => 'eequipe.nome ASC',
+			'default' => 'eequipe.nome ASC',
+			'proprietario' => 'eps.nps ASC',
+			'embarcacao' => 'eequipe.nome ASC',
 			'plano' => 'eplano.nplano ASC',
 		);
 
@@ -34,9 +34,8 @@ class GuardariaController extends AppController {
 		if(($cplano = (int) _isset($_GET['plano'], 0)) !== 0) {
 			$filter .= " AND eplano.cplano = $cplano";
 		}
-		if(($ativo = (int) _isset($_GET['ativo'], -1)) !== -1) {
-			$filter .= " AND eguardaria.ativo = $ativo";
-		}
+		$ativo = (int) _isset($_GET['ativo'], 1);
+		$filter .= " AND eguardaria.ativo = $ativo";
 		
 		if($search_value) {
 			$list = Guardaria::search($search_value, 'all', array('page' => $page, 'limit' => $limit, 'order' => $order_values[$order], 'conditions' => $filter));

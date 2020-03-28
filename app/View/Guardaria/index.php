@@ -29,9 +29,8 @@
 					</div>
 					
 					<div class="form-group col-xl-2">
-						<label class="small text-muted">Exibir</label>
+						<label class="small text-muted">Ativos/Inativos</label>
 						<select name="ativo" class="form-control form-control-sm" onchange="this.form.submit()">
-							<option value="-1">Todos</option>
 							<option value="1"<?php echo (_isset($_GET['ativo'], -1) == 1? ' selected' : '') ?>>Ativos</option>
 							<option value="0"<?php echo (_isset($_GET['ativo'], -1) == 0? ' selected' : '') ?>>Inativos</option>
 						</select>
@@ -60,8 +59,8 @@
 					<div class="form-group col-xl-2">
 						<label class="small text-muted">Ordenação</label>
 						<select name="order" class="form-control form-control-sm" onchange="this.form.submit()">
-							<option value="nome"<?php echo isset($_GET['order']) && $_GET['order'] === "nome"? ' selected':'' ?>>Nome</option>
-							<option value="equipamento"<?php echo isset($_GET['order']) && $_GET['order'] === "equipamento"? ' selected':'' ?>>Embarcação</option>
+							<option value="embarcacao"<?php echo isset($_GET['order']) && $_GET['order'] === "embarcacao"? ' selected':'' ?>>Embarcação</option>
+							<option value="proprietario"<?php echo isset($_GET['order']) && $_GET['order'] === "proprietario"? ' selected':'' ?>>Proprietário</option>
 							<option value="plano"<?php echo isset($_GET['order']) && $_GET['order'] === "plano"? ' selected':'' ?>>Plano</option>
 						</select>
 					</div>
@@ -72,6 +71,7 @@
 							<option value="20"<?php echo _isset($_GET['limit'], 20) == 20? ' selected':'' ?>>20 itens por página</option>
 							<option value="50"<?php echo _isset($_GET['limit'], 20) == 50? ' selected':'' ?>>50 itens por página</option>
 							<option value="100"<?php echo _isset($_GET['limit'], 20) == 100? ' selected':'' ?>>100 itens por página</option>
+							<option value="1000"<?php echo _isset($_GET['limit'], 20) == 100? ' selected':'' ?>>1000 itens por página</option>
 						</select>
 					</div>
 				</div>	
