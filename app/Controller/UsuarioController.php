@@ -70,6 +70,15 @@ class UsuarioController extends AppController {
 		$this->view->set('usuario', Usuario::findById($cusu));
 		$this->view->set('niveis_acesso', NivelAcesso::find());
 	}
+
+	public function remover() {
+		if($this->request->method === 'POST') {
+			$cusu = $_POST['cusu'];
+			Usuario::remove("susu.cusu = $cusu");
+		}
+
+		return $this->redirect("/usuario");
+	}
 	
 	public function alterar_senha() {
 		if($this->request->method === 'POST') {

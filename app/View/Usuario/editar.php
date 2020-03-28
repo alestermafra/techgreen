@@ -72,6 +72,13 @@
 	</div>
 </form>
 
+<div class="container-fluid">
+	<form action="<?= $this->url('/usuario/remover') ?>" method="POST" onsubmit="return confirm('Tem certeza que deseja remover este usuário?');">
+		<input name="cusu" type="hidden" value="<?= $usuario['cusu'] ?>"></input>
+		<input type="submit" class="btn btn-sm btn-danger" style="width: 100px;" value="Remover"/>
+	</form>
+</div>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('[name=login], [name=email]').focusin(function() {
