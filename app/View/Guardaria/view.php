@@ -161,9 +161,6 @@
 							<?php echo $guardaria['d_vencimento'] ?>
 						</div>
 					</div>
-					<div class="text-right">
-						<a href="<?php echo $this->url('/agenda/agendar_cobranca_guardaria/'.$guardaria['cguardaria']) ?>" class="btn btn-sm btn-primary">Agendar cobranças</a>
-					</div>
 				</div>
 			</div>
 			
