@@ -191,6 +191,7 @@ class FornecedorController extends AppController {
 			$fornecedor['email'] = _isset($data['email'], $fornecedor['email']);
 			$fornecedor['telefones'] = isset($_POST['telefones'])? $_POST['telefones'] : $fornecedor['telefones'];
 			$fornecedor['ativo'] = _isset($_POST['ativo'], $fornecedor['ativo']);
+			$fornecedor['espec'] = _isset($_POST['espec'], $fornecedor['espec']);
 			try {
 				FornecedorPF::save($fornecedor);
 				return $this->redirect('/fornecedor/overview_pf/' . $cps);

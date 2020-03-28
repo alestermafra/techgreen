@@ -37,6 +37,10 @@
 				<label class="small text-muted">CPF</label>
 				<input name="cpf" type="text" class="form-control form-control-sm cpf-mask" placeholder="Insira o CPF" value="<?php echo _isset($_POST['cpf'], '') ?>" autocomplete="off">
 			</div>
+			<div class="form-group">
+				<label class="small text-muted">Especialidade</label>
+				<input name="espec" type="text" class="form-control form-control-sm" placeholder="Especialidade" value="<?php echo _isset($_POST['espec'], '') ?>" autocomplete="off">
+			</div>
 		</div>
 	</div>
 	

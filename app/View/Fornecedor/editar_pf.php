@@ -34,16 +34,12 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<div class="form-row">
-					<div class="col-md-6">
-						<label class="small text-muted">CPF</label>
-						<input name="cpf" type="text" class="form-control form-control-sm cpf-mask" placeholder="Insira o CPF" value="<?php echo _isset($_POST['cpf'], $fornecedor['cpf']) ?>" autocomplete="off">
-					</div>
-					<div class="col-md-6">
-						<label class="small text-muted">RG</label>
-						<input name="rg" type="text" class="form-control form-control-sm" placeholder="Insira o RG" value="<?php echo _isset($_POST['rg'], $fornecedor['rg']) ?>" autocomplete="off">
-					</div>
-				</div>
+				<label class="small text-muted">CPF</label>
+				<input name="cpf" type="text" class="form-control form-control-sm cpf-mask" placeholder="Insira o CPF" value="<?php echo _isset($_POST['cpf'], $fornecedor['cpf']) ?>" autocomplete="off">
+			</div>
+            <div class="form-group">
+				<label class="small text-muted">Especialidade</label>
+				<input name="espec" type="text" class="form-control form-control-sm" placeholder="Eletricista, mecânico, etc" value="<?php echo _isset($_POST['espec'], $fornecedor['espec']) ?>" autocomplete="off" autofocus required>
 			</div>
 		</div>
 	</div>

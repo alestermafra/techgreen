@@ -35,6 +35,7 @@ class FornecedorPF extends Table {
 		'upsf.email',
 		'zfornec.czfornec',
 		'zfornec.ativo',
+		'zfornec.espec',
 		'tfornec.ctfornec',
 		'tfornec.ntfornec',
 		'zpainel.cps as cliente'
@@ -89,6 +90,9 @@ class FornecedorPF extends Table {
 		}
 		if(isset($data['ativo'])) {
 			$new_data['ativo'] = intval($data['ativo']);
+		}
+		if(isset($data['espec'])) {
+			$new_data['espec'] = strval($data['espec']);
 		}
 		
 		return $new_data;

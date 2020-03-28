@@ -43,6 +43,12 @@
 							<td><?php echo $fornecedor['rg'] ?></td>
 						</tr>
 						<?php endif; ?>
+						<?php if(!empty($fornecedor['espec'])): ?>
+						<tr>
+							<td class="text-muted">Especialidade</td>
+							<td><?php echo $fornecedor['espec'] ?></td>
+						</tr>
+						<?php endif; ?>
 					</table>
 					
 					<div class="row">
