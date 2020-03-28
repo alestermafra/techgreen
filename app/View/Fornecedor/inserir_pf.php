@@ -34,16 +34,8 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<div class="form-row">
-					<div class="col-md-6">
-						<label class="small text-muted">CPF</label>
-						<input name="cpf" type="text" class="form-control form-control-sm cpf-mask" placeholder="Insira o CPF" value="<?php echo _isset($_POST['cpf'], '') ?>" autocomplete="off">
-					</div>
-					<div class="col-md-6">
-						<label class="small text-muted">RG</label>
-						<input name="rg" type="text" class="form-control form-control-sm" placeholder="Insira o RG" value="<?php echo _isset($_POST['rg'], '') ?>" autocomplete="off">
-					</div>
-				</div>
+				<label class="small text-muted">CPF</label>
+				<input name="cpf" type="text" class="form-control form-control-sm cpf-mask" placeholder="Insira o CPF" value="<?php echo _isset($_POST['cpf'], '') ?>" autocomplete="off">
 			</div>
 		</div>
 	</div>
