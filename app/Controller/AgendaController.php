@@ -45,8 +45,8 @@ class AgendaController extends AppController {
 		
 		$d_selecionada = date("d-m-Y", strtotime($dia."-".$mes."-".$ano)); // prepara a data selecionada
 		
-		$d_inicio = date('d-m-Y', strtotime('sunday last week', strtotime($d_selecionada))); //data inicial da semana
-		$d_fim = date("d-m-Y", strtotime('saturday this week', strtotime($d_selecionada))); //data final da semana
+		$d_inicio = date('d-m-Y', strtotime('monday this week', strtotime($d_selecionada))); //data inicial da semana
+		$d_fim = date("d-m-Y", strtotime('sunday next week', strtotime($d_selecionada))); //data final da semana
 		
 		$totalDias = 7; 
 		
@@ -104,17 +104,17 @@ class AgendaController extends AppController {
 		
 		$d_selecionada = date("d-m-Y", strtotime($dia."-".$mes."-".$ano)); // prepara a data selecionada
 		
-		$d_inicio = date('d-m-Y', strtotime('sunday last week', strtotime($d_selecionada))); //data inicial da semana
-		$d_fim = date("d-m-Y", strtotime('saturday this week', strtotime($d_selecionada))); //data final da semana
+		$d_inicio = date('d-m-Y', strtotime('monday this week', strtotime($d_selecionada))); //data inicial da semana
+		$d_fim = date("d-m-Y", strtotime('sunday next week', strtotime($d_selecionada))); //data final da semana
 		
 		$totalDias = 7; 
-		
+
 		$dias = array();
 		for($d = 0; $d < $totalDias; $d++){
-			$dias[$d]['cdsm'] = $d+1;
-			$dias[$d]['cdia'] = date("j", strtotime($d_inicio. ' + '.$d.' days'));
-			$dias[$d]['cmes'] = date("n", strtotime($d_inicio. ' + '.$d.' days'));
-			$dias[$d]['can'] = date("Y", strtotime($d_inicio. ' + '.$d.' days'));
+			$dias[$d]['cdsm'] = $d + 1;
+			$dias[$d]['cdia'] = date("j", strtotime($d_inicio . ' + ' . $d . ' days'));
+			$dias[$d]['cmes'] = date("n", strtotime($d_inicio . ' + ' . $d . ' days'));
+			$dias[$d]['can'] = date("Y", strtotime($d_inicio . ' + ' . $d . ' days'));
 		}
 		
 		$condicao = ' AND ((eagenda.can >= '.date("Y", strtotime($d_inicio)).' AND eagenda.cmes >= '.date("n", strtotime($d_inicio)).' AND eagenda.cdia >= '.date("j", strtotime($d_inicio)).') OR (eagenda.can <= '.date("Y", strtotime($d_fim)).' AND eagenda.cmes <= '.date("n", strtotime($d_fim)).' AND eagenda.cdia <= '.date("j", strtotime($d_fim)).'))';

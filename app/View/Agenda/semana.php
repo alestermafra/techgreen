@@ -89,11 +89,15 @@
                	</a>
             </th>
           </tr>
-          <tr class="table-bordered text-light bg-secondary text-center table-sm">
-          <?php foreach($dias_semana as $d_s)
-		  		echo '<td title="'.$d_s['ndsm'].'">'.$d_s['sdsm'].'</th>';
-		  ?>
-          </tr>
+          	<tr class="table-bordered text-light bg-secondary text-center table-sm">
+				<td title="Segunda-feira">Seg</td>
+				<td title="Terça-feira">Ter</td>
+				<td title="Quarta-feira">Qua</td>
+				<td title="Quinta-feira">Qui</td>
+				<td title="Sexta-feira">Sex</td>
+				<td title="Sábado">Sáb</td>
+				<td title="Domingo">Dom</td>
+          	</tr>
           
 		  <?php
 			

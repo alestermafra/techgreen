@@ -89,20 +89,19 @@
                	</a>
             </th>
           </tr>
-          <tr>
-			 <td> </td>
-          <?php foreach($dias_semana as $d_s){
-					echo '<td class="table-bordered text-light bg-secondary text-center table-sm" title="'.$d_s['ndsm'].'">';
-						foreach($dias as $dd){
-							if($d_s['cdsm'] == $dd['cdsm']){
-								echo "<a title='Novo evento para este dia' class='text-light font-weight-light' href='".$this->url('/agenda/inserir_agenda/'.$dd['cdia'].'/'.$dd['cmes'].'/'.$dd['can'])."'>";
-								echo $d_s['sdsm'] ." ". $dd['cdia']."/".$dd['cmes'];
-								echo "</a>";
-							}
-						}
-					echo '</td>';
-		  		}
-		  ?>
+          	<tr>
+				<td></td>
+				<?php
+					$nsemana = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
+					$ssemana = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
+				?>
+				<?php for($i = 0; $i < 7; $i++): ?>
+					<td class="table-bordered text-light bg-secondary text-center table-sm" title="<?= $nsemana[$i] ?>">
+						<a title='Novo evento para este dia' class='text-light font-weight-light' href="<?= $this->url('/agenda/inserir_agenda/' . $dias[$i]['cdia'] . '/' . $dias[$i]['cmes'] . '/' . $dias[$i]['can']) ?>">
+							<?= $ssemana[$i] ?> <?= $dias[$i]['cdia'] ?>/<?= $dias[$i]['cmes'] ?>
+						</a>
+					</td>
+				<?php endfor; ?>
           </tr>
           
 		  <?php
