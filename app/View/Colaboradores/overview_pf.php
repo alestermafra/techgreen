@@ -39,6 +39,12 @@
 							<td><?php echo $colaborador['rg'] ?></td>
 						</tr>
 						<?php endif; ?>
+						<?php if(!empty($colaborador['d_nasc'])): ?>
+						<tr>
+							<td class="text-muted">Nascimento</td>
+							<td><?php echo str_pad($colaborador['d_nasc'], 2, '0', STR_PAD_LEFT) ?>/<?php echo str_pad($colaborador['m_nasc'], 2, '0', STR_PAD_LEFT) ?>/<?php echo $colaborador['a_nasc'] ?></td>
+						</tr>
+						<?php endif; ?>
 					</table>
 					
 					<div class="row">

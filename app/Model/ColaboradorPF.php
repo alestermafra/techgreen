@@ -30,6 +30,9 @@ class ColaboradorPF extends Table {
 		'upsf.rg',
 		'upsf.cpf',
 		'upsf.email',
+		'upsf.d_nasc',
+		'upsf.m_nasc',
+		'upsf.a_nasc',
 		'zcolab.czcolab',
 		'zcolab.ativo',
 	);

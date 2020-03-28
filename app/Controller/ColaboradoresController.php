@@ -84,6 +84,9 @@ class ColaboradoresController extends AppController {
 			$colaborador['email'] = _isset($data['email'], $colaborador['email']);
 			$colaborador['telefones'] = isset($_POST['telefones'])? $_POST['telefones'] : $colaborador['telefones'];
 			$colaborador['ativo'] = _isset($_POST['ativo'], $colaborador['ativo']);
+			$colaborador['d_nasc'] = _isset($_POST['d_nasc'], $colaborador['d_nasc']);
+			$colaborador['m_nasc'] = _isset($_POST['m_nasc'], $colaborador['m_nasc']);
+			$colaborador['a_nasc'] = _isset($_POST['a_nasc'], $colaborador['a_nasc']);
 			try {
 				ColaboradorPF::save($colaborador);
 				return $this->redirect('/colaboradores/overview_pf/' . $cps);
