@@ -159,6 +159,7 @@ class FornecedorController extends AppController {
 			$fornecedor['cnpj'] = _isset($data['cnpj'], $fornecedor['cnpj']);
 			$fornecedor['ativo'] = _isset($_POST['ativo'], $fornecedor['ativo']);
 			$fornecedor['telefones'] = _isset($data['telefones'], array());
+			$fornecedor['dados_bancarios'] = _isset($data['dados_bancarios'], $fornecedor['dados_bancarios']);
 			try {
 				FornecedorPJ::save($fornecedor);
 				return $this->redirect('/fornecedor/overview_pj/' . $cps);
@@ -192,6 +193,7 @@ class FornecedorController extends AppController {
 			$fornecedor['telefones'] = isset($_POST['telefones'])? $_POST['telefones'] : $fornecedor['telefones'];
 			$fornecedor['ativo'] = _isset($_POST['ativo'], $fornecedor['ativo']);
 			$fornecedor['espec'] = _isset($_POST['espec'], $fornecedor['espec']);
+			$fornecedor['dados_bancarios'] = _isset($_POST['dados_bancarios'], $fornecedor['dados_bancarios']);
 			try {
 				FornecedorPF::save($fornecedor);
 				return $this->redirect('/fornecedor/overview_pf/' . $cps);

@@ -39,6 +39,12 @@
 							<td class="text-muted">Especialidade</td>
 							<td><?= $fornecedor['espec'] ?></td>
 						</tr>
+						<?php if(!empty($fornecedor['dados_bancarios'])): ?>
+							<tr>
+								<td class="text-muted">Dados Bancários</td>
+								<td><?php echo nl2br($fornecedor['dados_bancarios']) ?></td>
+							</tr>
+						<?php endif; ?>
 					</table>
 					
 					<div class="row">

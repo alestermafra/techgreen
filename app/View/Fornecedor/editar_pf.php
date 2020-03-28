@@ -39,7 +39,11 @@
 			</div>
             <div class="form-group">
 				<label class="small text-muted">Especialidade</label>
-				<input name="espec" type="text" class="form-control form-control-sm" placeholder="Eletricista, mecânico, etc" value="<?php echo _isset($_POST['espec'], $fornecedor['espec']) ?>" autocomplete="off" autofocus required>
+				<input name="espec" type="text" class="form-control form-control-sm" placeholder="Eletricista, mecânico, etc" value="<?php echo _isset($_POST['espec'], $fornecedor['espec']) ?>" autocomplete="off" autofocus>
+			</div>
+			<div class="form-group">
+				<label class="small text-muted">Dados Bancários</label>
+				<textarea name="dados_bancarios" rows="4" class="form-control form-control-sm" placeholder="Dados Bancários"><?php echo _isset($_POST['dados_bancarios'], $fornecedor['dados_bancarios']) ?></textarea>
 			</div>
 		</div>
 	</div>
