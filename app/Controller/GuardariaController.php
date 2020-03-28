@@ -68,7 +68,7 @@ class GuardariaController extends AppController {
 		}
 
 		$lista_equip = Equipamento::find('all', array('conditions' => ' AND eguardaria.cequipe IS NULL'));
-		$this->view->set('produtos', Produto::findByCscat(1));
+		$this->view->set('produtos', Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
 		$this->view->set('tabelas', Tabela::guardaria());
 		$this->view->set('equipamentos', $lista_equip);
 		$this->view->set('formas_pagamento', FormaPagamento::find());
@@ -107,12 +107,13 @@ class GuardariaController extends AppController {
 			}
 		}
 
-		$equipamentos = Equipamento::find('all', 
-						array('conditions' => ' AND (eguardaria.cequipe IS NULL OR eguardaria.cguardaria = '.$cguardaria.')')
-						);
+		$equipamentos = Equipamento::find(
+			'all', 
+			array('conditions' => ' AND (eguardaria.cequipe IS NULL OR eguardaria.cguardaria = '.$cguardaria.')')
+		);
 
 		$this->view->set('guardaria', $guardaria);
-		$this->view->set('produtos', Produto::findByCscat(1));
+		$this->view->set('produtos', Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
 		$this->view->set('tabelas', Tabela::guardaria());
 		$this->view->set('equipamentos', $equipamentos);
 		$this->view->set('formas_pagamento', FormaPagamento::find());
