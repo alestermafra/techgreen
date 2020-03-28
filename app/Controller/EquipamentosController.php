@@ -36,7 +36,7 @@ class EquipamentosController extends AppController {
 		$this->view->set('pages', (int) ceil($count / $limit));
 	}
 	
-	public function inserir() {
+	public function inserir($cps) {
 		if($this->request->method === 'POST') {
 			$data = $_POST;
 			try {
@@ -49,7 +49,8 @@ class EquipamentosController extends AppController {
 		}
 		
 		$this->view->set('categorias', Produto::findByCscat(1));
-		$this->view->set('pessoas', array_merge(ClientePF::find('all', array('order' => 'eps.nps', 'conditions' => ' AND zpainel.ativo = 1 ')), ClientePJ::find('all', array('order' => 'eps.nps', 'conditions' => ' AND zpainel.ativo = 1 '))));
+		$this->view->set('responsavel', ClientePF::findByCps($cps));
+		//$this->view->set('pessoas', array_merge(ClientePF::find('all', array('order' => 'eps.nps', 'conditions' => ' AND zpainel.ativo = 1 ')), ClientePJ::find('all', array('order' => 'eps.nps', 'conditions' => ' AND zpainel.ativo = 1 '))));
 	}
 	
 	public function view($cequipe = null) {

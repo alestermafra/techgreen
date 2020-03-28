@@ -1,9 +1,8 @@
-<form action="<?php echo $this->url('/equipamentos/inserir') ?>" method="POST">
-
+<form action="<?php echo $this->url('/equipamentos/inserir/' . $responsavel['cps']) ?>" method="POST">
 	<nav class="navbar navbar-light">
 		<span class="navbar-brand">Embarcação</span>
 		<div>
-			<a class="btn btn-sm btn-light" role="button" style="width: 100px;" href="<?php echo $this->url('/equipamentos') ?>">Cancelar</a>
+			<a class="btn btn-sm btn-light" role="button" style="width: 100px;" href="<?php echo $this->url('/painel/overview_pf/' . $responsavel['cps']) ?>">Cancelar</a>
 			<input type="submit" class="btn btn-sm btn-success" style="width: 100px;" value="Concluir"></input>
 		</div>
 	</nav>
@@ -41,12 +40,9 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<input type="hidden" id="cps" name="cps"></input>
-					<label for="cps-autocomplete" class="small text-muted">Responsável</label>
-					<input type="text" id="cps-autocomplete" class="form-control form-control-sm" placeholder="Procurar velejador"></input>
-				</div>
-				<div id="cps-autocomplete-details" style="display: none;">
-					<span id="cps-autocomplete-nps">cli</span> <span style="color: #CCC">(#<span id="cps-autocomplete-cps">id</span>)</span>
+					<input type="hidden" id="cps" name="cps" value="<?= $responsavel['cps'] ?>"></input>
+					<label class="small text-muted">Responsável</label>
+					<input type="text" class="form-control form-control-sm" value="<?= $responsavel['nps'] ?>" readonly></input>
 				</div>
 			</div>
 		</div>
@@ -110,7 +106,7 @@
 		<br />
 		
 		<div class="form-group text-right">
-			<a class="btn btn-sm btn-light" role="button" style="width: 100px;" href="<?php echo $this->url('/equipamentos') ?>">Cancelar</a>
+			<a class="btn btn-sm btn-light" role="button" style="width: 100px;" href="<?php echo $this->url('/painel/overview_pf/' . $responsavel['cps']) ?>">Cancelar</a>
 			<input type="submit" class="btn btn-sm btn-success" style="width: 100px;" value="Concluir"></input>
 		</div>
 	</div>

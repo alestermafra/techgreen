@@ -275,6 +275,17 @@
 			<div class="card mt-2">
 				<div class="card-header bg-dark text-white">
 					Embarcações
+					<div class="float-right">
+						<a
+							href="<?php echo $this->url("/equipamentos/inserir/{$clientepf['cps']}") ?>"
+							class="btn btn-sm btn-primary"
+							role="button"
+							title="Adicionar novo endereço"
+						>
+							<i class="material-icons align-middle md-18">add</i>
+							<span class="align-middle">Embarcação</span>
+						</a>
+					</div>
 				</div>
 				<div class="card-body">
 					<?php if(empty($clientepf['equipamentos'])): ?>

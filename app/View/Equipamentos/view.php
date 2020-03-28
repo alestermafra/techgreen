@@ -16,7 +16,6 @@
 <nav class="navbar navbar-light">
 	<span class="navbar-brand">Embarcação</span>
 	<div>
-		<a href="<?php echo $this->url('/equipamentos') ?>" class="btn btn-sm btn-secondary">Ir para a lista</a>
 		<a href="<?php echo $this->url('/equipamentos/editar/' . $equipamento['cequipe']) ?>" class="btn btn-sm btn-primary" role="button">Editar</a>
 	</div>
 </nav>
@@ -58,7 +57,7 @@
                         <label class="small text-muted">Resp/Dono</label>
                     </div>
                     <div class="col-md-8">
-                        <?php echo $equipamento['nps'] ?>
+                        <a href="<?= $this->url('/painel/overview_pf/' . $equipamento['cps']) ?>"><?php echo $equipamento['nps'] ?></a>
                     </div>
                 </div>
                 <div class="row form-group">
