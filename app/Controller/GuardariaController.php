@@ -123,14 +123,14 @@ class GuardariaController extends AppController {
 		if($cguardaria == null || !$guardaria = Guardaria::findById($cguardaria)) {
 			return $this->redirect('/guardaria');
 		}
-		
+
 		if($this->request->method === "POST") {
 			$guardaria['ativo'] = 0;
 			try {
 				Guardaria::save($guardaria);
 			}
 			catch(Exception $e) {
-				
+				var_dump($e); die();
 			}
 		}
 		return $this->redirect('/guardaria/view/' . $guardaria['cguardaria']);

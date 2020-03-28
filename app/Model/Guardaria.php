@@ -70,19 +70,6 @@ class Guardaria extends Table {
 	}
 	
 	public static function create($guardaria) {
-		if(!isset($guardaria['cprod']) || !Produto::findById($guardaria['cprod'], 'count')) {
-			throw new Exception('Tipo de equipamento inválido.');
-		}
-		if(!isset($guardaria['cplano']) || !Plano::findById($guardaria['cplano'], 'count')) {
-			throw new Exception('Plano inválido.');
-		}
-		if(!isset($guardaria['cequipe']) || !Equipamento::findById($guardaria['cequipe'], 'count')) {
-			throw new Exception('Equipamento não encontrado.');
-		}
-		if(!isset($guardaria['cpgt']) || !FormaPagamento::findById($guardaria['cpgt'], 'count')) {
-			throw new Exception('Forma de pagamento inválida.');
-		}
-		
 		$connection = new Connection();
 		
 		$eguardaria = [
@@ -102,19 +89,6 @@ class Guardaria extends Table {
 	}
 	
 	public static function edit($guardaria) {
-		if(!isset($guardaria['cprod']) || !Produto::findById($guardaria['cprod'], 'count')) {
-			throw new Exception('Tipo de equipamento inválido.');
-		}
-		if(!isset($guardaria['cplano']) || !Plano::findById($guardaria['cplano'], 'count')) {
-			throw new Exception('Plano inválido.');
-		}
-		if(!isset($guardaria['cequipe']) || !Equipamento::findById($guardaria['cequipe'], 'count')) {
-			throw new Exception('Equipamento não encontrado.');
-		}
-		if(!isset($guardaria['cpgt']) || !FormaPagamento::findById($guardaria['cpgt'], 'count')) {
-			throw new Exception('Forma de pagamento inválida.');
-		}
-		
 		$cguardaria = $guardaria['cguardaria'];
 		
 		$connection = new Connection();
