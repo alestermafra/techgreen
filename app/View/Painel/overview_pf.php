@@ -36,6 +36,7 @@
 	</ul>
 
 	<div class="tab-content">
+		<!-- Dados pessoais tab -->
 		<div class="tab-pane fade show active" id="dados-pessoais-content" role="tabpanel" aria-labelledby="dados-pessoais-tab">
 			<div class="row mt-2">
 				<div class="col-md-8">
@@ -270,7 +271,8 @@
 				</div>
 			</div>
 		</div>
-
+		
+		<!-- Embarcações tab -->
 		<div class="tab-pane fade" id="embarcacoes-content" role="tabpanel" aria-labelledby="embarcacoes-tab">
 			<div class="card mt-2">
 				<div class="card-header bg-dark text-white">
@@ -292,10 +294,20 @@
 						<small>Nenhuma embarcação.</small>
 					<?php else: ?>
 						<table class="table table-sm table-hover table-borderless p-0 m-0">
-							<?php foreach($clientepf['equipamentos'] as $equipamento): ?>
+								<thead>
+									<tr>
+										<th>Tipo</th>
+										<th>Modelo</th>
+										<th>Nome</th>
+										<th class="text-center">Ações</th>
+									</tr>
+								</thead>
+							<?php foreach($clientepf['equipamentos'] as $embarcacao): ?>
 								<tr>
-									<td><a href="<?= $this->url("/equipamentos/view/{$equipamento['cequipe']}") ?>"><?= $equipamento['nome'] ?></a></td>
-									<td><?= $equipamento['nprod'] ?></td>
+									<td><?= $embarcacao['nlinha'] ?></td>
+									<td><?= $embarcacao['nprod'] ?></td>
+									<td><?= $embarcacao['nome'] ?></td>
+									<td class="text-center"><a href="<?= $this->url("/equipamentos/view/{$embarcacao['cequipe']}") ?>">Visualizar</a></td>
 								</tr>
 							<?php endforeach ?>
 						</table>
