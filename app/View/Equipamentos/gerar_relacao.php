@@ -23,7 +23,7 @@
 </style>
 
 <div class="titulo"><img src="<?php echo $this->url('/img/logo.png')?>"  width="100"/></div>
-<div class="titulo">QUALIFICAÇÃO DA EMBARCAÇÃO</div>
+<div class="titulo">VISTORIA</div>
 
 
 <p>Dados<hr /></p>
@@ -48,9 +48,9 @@
         <td>Estado:</td> <td><b><?=$equipamento['estado_geral']?></b></td>
     </tr>
     <tr>
-        <td>Em venda?</td> <td><b><?php if($equipamento['flg_venda'] ==1) {echo 'Sim';} else {echo 'Não';}  ?></b></td>
-    <?php if($equipamento['flg_venda'] ==1):?>
-        <td>Valor de venda</td> <td><b><?php echo $equipamento['valor_venda'] ?></b></td>
+        <td>Em venda?</td> <td><b><?php if($equipamento['flg_venda'] == 1) {echo 'Sim';} else {echo 'Não';}  ?></b></td>
+    <?php if($equipamento['flg_venda'] == 1):?>
+        <td>Valor de venda</td> <td><b>R$ <?php echo $equipamento['valor_venda'] ?></b></td>
     <?php endif?>
     </tr>
 </table>
