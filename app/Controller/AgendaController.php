@@ -14,19 +14,22 @@ App::import('DiariaVelejador', 'Model');
 class AgendaController extends AppController {
 	
 	public function agenda(int $mes = null, int $ano = null) {		
-		if(!$mes){ $mes = date("m");}
-		if(!$ano){ $ano = date("Y");}
+		if(!$mes) $mes = date("m");
+		if(!$ano) $ano = date("Y");
+
 		$dia = date("d");
 		$totalDias = date("t");
 		$primeiroDia = date("D", mktime(0, 0, 0, $mes, 1, $ano));
 		$pos = Calendario::primeiro_dia($primeiroDia);
 		
 		$dias = array();
-		for($d = 0; $d < $totalDias; $d++)$dias[$d] = array_push($dias, $d+1);
+		for($d = 0; $d < $totalDias; $d++) {
+			$dias[$d] = array_push($dias, $d+1);
+		}
 		
 		$list = Calendario::find('all', array('conditions' => ' AND ((eagenda.cmes = '.$mes.' AND eagenda.can = '.$ano.') OR (eagenda.cmes_fim = '.$mes.' AND eagenda.can_fim = '.$ano.'))', 'order' => ' eagenda.cdia, eagenda.cminuto_ini, eagenda.chora_ini '));
 		$pessoas = AgendaCruzada::find('all', array('conditions' => '  AND ((eagenda.cmes = '.$mes.' AND eagenda.can = '.$ano.') OR (eagenda.cmes_fim = '.$mes.' AND eagenda.can_fim = '.$ano.'))') );
-		
+
 		$this->view->set('mes', Calendario::mes_vigente($mes));
 		$this->view->set('dias_semana', Calendario::edsm());
 		$this->view->set('ano', $ano);

@@ -226,31 +226,31 @@ class Calendario extends Table {
 	
 	public static function primeiro_dia(string $primeiroDia){
 		switch($primeiroDia){
-			case "Sun":
+			case "Mon":
 				$pos = 0;
 			break;
 		 
-			case "Mon":
+			case "Tue":
 				$pos = 1;
 			break;
 		 
-			case "Tue":
+			case "Wed":
 				$pos = 2;
 			break;
 		 
-			case "Wed":
+			case "Thu":
 				$pos = 3;
 			break;
 		 
-			case "Thu":
+			case "Fri":
 				$pos = 4;
 			break;
 		 
-			case "Fri":
+			case "Sat":
 				$pos = 5;
 			break;
-		 
-			case "Sat":
+
+			case "Sun":
 				$pos = 6;
 			break;
 		}
