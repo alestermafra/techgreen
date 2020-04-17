@@ -17,6 +17,7 @@ App::import('Segmentacao', 'Model');
 App::import('TipoTelefone', 'Model');
 App::import('ParticipanteAula', 'Model');
 App::import('Equipamento', 'Model');
+App::import('Guardaria', 'Model');
 
 App::import('Endereco', 'Model');
 App::import('Contato', 'Model');
@@ -77,9 +78,11 @@ class PainelController extends AppController {
 		$clientepf['interesses'] = ClientePF::interesses($cps);
 		$clientepf['aulas'] = ParticipanteAula::findByCps($cps, 'all', array('order' => ' eaula.can ASC, eaula.cmes ASC, eaula.cdia ASC, eaula.subtitulo ASC '));
 		$clientepf['equipamentos'] = Equipamento::findByCps($cps);
-		$clientepf['attachments'] = Attachment::get_attachments(WEBROOT . DS . "attachments" . DS . "painel" . DS . "pf" . DS . $cps);
+        $clientepf['attachments'] = Attachment::get_attachments(WEBROOT . DS . "attachments" . DS . "painel" . DS . "pf" . DS . $cps);
+        $guarderias = Guardaria::findByCps($cps);
 		
-		$this->view->set('clientepf', $clientepf);
+        $this->view->set('clientepf', $clientepf);
+        $this->view->set('guarderias', $guarderias);
 		$this->view->set('ocorrencia', Ocorrencia::findByCodigoPessoa($clientepf['cps'], 'all', array('order' => 'eocorrencia.data DESC')));
 	}
 	

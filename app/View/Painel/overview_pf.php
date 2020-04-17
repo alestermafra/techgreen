@@ -31,6 +31,9 @@
 			<a class="nav-link" id="embarcacoes-tab" data-toggle="tab" href="#embarcacoes-content" role="tab" aria-controls="embarcacoes-content" aria-selected="false">Embarcações</a>
 		</li>
 		<li class="nav-item">
+			<a class="nav-link" id="guarderia-tab" data-toggle="tab" href="#guarderia-content" role="tab" aria-controls="guarderia-content" aria-selected="false">Guarderia</a>
+		</li>
+		<li class="nav-item">
 			<a class="nav-link" id="anexos-tab" data-toggle="tab" href="#anexos-content" role="tab" aria-controls="anexos-content" aria-selected="false">Anexos</a>
 		</li>
 	</ul>
@@ -308,6 +311,47 @@
 									<td><?= $embarcacao['nprod'] ?></td>
 									<td><?= $embarcacao['nome'] ?></td>
 									<td class="text-center"><a href="<?= $this->url("/equipamentos/view/{$embarcacao['cequipe']}") ?>">Visualizar</a></td>
+								</tr>
+							<?php endforeach ?>
+						</table>
+					<?php endif ?>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Guarderia tab -->
+		<div class="tab-pane fade" id="guarderia-content" role="tabpanel" aria-labelledby="guarderia-tab">
+			<div class="card mt-2">
+				<div class="card-header bg-dark text-white">
+					Guarderia
+				</div>
+				<div class="card-body">
+					<?php if(empty($guarderias)): ?>
+						<small>Nenhuma embarcação na Guarderia.</small>
+					<?php else: ?>
+						<table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Modelo</th>
+                                    <th>Nome</th>
+                                    <th>Valor</th>
+                                    <th class="text-center">Ações</th>
+                                </tr>
+                            </thead>
+							<?php foreach($guarderias as $guarderia): ?>
+								<tr>
+									<td class="align-middle"><?= $guarderia['nlinha'] ?></td>
+									<td class="align-middle"><?= $guarderia['nprod'] ?></td>
+									<td class="align-middle"><?= $guarderia['nome'] ?></td>
+                                    <td class="align-middle">R$ <?= $guarderia['valor'] ?></td>
+                                    <td class="align-middle text-center">
+                                        <button type="button" class="btn btn-link" data-toggle="dropdown"><span class="material-icons">more_vert</span></button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="<?= $this->url('/guardaria/view/' . $guarderia['cguardaria']) ?>">Detalhes da Guarderia</a>
+                                            <a class="dropdown-item" href="<?= $this->url('/equipamentos/view/' . $guarderia['cequipe']) ?>">Detalhes da Embarcação</a>
+                                        </div>
+                                    </td>
 								</tr>
 							<?php endforeach ?>
 						</table>

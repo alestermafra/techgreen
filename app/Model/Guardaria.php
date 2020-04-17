@@ -118,7 +118,13 @@ class Guardaria extends Table {
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND eguardaria.cguardaria = $id";
 		return static::_find($type, $params);
-	}
+    }
+    
+    public static function findByCps(int $cps, string $type = 'all', array $params = array()) {
+        $params['conditions'] = _isset($params['conditions'], '');
+        $params['conditions'] .= " AND eequipe.cps = $cps";
+        return static::_find($type, $params);
+    }
 	
 	public static function search($value, string $type = 'all', array $params = array()) {
 		$value = trim($value);
