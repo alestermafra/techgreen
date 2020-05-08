@@ -115,15 +115,7 @@
 				<div class="card-body">
 					<div class="row form-group">
 						<div class="col-md-4">
-							<label class="small text-muted">Valor Total</label>
-						</div>
-						<div class="col-md-8">
-							R$ <?php echo $guardaria['valor'] + $guardaria['valor_extra'] ?>
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-md-4">
-							<label class="small text-muted">Plano</label>
+							<span class="text-muted">Plano</span>
 						</div>
 						<div class="col-md-8">
 							<?php echo $guardaria['nplano'] ?>
@@ -131,23 +123,31 @@
 					</div>
 					<div class="row form-group">
 						<div class="col-md-4">
-							<label class="small text-muted">Valor do Plano</label>
+							<span class="text-muted">Próximo Vencimento</span>
 						</div>
 						<div class="col-md-8">
-							R$ <?php echo $guardaria['valor'] ?>
+							Em breve...
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-md-4">
-							<label class="small text-muted">Valor Extra</label>
+							<span class="text-muted">Valor Total</span>
 						</div>
 						<div class="col-md-8">
-							R$ <?php echo $guardaria['valor_extra'] ?>
+							R$ <?php echo $guardaria['valor'] + $guardaria['valor_extra'] ?>
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-md-4">
-							<label class="small text-muted">Forma de Pagamento</label>
+							<span class="text-muted">Status</span>
+						</div>
+						<div class="col-md-8">
+							Em breve...
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-md-4">
+							<span class="text-muted">Forma de Pagamento</span>
 						</div>
 						<div class="col-md-8">
 							<?php echo $guardaria['npgt'] ?>
@@ -155,18 +155,18 @@
 					</div>
 					<div class="row form-group">
 						<div class="col-md-4">
-							<label class="small text-muted">Parcelas</label>
+							<span class="text-muted">Dia de Vencimento</span>
 						</div>
 						<div class="col-md-8">
-							<?php echo $guardaria['nppgt'] ?>
+							<?php echo $guardaria['d_vencimento'] ?>
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-md-4">
-							<label class="small text-muted">Dia de Vencimento</label>
+							<span class="text-muted">Parcelas</span>
 						</div>
 						<div class="col-md-8">
-							<?php echo $guardaria['d_vencimento'] ?>
+							<?php echo $guardaria['nppgt'] ?>
 						</div>
 					</div>
 
