@@ -11,6 +11,7 @@ App::import('FormaPagamento', 'Model');
 App::import('Plano', 'Model');
 App::import('Ocorrencia', 'Model');
 App::import('ClientePF', 'Model');
+App::import('PagamentoGuarderia', 'Model');
 
 
 class GuardariaController extends AppController {
@@ -81,6 +82,7 @@ class GuardariaController extends AppController {
 		}
 		
 		$this->view->set('guardaria', $guardaria);
+		$this->view->set('pagamentos', PagamentoGuarderia::findByCguardaria($cguardaria, 'all', array('order' => 'id desc')));
 		$this->view->set('ocorrencia', Ocorrencia::findByCodigoEquipamento($guardaria['cequipe'], 'all', array('order' => 'eocorrencia.data DESC')));
 	}
 
@@ -207,5 +209,24 @@ class GuardariaController extends AppController {
 		
 		$this->view->set('clientepf', $clientepf);
 		$this->view->set('endereco', $endereco);
+	}
+
+	public function informar_pagamento(int $cguarderia) {
+		if($this->request->method !== "POST") {
+			return $this->redirect('/');
+		}
+
+		$data = $_POST;
+
+		$pagamento_guarderia = [
+			'cguardaria' => $cguarderia,
+			'valor' => $data['valor'],
+			'mes_ref' => $data['mes_ref'],
+			'ano_ref' => $data['ano_ref']
+		];
+
+		PagamentoGuarderia::save($pagamento_guarderia);
+
+		return $this->redirect('/guardaria/view/' . $cguarderia);
 	}
 }
