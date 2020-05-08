@@ -115,15 +115,7 @@
 				<div class="card-body">
 					<div class="row form-group">
 						<div class="col-md-4">
-							<label class="small text-muted">Valor Total</label>
-						</div>
-						<div class="col-md-8">
-							<?php echo $guardaria['valor'] + $guardaria['valor_extra'] ?>
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-md-4">
-							<label class="small text-muted">Plano</label>
+							<span class="text-muted">Plano</span>
 						</div>
 						<div class="col-md-8">
 							<?php echo $guardaria['nplano'] ?>
@@ -131,23 +123,31 @@
 					</div>
 					<div class="row form-group">
 						<div class="col-md-4">
-							<label class="small text-muted">Valor do Plano</label>
+							<span class="text-muted">Próximo Vencimento</span>
 						</div>
 						<div class="col-md-8">
-							<?php echo $guardaria['valor'] ?>
+							Em breve...
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-md-4">
-							<label class="small text-muted">Valor Extra</label>
+							<span class="text-muted">Valor Total</span>
 						</div>
 						<div class="col-md-8">
-							<?php echo $guardaria['valor_extra'] ?>
+							R$ <?php echo $guardaria['valor'] + $guardaria['valor_extra'] ?>
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-md-4">
-							<label class="small text-muted">Forma de Pagamento</label>
+							<span class="text-muted">Status</span>
+						</div>
+						<div class="col-md-8">
+							Em breve...
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-md-4">
+							<span class="text-muted">Forma de Pagamento</span>
 						</div>
 						<div class="col-md-8">
 							<?php echo $guardaria['npgt'] ?>
@@ -155,24 +155,56 @@
 					</div>
 					<div class="row form-group">
 						<div class="col-md-4">
-							<label class="small text-muted">Parcelas</label>
-						</div>
-						<div class="col-md-8">
-							<?php echo $guardaria['nppgt'] ?>
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-md-4">
-							<label class="small text-muted">Dia de Vencimento</label>
+							<span class="text-muted">Dia de Vencimento</span>
 						</div>
 						<div class="col-md-8">
 							<?php echo $guardaria['d_vencimento'] ?>
 						</div>
 					</div>
+					<div class="row form-group">
+						<div class="col-md-4">
+							<span class="text-muted">Parcelas</span>
+						</div>
+						<div class="col-md-8">
+							<?php echo $guardaria['nppgt'] ?>
+						</div>
+					</div>
+
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+						Informar Pagamento
+					</button>
 				</div>
 			</div>
 			
-			<br />
+			<div class="card" >
+				<div class="card-header bg-dark text-white">
+					Histórico de Pagamentos
+				</div>
+				<div class="card-body" style="max-height: 720px; overflow-y: scroll;">
+					<?php if(empty($pagamentos)): ?>
+						Nenhum pagamento informado
+					<?php else: ?>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col">Dt. Referência</th>
+									<th scope="col">Valor</th>
+									<th scope="col">Dt. Pagamento</th>
+								</tr>
+							</thead>
+							<tbody>
+							<?php foreach($pagamentos as $pagamento): ?>
+								<tr>
+									<td><?= str_pad($pagamento['mes_ref'], 2, "0", STR_PAD_LEFT) . '/' . $pagamento['ano_ref'] ?></td>
+									<td>R$ <?= $pagamento['valor'] ?></td>
+									<td><?= $pagamento['TS'] ?></td>
+								</tr>
+							<?php endforeach; ?>
+							</tbody>
+						</table>
+					<?php endif; ?>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -225,4 +257,60 @@
 	</div>
 </div>
 
-<br />
+
+
+
+
+
+<!-- Pagamento Modal -->
+<form action="<?= $this->url('/guardaria/informar_pagamento/' . $guardaria['cguardaria']) ?>" method="POST">
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Informar Pagamento</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<label>Data de referência</label>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<?php
+								$time = time();
+								$month = date('n', $time);
+								$year = date('Y', $time);
+
+								$months = [ 1 => 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+							?>
+							<select name="mes_ref" class="form-control">
+								<?php for($m = 1; $m <= 12; $m++): ?>
+									<option value="<?= $m ?>" <?= $month == $m? 'selected' : '' ?>><?= $months[$m] ?></option>
+								<?php endfor ?>
+							</select>
+						</div>
+
+						<div class="form-group col-md-6">
+							<input name="ano_ref" type="text" class="form-control" placeholder="Ano" value="<?= $year ?>">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label>Valor</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<div class="input-group-text">R$</div>
+							</div>
+							<input name="valor" type="text" class="form-control" value="<?= $guardaria['valor'] + $guardaria['valor_extra'] ?>">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
