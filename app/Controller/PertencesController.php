@@ -30,6 +30,7 @@ class PertencesController extends AppController {
 			$pertence['cequipe'] = _isset($_POST['cequipe'], $pertence['cequipe']);
 			$pertence['npertence'] = _isset($_POST['npertence'], $pertence['npertence']);
 			$pertence['marca'] = _isset($_POST['marca'], $pertence['marca']);
+			$pertence['modelo'] = _isset($_POST['modelo'], $pertence['modelo']);
 			$pertence['tamanho'] = _isset($_POST['tamanho'], $pertence['tamanho']);
 			$pertence['cor'] = _isset($_POST['cor'], $pertence['cor']);
 			$pertence['ano'] = _isset($_POST['ano'], $pertence['ano']);
