@@ -84,7 +84,7 @@
 					</div>
 				</div>
 				<div class="card-body">
-					<?php if(!isset($clientepj['enderecos']) || isset($clientepj['enderecos']) && empty($clientepj['enderecos'])): ?>
+					<?php if(!isset($clientepj['enderecos']) || empty($clientepj['enderecos'])): ?>
 						<small>Nenhum endereço cadastrado.</small>
 					<?php else: ?>
 						<table class="table table-sm table-borderless p-0 m-0">
@@ -304,6 +304,9 @@
 		}
 		if(isset($endr['cep']) && strlen($endr['cep'])) {
 			$str .= ' - ' . $endr['cep'];
+		}
+		if(isset($endr['endcmplt']) && strlen($endr['endcmplt'])) {
+			$str .= ' - ' . $endr['endcmplt'];
 		}
 		
 		return $str;

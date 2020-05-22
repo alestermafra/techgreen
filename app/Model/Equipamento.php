@@ -72,7 +72,7 @@ class Equipamento extends Table {
 			'ano' => (string) _isset($equipamento['ano'], null),
 			'estado_geral' => (string) _isset($equipamento['estado_geral'], null),
 			'flg_venda' => (int) ((!isset($equipamento['flg_venda']) || $equipamento['flg_venda'] == 'on') ? 1 : 0),
-			'valor_venda' => (string) _isset($equipamento['valor_venda'], null),
+			'valor_venda' => (float) _isset($equipamento['valor_venda'], 0),
 		];
 		$cequipe = $connection->insert('eequipe', $eequipe);
 		
@@ -94,7 +94,7 @@ class Equipamento extends Table {
 			'ano' => (string) _isset($equipamento['ano'], null),
 			'estado_geral' => (string) _isset($equipamento['estado_geral'], null),
 			'flg_venda' => (int) ((!isset($equipamento['flg_venda']) || $equipamento['flg_venda'] == 'on') ? 1 : 0),
-			'valor_venda' => (string) _isset($equipamento['valor_venda'], null),
+			'valor_venda' => (float) _isset($equipamento['valor_venda'], 0),
 		];
 		$cequipe = $connection->update('eequipe', $eequipe, "eequipe.cequipe = $cequipe");
 		

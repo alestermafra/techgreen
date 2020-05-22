@@ -430,6 +430,9 @@
 		if(isset($endr['cep']) && strlen($endr['cep'])) {
 			$str .= ' - ' . $endr['cep'];
 		}
+		if(isset($endr['endcmplt']) && strlen($endr['endcmplt'])) {
+			$str .= ' - ' . $endr['endcmplt'];
+		}
 		
 		return $str;
 	}
