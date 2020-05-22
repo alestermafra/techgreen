@@ -1,3 +1,7 @@
+<?php
+	$months = [ 1 => 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+?>
+
 <nav class="navbar navbar-light">
 	<span class="navbar-brand">Guarderia</span>
 	<div>
@@ -123,26 +127,10 @@
 					</div>
 					<div class="row form-group">
 						<div class="col-md-4">
-							<span class="text-muted">Próximo Vencimento</span>
+							<span class="text-muted">Vencimento</span>
 						</div>
 						<div class="col-md-8">
-							Em breve...
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-md-4">
-							<span class="text-muted">Valor Total</span>
-						</div>
-						<div class="col-md-8">
-							R$ <?php echo $guardaria['valor'] + $guardaria['valor_extra'] ?>
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-md-4">
-							<span class="text-muted">Status</span>
-						</div>
-						<div class="col-md-8">
-							Em breve...
+							<?= str_pad($guardaria['d_vencimento'], 2, '0', STR_PAD_LEFT) ?>
 						</div>
 					</div>
 					<div class="row form-group">
@@ -155,18 +143,10 @@
 					</div>
 					<div class="row form-group">
 						<div class="col-md-4">
-							<span class="text-muted">Dia de Vencimento</span>
+							<span class="text-muted">Valor</span>
 						</div>
 						<div class="col-md-8">
-							<?php echo $guardaria['d_vencimento'] ?>
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-md-4">
-							<span class="text-muted">Parcelas</span>
-						</div>
-						<div class="col-md-8">
-							<?php echo $guardaria['nppgt'] ?>
+							R$ <?php echo $guardaria['valor'] + $guardaria['valor_extra'] ?>
 						</div>
 					</div>
 
@@ -180,26 +160,38 @@
 				<div class="card-header bg-dark text-white">
 					Histórico de Pagamentos
 				</div>
-				<div class="card-body" style="max-height: 720px; overflow-y: scroll;">
+				<div class="card-body" style="max-height: 400px; overflow-y: scroll;">
 					<?php if(empty($pagamentos)): ?>
 						Nenhum pagamento informado
 					<?php else: ?>
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th scope="col">Dt. Referência</th>
+									<th scope="col">Data de Referência</th>
 									<th scope="col">Valor</th>
-									<th scope="col">Dt. Pagamento</th>
+									<th scope="col">Data do Pagamento</th>
+									<th scope="col" class="text-center" style="width: 125px;">Opções</th>
 								</tr>
 							</thead>
 							<tbody>
-							<?php foreach($pagamentos as $pagamento): ?>
-								<tr>
-									<td><?= str_pad($pagamento['mes_ref'], 2, "0", STR_PAD_LEFT) . '/' . $pagamento['ano_ref'] ?></td>
-									<td>R$ <?= $pagamento['valor'] ?></td>
-									<td><?= $pagamento['TS'] ?></td>
-								</tr>
-							<?php endforeach; ?>
+								<?php foreach($pagamentos as $pagamento): ?>
+									<tr>
+										<td class="align-middle" title="<?= $months[$pagamento['mes_ref']] ?>/<?= $pagamento['ano_ref'] ?>"><?= str_pad($pagamento['mes_ref'], 2, "0", STR_PAD_LEFT) . '/' . $pagamento['ano_ref'] ?></td>
+										<td class="align-middle">R$ <?= $pagamento['valor'] ?></td>
+										<td class="align-middle"><?= $pagamento['TS'] ?></td>
+										<td class="align-middle">
+											<div class="dropdown text-center">
+												<a href="#" class="btn btn-link p-0 m-0" id="historico-dropdown-btn" data-toggle="dropdown">
+													<span class="material-icons align-middle">more_vert</span>
+												</a>
+
+												<div class="dropdown-menu p-0" aria-labelledby="historico-dropdown-btn">
+													<a href="<?= $this->url('/guardaria/remover_pagamento/' . $pagamento['id'] . '/' . $guardaria['cguardaria']) ?>" class="dropdown-item bg-danger text-white py-2">Remover</a>
+												</div>
+											</div>
+										</td>
+									</tr>
+								<?php endforeach; ?>
 							</tbody>
 						</table>
 					<?php endif; ?>
@@ -281,12 +273,10 @@
 								$time = time();
 								$month = date('n', $time);
 								$year = date('Y', $time);
-
-								$months = [ 1 => 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 							?>
 							<select name="mes_ref" class="form-control">
 								<?php for($m = 1; $m <= 12; $m++): ?>
-									<option value="<?= $m ?>" <?= $month == $m? 'selected' : '' ?>><?= $months[$m] ?></option>
+									<option value="<?= $m ?>" <?= $month == $m? 'selected' : '' ?>><?= str_pad($m, 2, '0', STR_PAD_LEFT) ?> - <?= $months[$m] ?></option>
 								<?php endfor ?>
 							</select>
 						</div>

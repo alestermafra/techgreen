@@ -82,7 +82,7 @@ class GuardariaController extends AppController {
 		}
 		
 		$this->view->set('guardaria', $guardaria);
-		$this->view->set('pagamentos', PagamentoGuarderia::findByCguardaria($cguardaria, 'all', array('order' => 'id desc')));
+		$this->view->set('pagamentos', PagamentoGuarderia::findByCguardaria($cguardaria, 'all', array('order' => 'ano_ref desc, mes_ref desc')));
 		$this->view->set('ocorrencia', Ocorrencia::findByCodigoEquipamento($guardaria['cequipe'], 'all', array('order' => 'eocorrencia.data DESC')));
 	}
 
@@ -227,6 +227,11 @@ class GuardariaController extends AppController {
 
 		PagamentoGuarderia::save($pagamento_guarderia);
 
+		return $this->redirect('/guardaria/view/' . $cguarderia);
+	}
+
+	public function remover_pagamento(int $id, int $cguarderia) {
+		PagamentoGuarderia::remove("pagamento_guarderia.id = $id AND pagamento_guarderia.cguardaria = $cguarderia");
 		return $this->redirect('/guardaria/view/' . $cguarderia);
 	}
 }
