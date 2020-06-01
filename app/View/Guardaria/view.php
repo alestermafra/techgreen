@@ -167,18 +167,20 @@
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th scope="col">Data de Referência</th>
+									<th scope="col" style="width: 170px;">Data de Referência</th>
 									<th scope="col">Valor</th>
 									<th scope="col">Data do Pagamento</th>
+									<th scope="col">Descrição</th>
 									<th scope="col" class="text-center" style="width: 125px;">Opções</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php foreach($pagamentos as $pagamento): ?>
 									<tr>
-										<td class="align-middle" title="<?= $months[$pagamento['mes_ref']] ?>/<?= $pagamento['ano_ref'] ?>"><?= str_pad($pagamento['mes_ref'], 2, "0", STR_PAD_LEFT) . '/' . $pagamento['ano_ref'] ?></td>
-										<td class="align-middle">R$ <?= $pagamento['valor'] ?></td>
-										<td class="align-middle"><?= $pagamento['TS'] ?></td>
+										<td class="align-middle" title="<?= $months[$pagamento['mes_ref']] ?>/<?= $pagamento['ano_ref'] ?>" nowrap><?= str_pad($pagamento['mes_ref'], 2, "0", STR_PAD_LEFT) . '/' . $pagamento['ano_ref'] ?></td>
+										<td class="align-middle" nowrap>R$ <?= $pagamento['valor'] ?></td>
+										<td class="align-middle" nowrap><?= $pagamento['data_pagamento'] ?></td>
+										<td class="align-middle small" style="max-width: 150px;"><?= $pagamento['descricao'] ?></td>
 										<td class="align-middle">
 											<div class="dropdown text-center">
 												<a href="#" class="btn btn-link p-0 m-0" id="historico-dropdown-btn" data-toggle="dropdown">
@@ -274,7 +276,7 @@
 								$month = date('n', $time);
 								$year = date('Y', $time);
 							?>
-							<select name="mes_ref" class="form-control">
+							<select name="mes_ref" class="form-control" required>
 								<?php for($m = 1; $m <= 12; $m++): ?>
 									<option value="<?= $m ?>" <?= $month == $m? 'selected' : '' ?>><?= str_pad($m, 2, '0', STR_PAD_LEFT) ?> - <?= $months[$m] ?></option>
 								<?php endfor ?>
@@ -282,7 +284,7 @@
 						</div>
 
 						<div class="form-group col-md-6">
-							<input name="ano_ref" type="text" class="form-control" placeholder="Ano" value="<?= $year ?>">
+							<input name="ano_ref" type="text" class="form-control" placeholder="Ano" value="<?= $year ?>" required>
 						</div>
 					</div>
 
@@ -294,6 +296,16 @@
 							</div>
 							<input name="valor" type="text" class="form-control" value="<?= $guardaria['valor'] + $guardaria['valor_extra'] ?>">
 						</div>
+					</div>
+
+					<div class="form-group">
+						<label>Data do Pagamento</label>
+						<input name="data_pagamento" type="date" class="form-control" value="">
+					</div>
+
+					<div class="form-group">
+						<label>Observação</label>
+						<textarea name="descricao" class="form-control"></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">

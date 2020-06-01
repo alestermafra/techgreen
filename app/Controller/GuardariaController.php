@@ -222,7 +222,9 @@ class GuardariaController extends AppController {
 			'cguardaria' => $cguarderia,
 			'valor' => $data['valor'],
 			'mes_ref' => $data['mes_ref'],
-			'ano_ref' => $data['ano_ref']
+			'ano_ref' => $data['ano_ref'],
+			'data_pagamento' => $data['data_pagamento'],
+			'descricao' => _isset($data['descricao'], ''),
 		];
 
 		PagamentoGuarderia::save($pagamento_guarderia);
