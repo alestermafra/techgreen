@@ -167,9 +167,9 @@
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th scope="col">Data de Referência</th>
+									<th scope="col">Mês Referência</th>
 									<th scope="col">Valor</th>
-									<th scope="col">Data do Pagamento</th>
+									<th scope="col">Data Pagamento</th>
 									<th scope="col" class="text-center" style="width: 125px;">Opções</th>
 								</tr>
 							</thead>
