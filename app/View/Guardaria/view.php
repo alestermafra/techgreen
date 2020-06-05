@@ -77,20 +77,6 @@
 							?>
 						</div>
 					</div>
-					<div class="row form-group">
-						<div class="col-md-4">
-							<label class="small text-muted">Descrição</label>
-						</div>
-						<div class="col-md-8">
-							<?php if($guardaria['descricao'] === ''): ?>
-								<span class="small text-muted">
-									Nenhuma
-								</span>
-							<?php else: ?>
-								<?php echo $guardaria['descricao'] ?>
-							<?php endif ?>
-						</div>
-					</div>
 					
 					<div class="float-right">
 						<?php if($guardaria['ativo'] == 1): ?>
@@ -147,6 +133,20 @@
 						</div>
 						<div class="col-md-8">
 							R$ <?php echo $guardaria['valor'] + $guardaria['valor_extra'] ?>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-md-4">
+							<label class="text-muted">Observação</label>
+						</div>
+						<div class="col-md-8">
+							<?php if($guardaria['descricao'] == ''): ?>
+								<span class="text-muted">
+									Nenhuma
+								</span>
+							<?php else: ?>
+								<?= $guardaria['descricao'] ?>
+							<?php endif ?>
 						</div>
 					</div>
 
