@@ -167,10 +167,9 @@
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th scope="col" style="width: 170px;">Data de Referência</th>
+									<th scope="col">Data de Referência</th>
 									<th scope="col">Valor</th>
 									<th scope="col">Data do Pagamento</th>
-									<th scope="col">Descrição</th>
 									<th scope="col" class="text-center" style="width: 125px;">Opções</th>
 								</tr>
 							</thead>
@@ -180,7 +179,6 @@
 										<td class="align-middle" title="<?= $months[$pagamento['mes_ref']] ?>/<?= $pagamento['ano_ref'] ?>" nowrap><?= str_pad($pagamento['mes_ref'], 2, "0", STR_PAD_LEFT) . '/' . $pagamento['ano_ref'] ?></td>
 										<td class="align-middle" nowrap>R$ <?= $pagamento['valor'] ?></td>
 										<td class="align-middle" nowrap><?= $pagamento['data_pagamento'] ?></td>
-										<td class="align-middle small" style="max-width: 150px;"><?= $pagamento['descricao'] ?></td>
 										<td class="align-middle">
 											<div class="dropdown text-center">
 												<a href="#" class="btn btn-link p-0 m-0" id="historico-dropdown-btn" data-toggle="dropdown">
@@ -301,11 +299,6 @@
 					<div class="form-group">
 						<label>Data do Pagamento</label>
 						<input name="data_pagamento" type="date" class="form-control" value="">
-					</div>
-
-					<div class="form-group">
-						<label>Observação</label>
-						<textarea name="descricao" class="form-control"></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">

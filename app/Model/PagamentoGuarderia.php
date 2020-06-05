@@ -23,7 +23,6 @@ class PagamentoGuarderia extends Table {
 		'pagamento_guarderia.mes_ref',
 		'pagamento_guarderia.ano_ref',
 		'pagamento_guarderia.data_pagamento',
-		'pagamento_guarderia.descricao'
 	);
 	
 	
@@ -44,7 +43,6 @@ class PagamentoGuarderia extends Table {
 			'mes_ref' => (int) _isset($data['mes_ref'], null),
 			'ano_ref' => (int) _isset($data['ano_ref'], null),
 			'data_pagamento' => (string) _isset($data['data_pagamento'], null),
-			'descricao' => (string) _isset($data['descricao'], null),
 		];
 		$id = $connection->insert('pagamento_guarderia', $pagamento_guarderia);
 		
@@ -62,7 +60,6 @@ class PagamentoGuarderia extends Table {
 			'mes_ref' => (int) _isset($data['mes_ref'], null),
 			'ano_ref' => (int) _isset($data['ano_ref'], null),
 			'data_pagamento' => (string) _isset($data['data_pagamento'], null),
-			'descricao' => (string) _isset($data['descricao'], null),
 		];
 		$connection->update('pagamento_guarderia', $pagamento_guarderia, "pagamento_guarderia.id = $id");
 		
