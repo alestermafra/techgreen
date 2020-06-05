@@ -27,6 +27,7 @@ App::import('Ocorrencia', 'Model');
 App::import("Attachment", "Model");
 
 App::import("InteresseRepository", "Model");
+App::import("Guardaria", "Model");
 
 class PainelController extends AppController {
 	
@@ -80,6 +81,7 @@ class PainelController extends AppController {
 		$clientepf['attachments'] = Attachment::get_attachments(WEBROOT . DS . "attachments" . DS . "painel" . DS . "pf" . DS . $cps);
 		
 		$this->view->set('clientepf', $clientepf);
+		$this->view->set('guarderias', Guardaria::findByCps($cps));
 		$this->view->set('ocorrencia', Ocorrencia::findByCodigoPessoa($clientepf['cps'], 'all', array('order' => 'eocorrencia.data DESC')));
 	}
 	

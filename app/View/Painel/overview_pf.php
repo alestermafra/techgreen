@@ -31,6 +31,9 @@
 			<a class="nav-link" id="embarcacoes-tab" data-toggle="tab" href="#embarcacoes-content" role="tab" aria-controls="embarcacoes-content" aria-selected="false">Embarcações</a>
 		</li>
 		<li class="nav-item">
+			<a class="nav-link" id="guarderias-tab" data-toggle="tab" href="#guarderias-content" role="tab" aria-controls="guarderias-content" aria-selected="false">Guarderias</a>
+		</li>
+		<li class="nav-item">
 			<a class="nav-link" id="anexos-tab" data-toggle="tab" href="#anexos-content" role="tab" aria-controls="anexos-content" aria-selected="false">Anexos</a>
 		</li>
 	</ul>
@@ -308,6 +311,49 @@
 									<td><?= $embarcacao['nprod'] ?></td>
 									<td><?= $embarcacao['nome'] ?></td>
 									<td class="text-center"><a href="<?= $this->url("/equipamentos/view/{$embarcacao['cequipe']}") ?>">Visualizar</a></td>
+								</tr>
+							<?php endforeach ?>
+						</table>
+					<?php endif ?>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Guarderias tab -->
+		<div class="tab-pane fade" id="guarderias-content" role="tabpanel" aria-labelledby="guarderias-tab">
+			<div class="card mt-2">
+				<div class="card-header bg-dark text-white">
+					Guarderias do Velejador
+				</div>
+				<div class="card-body">
+					<?php if(empty($guarderias)): ?>
+						<small>Nenhuma guarderia.</small>
+					<?php else: ?>
+						<table class="table table-hover table-borderless p-0 m-0">
+								<thead>
+									<tr>
+										<th>Guarderia ID</th>
+										<th>Tipo Embarcação</th>
+										<th>Modelo Embarcação</th>
+										<th>Nome Embarcação</th>
+										<th>Status</th>
+										<th class="text-center">Ações</th>
+									</tr>
+								</thead>
+							<?php foreach($guarderias as $guarderia): ?>
+								<tr>
+									<td><?= $guarderia['cguardaria'] ?></td>
+									<td><?= $guarderia['nlinha'] ?></td>
+									<td><?= $guarderia['nprod'] ?></td>
+									<td><?= $guarderia['nome'] ?></td>
+									<td>
+										<?php if($guarderia['ativo'] == 0): ?>
+											<span class="text-danger">Inativo</span>
+										<?php else: ?>
+											<span class="text-success">Ativo</span>
+										<?php endif ?>
+									</td>
+									<td class="text-center"><a href="<?= $this->url("/guardaria/view/{$guarderia['cguardaria']}") ?>">Visualizar</a></td>
 								</tr>
 							<?php endforeach ?>
 						</table>
