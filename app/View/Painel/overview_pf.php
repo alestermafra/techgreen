@@ -336,8 +336,6 @@
 										<th>Tipo Embarcação</th>
 										<th>Modelo Embarcação</th>
 										<th>Nome Embarcação</th>
-										<th>Valor</th>
-										<th>Status</th>
 										<th class="text-center">Ações</th>
 									</tr>
 								</thead>
@@ -347,14 +345,6 @@
 									<td><?= $guarderia['nlinha'] ?></td>
 									<td><?= $guarderia['nprod'] ?></td>
 									<td><?= $guarderia['nome'] ?></td>
-									<td>R$ <?= $guarderia['valor'] ?></td>
-									<td>
-										<?php if($guarderia['ativo'] == 0): ?>
-											<span class="text-danger">Inativo</span>
-										<?php else: ?>
-											<span class="text-success">Ativo</span>
-										<?php endif ?>
-									</td>
 									<td class="text-center"><a href="<?= $this->url("/guardaria/view/{$guarderia['cguardaria']}") ?>">Visualizar</a></td>
 								</tr>
 							<?php endforeach ?>
