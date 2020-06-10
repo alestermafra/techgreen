@@ -14,3 +14,7 @@ function pluralize(array &$var, $sing, $plu) {
 	}
 	return $sing;
 }
+
+function money(float $value) {
+	return 'R$ ' . number_format($value, 2, ',', '.');
+}

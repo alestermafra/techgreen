@@ -72,8 +72,9 @@
 						</div>
 						<div class="col-md-8">
 							<?php 	
-								if($guardaria['flg_venda'] == 1) {echo 'Sim';} else {echo 'Não';}
-								if($guardaria['flg_venda'] == 1) {echo ' (R$ '.$guardaria['valor_venda'].')';} else {echo '';} 
+								if($guardaria['flg_venda'] == 1)
+									echo 'Sim (' . money($guardaria['valor_venda']) . ')';
+								else echo 'Não';
 							?>
 						</div>
 					</div>
@@ -132,7 +133,7 @@
 							<span class="text-muted">Valor</span>
 						</div>
 						<div class="col-md-8">
-							R$ <?php echo $guardaria['valor'] + $guardaria['valor_extra'] ?>
+							<?= money($guardaria['valor']); ?>
 						</div>
 					</div>
 					<div class="row form-group">
@@ -177,7 +178,7 @@
 								<?php foreach($pagamentos as $pagamento): ?>
 									<tr>
 										<td class="align-middle" title="<?= $months[$pagamento['mes_ref']] ?>/<?= $pagamento['ano_ref'] ?>" nowrap><?= str_pad($pagamento['mes_ref'], 2, "0", STR_PAD_LEFT) . '/' . $pagamento['ano_ref'] ?></td>
-										<td class="align-middle" nowrap>R$ <?= $pagamento['valor'] ?></td>
+										<td class="align-middle" nowrap><?= money($pagamento['valor']); ?></td>
 										<td class="align-middle" nowrap><?= $pagamento['data_pagamento'] ?></td>
 										<td class="align-middle">
 											<div class="dropdown text-center">
