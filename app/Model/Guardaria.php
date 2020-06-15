@@ -71,15 +71,16 @@ class Guardaria extends Table {
 		$connection = new Connection();
 		
 		$eguardaria = [
-			'cequipe' => (int) _isset($guardaria['cequipe'], null),
-			'cplano' => (int) _isset($guardaria['cplano'], null),
-			'cprod' => (string) _isset($guardaria['cprod'], null),
-			'valor' => (string) _isset($guardaria['valor'], null),
-			'valor_extra' => (string) _isset($guardaria['valor_extra'], null),
-			'cpgt' => (string) _isset($guardaria['cpgt'], null),
-			'd_vencimento' => (int) _isset($guardaria['d_vencimento'], null),
-			'cppgt' => (int) _isset($guardaria['cppgt'], null),
-			'descricao' => (string) _isset($guardaria['descricao'], null),
+			'cequipe' => (int) _isset($guardaria['cequipe'], 0),
+			'cplano' => (int) _isset($guardaria['cplano'], 0),
+			'cprod' => (int) _isset($guardaria['cprod'], 0),
+			'valor' => (float) _isset($guardaria['valor'], 0),
+			'valor_extra' => (float) _isset($guardaria['valor_extra'], 0),
+			'cpgt' => (int) _isset($guardaria['cpgt'], 0),
+			'd_vencimento' => (int) _isset($guardaria['d_vencimento'], 1),
+			'cppgt' => (int) _isset($guardaria['cppgt'], 0),
+			'descricao' => (string) _isset($guardaria['descricao'], ''),
+			'ativo' => (int) _isset($guardaria['ativo'], 1),
 		];
 		$cguardaria = $connection->insert('eguardaria', $eguardaria);
 		
@@ -92,18 +93,31 @@ class Guardaria extends Table {
 		$connection = new Connection();
 		
 		$eguardaria = [
-			'cequipe' => (int) _isset($guardaria['cequipe'], null),
-			'cplano' => (int) _isset($guardaria['cplano'], null),
-			'cprod' => (string) _isset($guardaria['cprod'], null),
-			'valor' => (string) _isset($guardaria['valor'], null),
-			'valor_extra' => (string) _isset($guardaria['valor_extra'], null),
-			'cpgt' => (string) _isset($guardaria['cpgt'], null),
-			'd_vencimento' => (int) _isset($guardaria['d_vencimento'], null),
-			'cppgt' => (int) _isset($guardaria['cppgt'], null),
-			'descricao' => (string) _isset($guardaria['descricao'], null),
+			'cequipe' => (int) _isset($guardaria['cequipe'], 0),
+			'cplano' => (int) _isset($guardaria['cplano'], 0),
+			'cprod' => (int) _isset($guardaria['cprod'], 0),
+			'valor' => (float) _isset($guardaria['valor'], 0),
+			'valor_extra' => (float) _isset($guardaria['valor_extra'], 0),
+			'cpgt' => (int) _isset($guardaria['cpgt'], 0),
+			'd_vencimento' => (int) _isset($guardaria['d_vencimento'], 1),
+			'cppgt' => (int) _isset($guardaria['cppgt'], 0),
+			'descricao' => (string) _isset($guardaria['descricao'], ''),
 			'ativo' => (int) _isset($guardaria['ativo'], 1),
 		];
-		$connection->update('eguardaria', $eguardaria, "eguardaria.cguardaria = $cguardaria");
+		$query =	"UPDATE eguardaria SET
+						cequipe = {$eguardaria['cequipe']},
+						cplano = {$eguardaria['cplano']},
+						cprod = {$eguardaria['cprod']},
+						valor = {$eguardaria['valor']},
+						valor_extra = {$eguardaria['valor_extra']},
+						cpgt = {$eguardaria['cpgt']},
+						d_vencimento = {$eguardaria['d_vencimento']},
+						cppgt = {$eguardaria['cppgt']},
+						descricao = '{$eguardaria['descricao']}',
+						ativo = {$eguardaria['ativo']}
+					WHERE cguardaria = $cguardaria";
+		$connection->query($query);
+		//$connection->update('eguardaria', $eguardaria, "eguardaria.cguardaria = $cguardaria");
 		
 		return $guardaria;
 	}
