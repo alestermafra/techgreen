@@ -48,7 +48,7 @@ class EquipamentosController extends AppController {
 			}
 		}
 		
-		$this->view->set('categorias', Produto::findByCscat(1));
+		$this->view->set('categorias', Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod']));
 		$this->view->set('responsavel', ClientePF::findByCps($cps));
 		//$this->view->set('pessoas', array_merge(ClientePF::find('all', array('order' => 'eps.nps', 'conditions' => ' AND zpainel.ativo = 1 ')), ClientePJ::find('all', array('order' => 'eps.nps', 'conditions' => ' AND zpainel.ativo = 1 '))));
 	}
@@ -58,7 +58,7 @@ class EquipamentosController extends AppController {
 			return $this->redirect('/equipamentos');
 		}
 		
-		$equipamento['pertences'] = Equipamento::pertences($equipamento);
+		$equipamento['pertences'] = Equipamento::pertences($equipamento, 'all', ['order' => 'epertence.npertence']);
 		$equipamento['attachments'] = Equipamento::attachments($equipamento);
 		
 		$this->view->set('equipamento', $equipamento);
@@ -91,7 +91,7 @@ class EquipamentosController extends AppController {
 		}
 		
 		$this->view->set('equipamento', $equipamento);
-		$this->view->set('categorias', Produto::findByCscat(1));
+		$this->view->set('categorias', Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod']));
 		$this->view->set('pessoas', array_merge(ClientePF::find('all', array('order' => 'eps.nps', 'conditions' => ' AND zpainel.ativo = 1 ')), ClientePJ::find('all', array('order' => 'eps.nps', 'conditions' => ' AND zpainel.ativo = 1 '))));
 	}
 	
