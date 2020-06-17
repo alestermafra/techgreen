@@ -179,7 +179,7 @@
 									<tr>
 										<td class="align-middle" title="<?= $months[$pagamento['mes_ref']] ?>/<?= $pagamento['ano_ref'] ?>" nowrap><?= str_pad($pagamento['mes_ref'], 2, "0", STR_PAD_LEFT) . '/' . $pagamento['ano_ref'] ?></td>
 										<td class="align-middle" nowrap><?= money($pagamento['valor']); ?></td>
-										<td class="align-middle" nowrap><?= $pagamento['data_pagamento'] ?></td>
+										<td class="align-middle" nowrap><?= date('d/m/Y', strtotime($pagamento['data_pagamento'])) ?></td>
 										<td class="align-middle">
 											<div class="dropdown text-center">
 												<a href="#" class="btn btn-link p-0 m-0" id="historico-dropdown-btn" data-toggle="dropdown">
