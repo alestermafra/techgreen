@@ -152,4 +152,14 @@ class EquipamentosController extends AppController {
 		$this->view->set('pertences', $pertences);
 		$this->view->set('equipamento', $equipamento);
 	}
+
+	public function deletar($cequipe) {
+		if(!$embarcacao = Equipamento::findById($cequipe)) {
+			return $this->redirect('/');
+		}
+
+		Equipamento::remove("eequipe.cequipe = $cequipe");
+
+		return $this->redirect('/painel/overview_pf/' . $embarcacao['cps']);
+	}
 }

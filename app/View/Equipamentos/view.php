@@ -155,6 +155,23 @@
                             </div>
                         </div>
                     <?php endif; ?>
+                    
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-remover-embarcacao">Deletar Embarcação</button>
+
+<div class="modal" id="modal-remover-embarcacao">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        Tem certeza que deseja deletar esta embarcação? Todas as informações da embarcação serão perdidas. Esta ação não pode ser desfeita.
+      </div>
+      <div class="modal-footer">
+        <a href="<?= $this->url('/equipamentos/deletar/' . $equipamento['cequipe']) ?>" class="btn btn-danger">Deletar Embarcação</a>
+        <button type="button" class="btn" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
                 </div>
             </div>
         </div>
