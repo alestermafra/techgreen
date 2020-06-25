@@ -253,7 +253,7 @@
                                 </div>
                                 <div class="image">
                                     <a href="<?php echo $this->url($image['url']) ?>" data-fancybox="gallery" style="width: 100%;">
-                                        <img src="<?php echo $this->url($image['url']) ?>" style="width: 150px; height 150px;" />
+                                        <img src="<?php echo $this->url($image['url']) ?>" style="width: 150px; height: 150px;" />
                                     </a>
                                 </div>
                             </div>
