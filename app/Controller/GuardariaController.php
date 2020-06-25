@@ -226,6 +226,10 @@ class GuardariaController extends AppController {
 			'data_pagamento' => $data['data_pagamento'],
 		];
 
+		if(isset($data['id'])) {
+			$pagamento_guarderia['id'] = $data['id'];
+		}
+
 		PagamentoGuarderia::save($pagamento_guarderia);
 
 		return $this->redirect('/guardaria/view/' . $cguarderia);

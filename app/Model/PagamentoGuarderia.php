@@ -42,7 +42,7 @@ class PagamentoGuarderia extends Table {
 			'valor' => (float) _isset($data['valor'], null),
 			'mes_ref' => (int) _isset($data['mes_ref'], null),
 			'ano_ref' => (int) _isset($data['ano_ref'], null),
-			'data_pagamento' => (string) _isset($data['data_pagamento'], null),
+			'data_pagamento' => _isset($data['data_pagamento'], null),
 		];
 		$id = $connection->insert('pagamento_guarderia', $pagamento_guarderia);
 		

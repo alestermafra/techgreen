@@ -151,7 +151,7 @@
 						</div>
 					</div>
 
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#informar-pagamento-modal">
 						Informar Pagamento
 					</button>
 				</div>
@@ -186,8 +186,10 @@
 													<span class="material-icons align-middle">more_vert</span>
 												</a>
 
-												<div class="dropdown-menu p-0" aria-labelledby="historico-dropdown-btn">
-													<a href="<?= $this->url('/guardaria/remover_pagamento/' . $pagamento['id'] . '/' . $guardaria['cguardaria']) ?>" class="dropdown-item bg-danger text-white py-2">Remover</a>
+												<div class="dropdown-menu" aria-labelledby="historico-dropdown-btn">
+													<a href="#" class="dropdown-item" data-toggle="modal" data-target="#editar-pagamento-modal" data-id="<?= $pagamento['id'] ?>" data-mes="<?= $pagamento['mes_ref'] ?>" data-ano="<?= $pagamento['ano_ref'] ?>" data-valor="<?= $pagamento['valor'] ?>" data-data="<?= $pagamento['data_pagamento'] ?>">Editar</a>
+													<div class="dropdown-divider"></div>
+													<a href="<?= $this->url('/guardaria/remover_pagamento/' . $pagamento['id'] . '/' . $guardaria['cguardaria']) ?>" class="dropdown-item text-danger">Remover</a>
 												</div>
 											</div>
 										</td>
@@ -257,17 +259,17 @@
 
 <!-- Pagamento Modal -->
 <form action="<?= $this->url('/guardaria/informar_pagamento/' . $guardaria['cguardaria']) ?>" method="POST">
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="informar-pagamento-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Informar Pagamento</h5>
+					<h5 class="modal-title">Informar Pagamento</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<label>Data de referência</label>
+					<label>Data de referência *</label>
 					<div class="row">
 						<div class="form-group col-md-6">
 							<?php
@@ -288,18 +290,97 @@
 					</div>
 
 					<div class="form-group">
-						<label>Valor</label>
+						<label>Valor *</label>
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<div class="input-group-text">R$</div>
 							</div>
-							<input name="valor" type="text" class="form-control" value="<?= $guardaria['valor'] + $guardaria['valor_extra'] ?>">
+							<input name="valor" type="text" class="form-control" value="<?= $guardaria['valor'] + $guardaria['valor_extra'] ?>" required>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label>Data do Pagamento</label>
-						<input name="data_pagamento" type="date" class="form-control" value="">
+						<label>Data do Pagamento *</label>
+						<input name="data_pagamento" type="date" class="form-control" value="<?= date('Y-m-d') ?>" required>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+
+<script type="text/javascript">window
+	$(document).ready(function() {
+		$("#editar-pagamento-modal").on("show.bs.modal", function(e) {
+			const $button = $(e.relatedTarget);
+
+			const id = $button.data("id");
+			const mes_ref = $button.data("mes");
+			const ano_ref = $button.data("ano");
+			const valor = $button.data("valor");
+			const data = $button.data("data").substr(0, 10);
+			
+			$(this).find("input[name=id]").val(id);
+			$(this).find("select[name=mes_ref]").val(mes_ref);
+			$(this).find("input[name=ano_ref]").val(ano_ref);
+			$(this).find("input[name=valor]").val(valor);
+			$(this).find("input[name=data_pagamento]").val(data);
+		});
+	});
+</script>
+
+<form action="<?= $this->url('/guardaria/informar_pagamento/' . $guardaria['cguardaria']) ?>" method="POST">
+	<div class="modal fade" id="editar-pagamento-modal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Editar Pagamento</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<input type="hidden" name="id">
+
+				<div class="modal-body">
+					<label>Data de referência *</label>
+					<div class="row">
+						<div class="form-group col-md-6">
+							<?php
+								$time = time();
+								$month = date('n', $time);
+								$year = date('Y', $time);
+							?>
+							<select name="mes_ref" class="form-control" required>
+								<?php for($m = 1; $m <= 12; $m++): ?>
+									<option value="<?= $m ?>"><?= str_pad($m, 2, '0', STR_PAD_LEFT) ?> - <?= $months[$m] ?></option>
+								<?php endfor ?>
+							</select>
+						</div>
+
+						<div class="form-group col-md-6">
+							<input name="ano_ref" type="text" class="form-control" placeholder="Ano" required>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label>Valor *</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<div class="input-group-text">R$</div>
+							</div>
+							<input name="valor" type="text" class="form-control" required>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label>Data do Pagamento *</label>
+						<input name="data_pagamento" type="date" class="form-control" required>
 					</div>
 				</div>
 				<div class="modal-footer">
