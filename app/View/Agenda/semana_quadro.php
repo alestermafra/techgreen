@@ -146,7 +146,7 @@
 				)
 			);
 			
-Gu			echo $this->element(
+			echo $this->element(
 				'semana_quadro',
 				array(
 					'acao' => 'Guarderia',
