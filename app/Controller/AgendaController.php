@@ -125,7 +125,7 @@ class AgendaController extends AppController {
 		//outros eventos		
 		$list = Calendario::find(
 			'all', 
-			array('conditions' => ' AND eagenda.cacao NOT IN (13, 14, 3, 12) '.$condicao , 'order' => ' eagenda.cdia, eagenda.cminuto_ini, eagenda.chora_ini '
+			array('conditions' => ' AND eagenda.cacao NOT IN (13, 14, 3, 12, 17) '.$condicao , 'order' => ' eagenda.cdia, eagenda.cminuto_ini, eagenda.chora_ini '
 			)
 		);
 		
@@ -156,7 +156,9 @@ class AgendaController extends AppController {
 			array('conditions' => ' AND eagenda.cacao IN (14) '.$condicao , 'order' => ' eagenda.cdia, eagenda.cminuto_ini, eagenda.chora_ini '
 			)
 		);
-		
+
+		$guarderias = Calendario::guerderias('all', array('conditions' => $condicao, 'order' => 'eagenda.cdia, eagenda.cminuto_ini, eagenda.chora_ini'));
+
 		//pessoas
 		$pessoas = AgendaCruzada::find('all', array('conditions' => $condicao ) );
 		
@@ -173,6 +175,7 @@ class AgendaController extends AppController {
 		$this->view->set('list_locacao_caiaque', $list_locacao_caiaque);
 		$this->view->set('list_aula_wind', $list_aula_wind);
 		$this->view->set('list_aula_veleiro', $list_aula_veleiro);
+		$this->view->set('guarderias', $guarderias);
 	}
 	//------------------------------------------------------------------------------------
 	public function inserir_agenda(int $dia = null, int $mes = null, int $ano = null) {

@@ -218,7 +218,7 @@ class Calendario extends Table {
 	
 	public static function acao() {
 		$connection = new Connection();
-		$results = $connection->query('SELECT cacao, nacao FROM eacao WHERE RA = 1;');
+		$results = $connection->query('SELECT cacao, nacao FROM eacao WHERE RA = 1 ORDER BY nacao;');
 		return $results;
 	}
 	
@@ -265,6 +265,12 @@ class Calendario extends Table {
 	public static function findById(int $id, string $type = 'first', array $params = array()) {
 		$params['conditions'] = _isset($params['conditions'], '');
 		$params['conditions'] .= " AND eagenda.cagenda = $id";
+		return static::_find($type, $params);
+	}
+
+	public static function guerderias(string $type = 'all', array $params = array()) {
+		$params['conditions'] = _isset($params['conditions'], '');
+		$params['conditions'] .= " AND eagenda.cacao = 17";
 		return static::_find($type, $params);
 	}
 	

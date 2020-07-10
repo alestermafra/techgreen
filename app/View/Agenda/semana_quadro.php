@@ -146,6 +146,16 @@
 				)
 			);
 			
+Gu			echo $this->element(
+				'semana_quadro',
+				array(
+					'acao' => 'Guarderia',
+					'dias' => $dias,
+					'list' => $guarderias,
+					'pessoas' => $pessoas
+				)
+			);
+			
 			echo $this->element(
 				'semana_quadro',
 				array(
