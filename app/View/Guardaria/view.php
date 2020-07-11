@@ -6,7 +6,9 @@
 	<span class="navbar-brand">Guarderia</span>
 	<div>
 		<a href="<?php echo $this->url('/guardaria') ?>" class="btn btn-sm btn-secondary">Ir para a lista</a>
-		<a href="<?php echo $this->url('/guardaria/editar/' . $guardaria['cguardaria']) ?>" class="btn btn-sm btn-primary" role="button">Editar</a>
+		<?php if(can('edit-guarderia')): ?>
+			<a href="<?php echo $this->url('/guardaria/editar/' . $guardaria['cguardaria']) ?>" class="btn btn-sm btn-primary" role="button">Editar</a>
+		<?php endif; ?>
 	</div>
 </nav>
 
@@ -80,16 +82,18 @@
 					</div>
 					
 					<div class="float-right">
-						<?php if($guardaria['ativo'] == 1): ?>
-							<form action="<?php echo $this->url('/guardaria/cancelar_contrato/' . $guardaria['cguardaria']) ?>" method="POST">
-								<input type="submit" class="btn btn-sm btn-danger" value="Cancelar Contrato"></input>
-							</form>
-						<?php endif ?>
-						<?php if($guardaria['ativo'] == 0): ?>
-							<form action="<?php echo $this->url('/guardaria/ativar_contrato/' . $guardaria['cguardaria']) ?>" method="POST">
-								<input type="submit" class="btn btn-sm btn-success" value="Reativar Contrato"></input>
-							</form>
-						<?php endif ?>
+						<?php if(can('edit-guarderia')): ?>
+							<?php if($guardaria['ativo'] == 1): ?>
+								<form action="<?php echo $this->url('/guardaria/cancelar_contrato/' . $guardaria['cguardaria']) ?>" method="POST">
+									<input type="submit" class="btn btn-sm btn-danger" value="Cancelar Contrato"></input>
+								</form>
+							<?php endif ?>
+							<?php if($guardaria['ativo'] == 0): ?>
+								<form action="<?php echo $this->url('/guardaria/ativar_contrato/' . $guardaria['cguardaria']) ?>" method="POST">
+									<input type="submit" class="btn btn-sm btn-success" value="Reativar Contrato"></input>
+								</form>
+							<?php endif ?>
+						<?php endif; ?>
 					</div>
 				</div>
 			</div>
@@ -151,9 +155,11 @@
 						</div>
 					</div>
 
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#informar-pagamento-modal">
-						Informar Pagamento
-					</button>
+					<?php if(can('edit-guarderia')): ?>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#informar-pagamento-modal">
+							Informar Pagamento
+						</button>
+					<?php endif; ?>
 				</div>
 			</div>
 			
