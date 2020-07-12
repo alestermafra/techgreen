@@ -187,17 +187,19 @@
 										<td class="align-middle" nowrap><?= money($pagamento['valor']); ?></td>
 										<td class="align-middle" nowrap><?= date('d/m/Y', strtotime($pagamento['data_pagamento'])) ?></td>
 										<td class="align-middle">
-											<div class="dropdown text-center">
-												<a href="#" class="btn btn-link p-0 m-0" id="historico-dropdown-btn" data-toggle="dropdown">
-													<span class="material-icons align-middle">more_vert</span>
-												</a>
+											<?php if(can('edit-guarderia')): ?>
+												<div class="dropdown text-center">
+													<a href="#" class="btn btn-link p-0 m-0" id="historico-dropdown-btn" data-toggle="dropdown">
+														<span class="material-icons align-middle">more_vert</span>
+													</a>
 
-												<div class="dropdown-menu" aria-labelledby="historico-dropdown-btn">
-													<a href="#" class="dropdown-item" data-toggle="modal" data-target="#editar-pagamento-modal" data-id="<?= $pagamento['id'] ?>" data-mes="<?= $pagamento['mes_ref'] ?>" data-ano="<?= $pagamento['ano_ref'] ?>" data-valor="<?= $pagamento['valor'] ?>" data-data="<?= $pagamento['data_pagamento'] ?>">Editar</a>
-													<div class="dropdown-divider"></div>
-													<a href="<?= $this->url('/guardaria/remover_pagamento/' . $pagamento['id'] . '/' . $guardaria['cguardaria']) ?>" class="dropdown-item text-danger">Remover</a>
+													<div class="dropdown-menu" aria-labelledby="historico-dropdown-btn">
+														<a href="#" class="dropdown-item" data-toggle="modal" data-target="#editar-pagamento-modal" data-id="<?= $pagamento['id'] ?>" data-mes="<?= $pagamento['mes_ref'] ?>" data-ano="<?= $pagamento['ano_ref'] ?>" data-valor="<?= $pagamento['valor'] ?>" data-data="<?= $pagamento['data_pagamento'] ?>">Editar</a>
+														<div class="dropdown-divider"></div>
+														<a href="<?= $this->url('/guardaria/remover_pagamento/' . $pagamento['id'] . '/' . $guardaria['cguardaria']) ?>" class="dropdown-item text-danger">Remover</a>
+													</div>
 												</div>
-											</div>
+											<?php endif; ?>
 										</td>
 									</tr>
 								<?php endforeach; ?>
