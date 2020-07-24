@@ -299,6 +299,9 @@
 		if(isset($endr['bai']) && strlen($endr['bai'])) {
 			$str .= ' - ' . $endr['bai'];
 		}
+		if(isset($endr['cidade']) && strlen($endr['cidade'])) {
+			$str .= ' - ' . $endr['bai'];
+		}
 		if(isset($endr['uf']) && strlen($endr['uf'])) {
 			$str .= ' - ' . $endr['uf'];
 		}
