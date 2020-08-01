@@ -1,4 +1,7 @@
 <style>
+@page {
+	size: auto;
+}
 /* Limpa o botão do input */
 .datinha::-webkit-clear-button {
     display: none;
@@ -41,23 +44,17 @@
 }
 
 .textinho {
-	font-size: 14px;
 	padding-bottom: 10px;
 	cursor: default;
+}
+
+table.agenda {
+	font-size: 24px;
 }
 </style>
 
 <nav class="navbar navbar-light">
-	<span class="navbar-brand">Calendário / Agenda</span>
-    <div>
-    	<div class="btn-group" role="group">
-            <a href="<?php echo $this->url('/agenda/agenda/'.$mes[0]['cmes'].'/'.$ano) ?>" class="btn btn-sm btn-secondary" title="Visão mensal">Mês</a>
-            <a href="<?php echo $this->url('/agenda/semana/'.$dia.'/'.$mes[0]['cmes'].'/'.$ano) ?>" class="btn btn-sm btn-secondary" title="Visão semanal">Semana</a>
-            <a href="<?php echo $this->url('/agenda/dia') ?>" class="btn btn-sm btn-secondary active" title="Visão diária">Dia</a>
-            <a href="<?php echo $this->url('/agenda/semana_quadro/'.$dia.'/'.$mes[0]['cmes'].'/'.$ano) ?>" class="btn btn-sm btn-secondary" title="Visão de quadro semanal">Quadro</a>
-            <a href="<?php echo $this->url('/agenda/tv') ?>" class="btn btn-sm btn-secondary" title="Visão de quadro semanal">TV</a>
-		</div>
-	</div>
+	<span class="navbar-brand">Agenda</span>
 </nav>
 
 <div class="col-md-12 col-sm-12 well pull-right-lg">
@@ -65,16 +62,6 @@
         <table class="table agenda">
           <tr>
             <th colspan="1" class="text-left">
-            <?php 
-				$d_anterior = date('d/m/Y', strtotime('-1 days', strtotime($dia."-".$mes[0]['cmes']."-".$ano)));
-				$d_proximo = date('d/m/Y', strtotime('+1 days', strtotime($dia."-".$mes[0]['cmes']."-".$ano)));
-			?>
-            
-            	<a href="<?php 
-							echo $this->url('/agenda/dia/'.$d_anterior);
-						?>" role="button" title="Navegar para dia anterior">
-                	<i class='material-icons md-18'>arrow_back_ios</i>
-                </a>
             </th>
             
             <th colspan="2" class="text-center">
@@ -82,20 +69,10 @@
             </th>
             
             <th colspan="1" class="text-right">
-            	<a href="<?php 
-							echo $this->url('/agenda/dia/'.$d_proximo) ;
-						?>" role="button" title="Navegar para o próximo dia">
-                	<i class='material-icons md-18'>arrow_forward_ios</i>
-               	</a>
             </th>
           </tr>
           <tr class="table-bordered text-light bg-secondary text-center table-sm">
           	<th colspan="4">
-            	<?php
-            	echo "<a title='Novo evento para este dia' class='text-light' href='".$this->url('/agenda/inserir_agenda/'.$dia.'/'.$mes[0]['cmes'].'/'.$ano)."'>";
-				echo $dia.'/'.$mes[0]['cmes'].'/'.$ano ;
-				echo "</a>";
-				?>
             </th>
           </tr>
           
@@ -205,6 +182,6 @@ function reload(){
 	var ano = data.substring(0, 4);
 	var mes = data.substring(5, 7);
 	var dia = data.substring(8, 10);
-	window.location.href="<?= $this->url('/agenda/dia') ?>/"+dia+"/"+mes+"/"+ano;
+	window.location.href="<?= $this->url('/agenda/tv') ?>/"+dia+"/"+mes+"/"+ano;
 }
 </script>

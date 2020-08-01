@@ -13,6 +13,8 @@ define('LIB', ROOT . DS . 'lib');
 define('APP', ROOT . DS . 'app');
 define('WEBROOT', APP . DS . 'webroot');
 
+date_default_timezone_set('America/Sao_Paulo');
+
 if(!include LIB . DS . 'bootstrap.php')
 	die('Arquivo lib/bootstrap.php não encontrado.');
 

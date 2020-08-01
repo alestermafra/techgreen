@@ -99,6 +99,36 @@ class AgendaController extends AppController {
 		$this->view->set('list', $list);
 		$this->view->set('pessoas', $pessoas);
 	}
+
+	public function tv(int $dia = null, int $mes = null, int $ano = null) {
+		$this->layout = 'tv';
+
+		if(!$dia){ $dia = date("d"); }
+		if(!$mes){ $mes = date("m"); }
+		if(!$ano){ $ano = date("Y"); }
+
+		$hora = date('H');
+		$minuto = date('i');
+		
+		$condicoes = " AND eagenda.cdia = $dia AND eagenda.cmes = $mes AND eagenda.can = $ano ";
+		
+		if($dia == date("d") && $mes == date("m") && $ano = date("Y")) {
+			$condicoes .= " AND (eagenda.chora_fim > $hora OR eagenda.chora_fim = $hora AND eagenda.cminuto_fim >= $minuto)";
+		}
+
+		$orderna = ' eagenda.cdia, eagenda.cdia_fim, eagenda.chora_ini, eagenda.cminuto_ini, eagenda.chora_fim, eagenda.cminuto_fim ';
+		
+		$list = Calendario::find('all', array('conditions' => $condicoes, 'order' => $orderna));
+		$pessoas = AgendaCruzada::find('all', array('conditions' => $condicoes) );
+		
+		$this->view->set('mes', Calendario::mes_vigente($mes));
+		$this->view->set('dias_semana', Calendario::edsm());
+		$this->view->set('ano', $ano);
+		$this->view->set('dia', $dia);
+		
+		$this->view->set('list', $list);
+		$this->view->set('pessoas', $pessoas);
+	}
 	//------------------------------------------------------------------------------------
 	public function semana_quadro(int $dia = null, int $mes = null, int $ano = null) {		
 		if(!$dia){ $dia = date("d");}

@@ -55,6 +55,7 @@
             <a href="<?php echo $this->url('/agenda/semana/'.$dia.'/'.$mes[0]['cmes'].'/'.$ano) ?>" class="btn btn-sm btn-secondary" title="Visão semanal">Semana</a>
             <a href="<?php echo $this->url('/agenda/dia/'.$dia.'/'.$mes[0]['cmes'].'/'.$ano) ?>" class="btn btn-sm btn-secondary" title="Visão diária">Dia</a>
             <a href="<?php echo $this->url('/agenda/semana_quadro/') ?>" class="btn btn-sm btn-secondary active" title="Visão de quadro semanal">Quadro</a>
+            <a href="<?php echo $this->url('/agenda/tv') ?>" class="btn btn-sm btn-secondary" title="Visão de quadro semanal">TV</a>
 		</div>
 	</div>
 </nav>
