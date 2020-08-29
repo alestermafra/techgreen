@@ -99,6 +99,7 @@
 					<th scope="col" class="small">Classificação</th>
                     <th scope="col" class="small">CPF</th>
 					<th scope="col" class="small">Telefone</th>
+					<th scope="col" class="small">1º Contato</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -107,8 +108,9 @@
 					<td nowrap><?php echo $d['cps'] ?></td>
 					<td nowrap><?php echo $d['nps'] ?></td>
 					<td nowrap><?php echo $d['nseg'] ?></td>
-                    <td nowrap><input type="text" readonly class="form-control-plaintext p-0 m-0 cpf-mask" value="<?php echo $d['cpf'] ?>" /></td>
-					<td nowrap><input type="text" readonly class="form-control-plaintext p-0 m-0 phone" value="<?php echo $d['fone'] ?>"></input></td>
+                    <td nowrap><?php echo cpf_mask($d['cpf']) ?></td>
+					<td nowrap><?= fone_mask($d['fone']) ?></td>
+					<td nowrap style="width: 150px;"><?= util_data($d['d_contato'], $d['m_contato'], $d['a_contato']) ?></td>
 				</tr>
 				<?php endforeach; ?>
 		   </tbody>
@@ -180,3 +182,61 @@
 	
 })();
 </script>
+
+<?php
+	function cpf_mask($cpf) {
+		return preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', "$1.$2.$3-$4", $cpf);
+	}
+
+	function fone_mask($fone) {
+		$len = strlen($fone);
+
+		$pattern = '/(\d{4})(\d{4})/';
+		$replace = '$1-$2';
+
+		switch($len) {
+			case 9:
+				$pattern = '/(\d{5})(\d{4})/';
+				$replace = '$1-$2';
+			break;
+
+			case 10:
+				$pattern = '/(\d{2})(\d{4})(\d{4})/';
+				$replace = '($1) $2-$3';
+			break;
+
+			case 11:
+				$pattern = '/(\d{2})(\d{5})(\d{4})/';
+				$replace = '($1) $2-$3';
+			break;
+
+			case 12:
+				$pattern = '/(\d{2})(\d{2})(\d{4})(\d{4})/';
+				$replace = '+$1 ($2) $3-$4';
+			break;
+
+			case 13:
+				$pattern = '/(\d{2})(\d{2})(\d{5})(\d{4})/';
+				$replace = '+$1 ($2) $3-$4';
+			break;
+		}
+
+		return preg_replace($pattern, $replace, $fone);
+	}
+
+	function util_data($d, $m, $y) {
+		$ret = '';
+		if($d) {
+			$ret .= str_pad($d, 2, '0', STR_PAD_LEFT);
+
+			if($m) {
+				$ret .= '/' . str_pad($m, 2, '0', STR_PAD_LEFT);
+
+				if($y) {
+					$ret .= '/' . $y;
+				}
+			}
+		}
+		return $ret;
+	}
+?>
