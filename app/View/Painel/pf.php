@@ -38,10 +38,13 @@
                     
                     <div class="form-group col-12 col-sm-6 col-md-4 col-lg-2">
 						<label class="small text-muted">Registros</label>
-						<select name="cpf" class="form-control form-control-sm" onchange="this.form.submit()">
-                        	<option value="todos" <?php echo isset($_GET['cpf']) && $_GET['cpf'] === "todos" ? ' selected':'' ?> >Todos</option>
-                            <option value="com" <?php echo isset($_GET['cpf']) && $_GET['cpf'] === "com" ? ' selected':'' ?> >Com CPF</option>
-                            <option value="sem" <?php echo isset($_GET['cpf']) && $_GET['cpf'] === "sem" ? ' selected':'' ?> >Sem CPF</option>
+						<select name="filtros" class="form-control form-control-sm" onchange="this.form.submit()">
+							<?php $filtro = $_GET['filtros'] ?? ''; ?>
+                        	<option value="todos" <?= ($filtro == 'todos')? 'selected' : '' ?>>Todos</option>
+                            <option value="com-cpf" <?= ($filtro == 'com-cpf')? 'selected' : '' ?>>Com CPF</option>
+                            <option value="sem-cpf" <?= ($filtro == 'sem-cpf')? 'selected' : '' ?>>Sem CPF</option>
+                            <option value="com-prim-contato" <?= ($filtro == 'com-prim-contato')? 'selected' : '' ?>>Com 1º Contato</option>
+                            <option value="sem-prim-contato" <?= ($filtro == 'sem-prim-contato')? 'selected' : '' ?>>Sem 1º Contato</option>
                         </select>
 					</div>
 					

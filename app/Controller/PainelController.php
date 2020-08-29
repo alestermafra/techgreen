@@ -42,9 +42,21 @@ class PainelController extends AppController {
 		);
 		
 		$conditions = " ";
-		$cpf = _isset($_GET['cpf'], 'todos');
-		if($cpf == "com") {$conditions = $conditions . " AND LENGTH(upsf.cpf) > 1 ";}
-		if($cpf == "sem") {$conditions = $conditions . " AND LENGTH(upsf.cpf) = 0 ";}
+
+		$filtros = $_GET['filtros'] ?? '';
+
+		if($filtros === "com-cpf") {
+			$conditions = $conditions . " AND LENGTH(upsf.cpf) > 1 ";
+		}
+		else if($filtros === "sem-cpf") {
+			$conditions = $conditions . " AND LENGTH(upsf.cpf) = 0 ";
+		}
+		else if($filtros === 'com-prim-contato') {
+			$conditions = $conditions . " AND upsf.d_contato > 0 and upsf.m_contato > 0 and upsf.a_contato > 0 ";
+		}
+		else if($filtros === 'sem-prim-contato') {
+			$conditions = $conditions . " AND (upsf.d_contato = 0 or upsf.m_contato = 0 or upsf.a_contato = 0) ";
+		}
 		
 		$ativo = _isset($_GET['ativo'], 1);
 		
