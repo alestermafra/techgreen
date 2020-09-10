@@ -56,7 +56,7 @@ class GuardariaController extends AppController {
 		$this->view->set('planos', Plano::guardaria());
 	}
 
-	public function inserir() {
+	public function inserir($cps = null) {
 		if($this->request->method === 'POST') {
 			$data = $_POST;
 			try {
@@ -68,10 +68,13 @@ class GuardariaController extends AppController {
 			}
 		}
 
-		$lista_equip = Equipamento::find('all', array('conditions' => ' AND eguardaria.cequipe IS NULL'));
+		$equip_conditions = ' AND eguardaria.cequipe IS NULL';
+		if($cps) {
+			$equip_conditions .= ' AND eequipe.cps = ' . $cps;
+		}
 		$this->view->set('produtos', Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
 		$this->view->set('tabelas', Tabela::guardaria());
-		$this->view->set('equipamentos', $lista_equip);
+		$this->view->set('equipamentos', Equipamento::find('all', array('conditions' => $equip_conditions)));
 		$this->view->set('formas_pagamento', FormaPagamento::find());
 		$this->view->set('parcelas_pagamento', FormaPagamento::parcelas());
 	}

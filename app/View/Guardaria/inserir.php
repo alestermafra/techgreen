@@ -26,7 +26,7 @@
 			</div>
 			<div class="card-body">
 				<div class="form-group">
-					<label for="cequipe-select" class="small text-muted">Embarcação</label> <a class="small" href="<?php echo $this->url('/equipamentos/inserir') ?>">+ Novo</a>
+					<label for="cequipe-select" class="small text-muted">Embarcação</label>
 					<select name="cequipe" id="cequipe-select" class="form-control form-control-sm">
 						<option value="0">Selecione</option>
 						<?php foreach($equipamentos as $t): ?>
@@ -35,7 +35,7 @@
 								<?php echo _isset($_POST['cequipe'], 0) == $t['cequipe']? ' selected' : '' ?>
 								data-cprod="<?php echo $t['cprod'] ?>"
 							>
-								<?php echo $t['nome'].' ('.$t['nps'].')' ?>
+								<?= "ID: " . $t['cequipe'] . " - " . $t['nprod'] . " - " . $t['nome'] . " (" . $t['nps'] . ")" ?>
 							</option>
 						<?php endforeach ?>
 					</select>
@@ -80,19 +80,11 @@
 				Financeiro
 			</div>
 			<div class="card-body">
-				<div>
-					R$ <span id="valor-span" style="font-size: 29px;">0</span>,00 <button type="button" class="btn btn-link" onclick="document.getElementById('valor-container').style.display = 'block'; this.style.display = 'none';">alterar</button>
-				</div>
-				<div id="valor-container" style="display: none;">
-					<div class="form-row">
-						<div class="form-group col-md-2">
-							<label for="valor-input" class="small text-muted">Valor</label>
-							<input type="text" name="valor" id="valor-input" class="form-control form-control-sm" placeholder="R$" value="<?php echo _isset($_POST['valor'], '') ?>"></input>
-						</div>
-						<div class="form-group col-md-2">
-							<label for="valor_extra-input" class="small text-muted">Valor Extra</label>
-							<input type="text" name="valor_extra" id="valor_extra-input" class="form-control form-control-sm" placeholder="R$" value="<?php echo _isset($_POST['valor_extra'], '') ?>"></input>
-						</div>
+				<small>Para valores decimais, utilize ponto ao invés de vírgula.</small>
+				<div class="form-row">
+					<div class="form-group col-md-2">
+						<label for="valor-input" class="small text-muted">Valor</label>
+						<input type="text" name="valor" id="valor-input" class="form-control form-control-sm" placeholder="R$" value="<?php echo _isset($_POST['valor'], '') ?>"></input>
 					</div>
 				</div>
 
@@ -157,7 +149,7 @@
 		});
 		
 		/* Atualizar o valor. */
-		$("#valor-input, #valor_extra-input").change(updateValorSpan);
+		//$("#valor-input, #valor_extra-input").change(updateValorSpan);
 		
 		/* Ao alterar o equipamento, preenche o select do cprod com o do equipamento selecionado. */
 		$("#cequipe-select").change(function(e) {

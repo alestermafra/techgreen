@@ -324,6 +324,17 @@
 			<div class="card mt-2">
 				<div class="card-header bg-dark text-white">
 					Guarderias do Velejador
+					<div class="float-right">
+						<a
+							href="<?php echo $this->url("/guardaria/inserir/{$clientepf['cps']}") ?>"
+							class="btn btn-sm btn-primary"
+							role="button"
+							title="Adicionar novo endereço"
+						>
+							<i class="material-icons align-middle md-18">add</i>
+							<span class="align-middle">Guarderia</span>
+						</a>
+					</div>
 				</div>
 				<div class="card-body">
 					<?php if(empty($guarderias)): ?>

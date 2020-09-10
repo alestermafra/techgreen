@@ -31,7 +31,7 @@
 						<option value="0">Selecione</option>
 						<?php foreach($equipamentos as $t): ?>
 							<option value="<?php echo $t['cequipe'] ?>"<?php echo _isset($_POST['cequipe'], $guardaria['cequipe']) == $t['cequipe']? ' selected' : '' ?>>
-								<?php echo $t['nome'].' ('.$t['nps'].')' ?>
+								<?= "ID: " . $t['cequipe'] . " - " . $t['nprod'] . " - " . $t['nome'] . " (" . $t['nps'] . ")" ?>
 							</option>
 						<?php endforeach ?>
 					</select>
@@ -76,19 +76,11 @@
 				Financeiro
 			</div>
 			<div class="card-body">
-				<div>
-					R$ <span id="valor-span" style="font-size: 29px;"><?php echo $guardaria['valor'] + $guardaria['valor_extra'] ?></span>,00
-				</div>
-				<div id="valor-container">
-					<div class="form-row">
-						<div class="form-group col-md-2">
-							<label for="valor-input" class="small text-muted">Valor</label>
-							<input type="text" name="valor" id="valor-input" class="form-control form-control-sm" placeholder="R$" value="<?php echo _isset($_POST['valor'], $guardaria['valor']) ?>"></input>
-						</div>
-						<div class="form-group col-md-2">
-							<label for="valor_extra-input" class="small text-muted">Valor Extra</label>
-							<input type="text" name="valor_extra" id="valor_extra-input" class="form-control form-control-sm" placeholder="R$" value="<?php echo _isset($_POST['valor_extra'], $guardaria['valor_extra']) ?>"></input>
-						</div>
+				<small>Para valores decimais, utilize ponto ao invés de vírgula.</small>
+				<div class="form-row">
+					<div class="form-group col-md-2">
+						<label for="valor-input" class="small text-muted">Valor</label>
+						<input type="text" name="valor" id="valor-input" class="form-control form-control-sm" placeholder="R$" value="<?php echo _isset($_POST['valor'], $guardaria['valor']) ?>"></input>
 					</div>
 				</div>
 				<div class="form-row">
