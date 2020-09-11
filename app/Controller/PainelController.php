@@ -275,36 +275,44 @@ class PainelController extends AppController {
 			$this->layout = false;
 		}
 			
-		$ativo = (int) _isset($_GET['ativo'], 1);
-		$filter .= " AND zpainel.ativo = $ativo";
-		
-		if(($dia = (int) _isset($_GET['dia'], 0)) !== 0) {
-			$filter .= " AND upsf.d_contato = $dia ";
+		$ativo = $_GET['ativo'] ?? 1;
+		$dia = $_GET['dia'] ?? 0;
+		$mes = $_GET['mes'] ?? 0;
+		$ano = $_GET['ano'] ?? 0;
+		$cseg = $_GET['seg'] ?? 0;
+		$interesses = $_GET['interesses'] ?? [];
+
+		$conditions = '';
+		$conditions .= " AND zpainel.ativo = $ativo";
+		if($dia > 0) {
+			$conditions .= " AND upsf.d_contato = $dia";
 		}
-		if(($mes = (int) _isset($_GET['mes'], 0)) !== 0) {
-			$filter .= " AND upsf.m_contato = $mes ";
+		if($mes > 0) {
+			$conditions .= " AND upsf.m_contato = $mes";
 		}
-		if(($ano = (int) _isset($_GET['ano'], 0)) !== 0) {
-			$filter .= " AND upsf.a_contato = $ano ";
+		if($ano > 0) {
+			$conditions .= " AND upsf.a_contato = $ano";
 		}
-		if(($cseg = (int) _isset($_GET['seg'], 6)) !== 0) {
-			$filter .= " AND eseg.cseg = $cseg";
+		if($cseg > 0) {
+			$conditions .= " AND zpainel.cseg = $cseg";
 		}
-		
-		$interesse = Interesse::find();
-		$in = array();
-		foreach($interesse as $inter){
-			$now = _isset($_GET['ctinteresse'.$inter['ctinteresse']]);
-			if($now == $inter['ctinteresse']){
-				array_push($in, $inter['ctinteresse']);
+		if(!empty($interesses)) {
+			foreach($interesses as $interesse) {
+				$conditions .= " AND EXISTS (select czinteresse FROM zinteresse WHERE cps = eps.cps AND ctinteresse = $interesse)";
 			}
 		}
-		
-		$list = ClientePF::findByInteresses($in, 'all', array('order' => ' eps.nps ', 'conditions' => $filter));
+
+		$list = ClientePF::find(
+			'all',
+			[
+				'order' => 'eps.nps',
+				'conditions' => $conditions
+			]
+		);
 		
 		$this->view->set('list', $list);
 		$this->view->set('excel', $excel);
-		$this->view->set('interesses', $interesse);
+		$this->view->set('interesses', Interesse::find());
 		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'eseg.ordem')));
 		$this->view->set('can', Calendario::ean());
 		$this->view->set('cmes', Calendario::emes());

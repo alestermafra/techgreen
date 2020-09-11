@@ -120,7 +120,7 @@
                             <?php foreach($interesses as $interesse): ?>
                                 <div class="col-md-3">
                                     <div class="form-check">
-                                        <input type="checkbox"  name="ctinteresse<?=$interesse["ctinteresse"]?>"  value="<?=$interesse["ctinteresse"]?>" <?= _isset($_GET['ctinteresse'.$interesse["ctinteresse"]])? 'checked' : '' ?>  onchange="this.form.submit()">
+                                        <input type="checkbox"  name="interesses[]"  value="<?=$interesse["ctinteresse"]?>" onchange="this.form.submit()" <?= (in_array($interesse['ctinteresse'], $_GET['interesses'] ?? [])? 'checked' : '') ?>>
                                         <label class="form-check-label form-control-sm"><?= $interesse["ntinteresse"] ?></label>
                                     </div>
                                 </div>
