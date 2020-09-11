@@ -29,6 +29,7 @@ class Pessoa extends Table {
 		'eps.cps',
 		'eps.sps',
 		'eps.nps',
+		'eps.observacao',
 		'susu.cusu',
 		'upsf.cpsf',
 		'upsj.cpsj',
@@ -83,6 +84,9 @@ class Pessoa extends Table {
 		}
 		if(isset($data['flg_sys'])) {
 			$new_data['flg_sys'] = intval($data['flg_sys']);
+		}
+		if(isset($data['observacao'])) {
+			$new_data['observacao'] = strval($data['observacao']);
 		}
 		
 		return $new_data;

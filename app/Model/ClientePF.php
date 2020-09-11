@@ -30,6 +30,7 @@ class ClientePF extends Table {
 	public static $_fields = array(
 		'eps.cps',
 		'eps.nps',
+		'eps.observacao',
 		'upsf.cpsf',
 		'upsf.d_nasc',
 		'upsf.m_nasc',

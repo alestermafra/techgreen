@@ -159,6 +159,11 @@
 								</tr>
 								<?php endif; ?>
 							</table>
+
+							<div class="form-group">
+								<label class="text-muted">Observação</label>
+								<textarea class="form-control" disabled><?= $clientepf['observacao'] ?? '' ?></textarea>
+							</div>
 							
 							<div class="row">
 								<div class="col text-right">

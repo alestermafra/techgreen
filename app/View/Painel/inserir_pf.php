@@ -268,6 +268,17 @@
 				<?php endforeach; ?>
 			</div>
 		</div>
+		
+		<div class="card">
+			<div class="card-header bg-dark text-white">
+				Observação
+			</div>
+			<div class="card-body">
+				<div class="form-group">
+					<textarea name="observacao" class="form-control form-control-sm" placeholder="Oservação"><?= $_POST['observacao'] ?? '' ?></textarea>
+				</div>
+			</div>
+		</div>
 	
 		
 		<div class="form-group text-right">

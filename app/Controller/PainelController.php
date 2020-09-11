@@ -148,6 +148,7 @@ class PainelController extends AppController {
 			$clientepf['canais_contato'] = _isset($data['canais_contato'], array());
 			$clientepf['interesses'] = _isset($data['interesses'], array());
 			$clientepf['ativo'] = _isset($data['ativo'], $clientepf['ativo']);
+			$clientepf['observacao'] = _isset($data['observacao'], $clientepf['observacao']);
 			try {
 				ClientePF::save($clientepf);
 				return $this->redirect('/painel/overview_pf/' . $clientepf['cps']);

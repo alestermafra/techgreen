@@ -345,6 +345,17 @@
 		</div>
 	</div>
 
+	<div class="card">
+		<div class="card-header bg-dark text-white">
+			Observação
+		</div>
+		<div class="card-body">
+			<div class="form-group">
+				<textarea name="observacao" class="form-control form-control-sm" placeholder="Oservação"><?= $_POST['observacao'] ?? $clientepf['observacao'] ?? '' ?></textarea>
+			</div>
+		</div>
+	</div>
+
 	
 	<div class="form-group text-right">
 		<a class="btn btn-sm btn-light" role="button" style="width: 100px;" href="<?php echo $this->url('/painel/overview_pf/'.$clientepf['cps']) ?>">Cancelar</a>
