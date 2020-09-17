@@ -6,13 +6,13 @@ function can($action) {
 	$user = Auth::user();
 	switch($action) {
 		case 'add-guarderia':
-			if($user['cps'] == 5) { // camila nao pode add guarderia
+			if($user['cps'] == 5 || $user['cps'] == 9) { // camila nao pode add guarderia
 				return false;
 			}
 			break;
 
 		case 'edit-guarderia':
-			if($user['cps'] == 5) {
+			if($user['cps'] == 5 || $user['cps'] == 9) {
 				return false;
 			}
 			break;
