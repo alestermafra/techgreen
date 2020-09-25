@@ -18,3 +18,8 @@ function pluralize(array &$var, $sing, $plu) {
 function money(float $value) {
 	return 'R$ ' . number_format($value, 2, ',', '.');
 }
+
+function dd($var) {
+	var_dump($var);
+	die();
+}
