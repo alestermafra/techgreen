@@ -16,7 +16,7 @@
 	<?php endif ?>
 	
 	<?php if(in_array($user['sna'], array('ADM'))): ?>
-		<a href="#" style="text-decoration: none;">
+		<a href="<?= $this->url('/brecho') ?>" style="text-decoration: none;">
 			<li class="item-menu nav-item text-light noselect">Brechó</li>
 		</a>
 	<?php endif ?>

@@ -19,6 +19,7 @@
 	<link href="<?php echo $this->url('/css/css.css'); ?>" rel="stylesheet">
     
 	<script src="<?php echo $this->url('/js/mgold.js'); ?>"></script>
+	<script src="<?php echo $this->url('/js/jquery.mask.min.js'); ?>"></script>
 	
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" rel="stylesheet">
 	
