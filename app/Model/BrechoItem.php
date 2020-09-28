@@ -35,7 +35,9 @@ class BrechoItem {
     }
 
     static function find($id) {
-        $mysqli = new mysqli('localhost', 'root', '', 'pn');
+		config('database');
+		$config = DatabaseConfig::${'default'};
+        $mysqli = new mysqli($config['host'], $config['login'], $config['password'], $config['database']);
 
         if($mysqli->connect_error) {
             die('Database error: ' . $mysqli->connect_error);
@@ -69,7 +71,9 @@ class BrechoItem {
     }
 
     static function insert($brechoItem) {
-        $mysqli = new mysqli('localhost', 'root', '', 'pn');
+		config('database');
+		$config = DatabaseConfig::${'default'};
+        $mysqli = new mysqli($config['host'], $config['login'], $config['password'], $config['database']);
 
         if($mysqli->connect_error) {
             die('Database error: ' . $mysqli->connect_error);
@@ -96,7 +100,9 @@ class BrechoItem {
     }
 
     static function edit($brechoItem) {
-        $mysqli = new mysqli('localhost', 'root', '', 'pn');
+		config('database');
+		$config = DatabaseConfig::${'default'};
+        $mysqli = new mysqli($config['host'], $config['login'], $config['password'], $config['database']);
 
         if($mysqli->connect_error) {
             die('Database error: ' . $mysqli->connect_error);
@@ -121,7 +127,9 @@ class BrechoItem {
     }
 
     static function delete($brechoItem) {
-        $mysqli = new mysqli('localhost', 'root', '', 'pn');
+		config('database');
+		$config = DatabaseConfig::${'default'};
+        $mysqli = new mysqli($config['host'], $config['login'], $config['password'], $config['database']);
 
         if($mysqli->connect_error) {
             die('Database error: ' . $mysqli->connect_error);
