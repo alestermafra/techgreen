@@ -20,27 +20,30 @@ class BrechoController extends AppController {
         $bindTypes = '';
         $where = '';
 
-        if($filter['search'] || $filter['tipo_embarcacao']) {
-            if($filter['search']) {
-                $where .= " AND (cod_referencia like ? OR nome like ? OR marca like ? or modelo like ? or tamanho like ? or cor like ? or estado like ? or observacao like ?)";
-                for($i = 0; $i < 8; $i++) {
-                    $bind[] = '%' . $filter['search'] . '%';
-                    $bindTypes .= 's';
-                }
+        // where
+        // montar o where
+        // precisa desta variável para ser usada também na query do count mais a frente.
+        if($filter['search']) {
+            // quando alterar estas condicoes, corrigir também o for pois ele tem que percorrer a quantidade de likes que está fazendo.
+            $where .= " AND (cod_referencia like ? OR nome like ? OR marca like ? or modelo like ? or tamanho like ? or cor like ? or estado like ? or observacao like ?)";
+            for($i = 0; $i < 8; $i++) {
+                $bind[] = '%' . $filter['search'] . '%';
+                $bindTypes .= 's';
             }
+        }
 
-            if($filter['tipo_embarcacao']) {
-                $where .= " AND eprod.cprod = ?";
-                $bind[] = $filter['tipo_embarcacao'];
-                $bindTypes .= 'i';
-            }
-
-            $query .= $where;
+        if($filter['tipo_embarcacao']) {
+            $where .= " AND brecho_itens.tipo_embarcacao_cprod = ?";
+            $bind[] = $filter['tipo_embarcacao'];
+            $bindTypes .= 'i';
         }
 
         if($filter['exibir_vendidos'] == 'nao_exibir_vendidos') {
-            $query .= " AND brecho_itens.data_venda is null ";
+            $where .= " AND brecho_itens.data_venda is null ";
         }
+
+        $query .= $where;
+        // fim where
 
         if($filter['order']) {
             $query .= " ORDER BY {$filter['order']}";
@@ -94,8 +97,10 @@ class BrechoController extends AppController {
         $stmt->close();
         $mysqli->close();
 
+        $tiposEmbarcacoes = array_merge([['cprod' => -1, 'nprod' => 'Todos']], Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
+
         $this->view->set('brechoItens', $arr);
-        $this->view->set('tiposEmbarcacoes', Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
+        $this->view->set('tiposEmbarcacoes', $tiposEmbarcacoes);
         $this->view->set('count', $count);
     }
 
@@ -113,7 +118,9 @@ class BrechoController extends AppController {
             }
         }
 
-        $this->view->set('tipos_embarcacoes', Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
+        $tipos_embarcacoes = array_merge([['cprod' => -1, 'nprod' => 'Todos']], Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
+
+        $this->view->set('tipos_embarcacoes', $tipos_embarcacoes);
     }
 
     public function edit($id) {
@@ -135,8 +142,10 @@ class BrechoController extends AppController {
             }
         }
 
+        $tipos_embarcacoes = array_merge([['cprod' => -1, 'nprod' => 'Todos']], Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
+
         $this->view->set('brechoItem', $brechoItem);
-        $this->view->set('tipos_embarcacoes', Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
+        $this->view->set('tipos_embarcacoes', $tipos_embarcacoes);
     }
 
     public function show($id) {

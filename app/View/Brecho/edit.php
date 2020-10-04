@@ -67,6 +67,7 @@
                         <label title="Estado de conservação do equipamento">Estado</label>
                         <select name="estado" class="form-control" title="Estado de conservação do equipamento">
                             <option value="" selected hidden>Selecione</option>
+                            <option value="Novo" <?= $brechoItem->estado == 'Novo'? 'selected' : '' ?>>Novo</option>
                             <option value="Ótimo" <?= $brechoItem->estado == 'Ótimo'? 'selected' : '' ?>>Ótimo</option>
                             <option value="Bom" <?= $brechoItem->estado == 'Bom'? 'selected' : '' ?>>Bom</option>
                             <option value="Ruim" <?= $brechoItem->estado == 'Ruim'? 'selected' : '' ?>>Ruim</option>

@@ -67,6 +67,7 @@
                         <label title="Estado de conservação do equipamento">Estado</label>
                         <select name="estado" class="form-control" title="Estado de conservação do equipamento">
                             <option value="" selected hidden>Selecione</option>
+                            <option value="Novo">Novo</option>
                             <option value="Ótimo">Ótimo</option>
                             <option value="Bom">Bom</option>
                             <option value="Ruim">Ruim</option>

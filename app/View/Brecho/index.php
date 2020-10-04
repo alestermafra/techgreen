@@ -32,7 +32,7 @@
                     <div class="form-group col-md-3">
                         <label>Tipo de Embarcação</label>
                         <select name="tipo_embarcacao" class="form-control" onchange="this.form.submit()">
-                            <option value="" selected>Todos</option>
+                            <option value="" selected>Selecione</option>
                             <?php foreach($tiposEmbarcacoes as $tipoEmbarcacao): ?>
                                 <option value="<?= $tipoEmbarcacao['cprod']; ?>" <?= ($_GET['tipo_embarcacao'] ?? 0) == $tipoEmbarcacao['cprod']? 'selected' : '' ?>><?= $tipoEmbarcacao['nprod']; ?></option>
                             <?php endforeach; ?>
@@ -85,8 +85,9 @@
             <table class="table table-hover">
                 <thead>
                     <th>Cód. Ref.</th>
-                    <th>Tipo de Embarcação</th>
                     <th>Equipamento</th>
+                    <th>Tipo de Embarcação</th>
+                    <th>Estado</th>
                     <th>Valor</th>
                     <?php if(($_GET['exibir_vendidos'] ?? '') == 'exibir_vendidos'): ?>
                         <th>Data Venda</th>
@@ -102,8 +103,9 @@
                     <?php foreach($brechoItens as $brechoItem): ?>
                         <tr>
                             <td><?= $brechoItem->cod_referencia ?></td>
-                            <td><?= $brechoItem->tipo_embarcacao ?></td>
                             <td><?= $brechoItem->nome ?></td>
+                            <td><?= $brechoItem->tipo_embarcacao_cprod == -1? 'Todos' : $brechoItem->tipo_embarcacao ?></td>
+                            <td><?= $brechoItem->estado ?></td>
                             <td><?= $brechoItem->valor ?></td>
                             <?php if(($_GET['exibir_vendidos'] ?? '') == 'exibir_vendidos'): ?>
                                 <td><?= $brechoItem->data_venda? date('d/m/Y', strtotime($brechoItem->data_venda)) : '' ?></td>
