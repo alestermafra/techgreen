@@ -104,7 +104,7 @@
                         <tr>
                             <td><?= $brechoItem->cod_referencia ?></td>
                             <td><?= $brechoItem->nome ?></td>
-                            <td><?= $brechoItem->tipo_embarcacao_cprod == -1? 'Todos' : $brechoItem->tipo_embarcacao ?></td>
+                            <td><?= $brechoItem->tipo_embarcacao_cprod == -1? 'Todas' : $brechoItem->tipo_embarcacao ?></td>
                             <td><?= $brechoItem->estado ?></td>
                             <td><?= $brechoItem->valor ?></td>
                             <?php if(($_GET['exibir_vendidos'] ?? '') == 'exibir_vendidos'): ?>

@@ -97,7 +97,7 @@ class BrechoController extends AppController {
         $stmt->close();
         $mysqli->close();
 
-        $tiposEmbarcacoes = array_merge([['cprod' => -1, 'nprod' => 'Todos']], Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
+        $tiposEmbarcacoes = array_merge([['cprod' => -1, 'nprod' => 'Todas']], Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
 
         $this->view->set('brechoItens', $arr);
         $this->view->set('tiposEmbarcacoes', $tiposEmbarcacoes);
@@ -118,7 +118,7 @@ class BrechoController extends AppController {
             }
         }
 
-        $tipos_embarcacoes = array_merge([['cprod' => -1, 'nprod' => 'Todos']], Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
+        $tipos_embarcacoes = array_merge([['cprod' => -1, 'nprod' => 'Todas']], Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
 
         $this->view->set('tipos_embarcacoes', $tipos_embarcacoes);
     }
@@ -142,7 +142,7 @@ class BrechoController extends AppController {
             }
         }
 
-        $tipos_embarcacoes = array_merge([['cprod' => -1, 'nprod' => 'Todos']], Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
+        $tipos_embarcacoes = array_merge([['cprod' => -1, 'nprod' => 'Todas']], Produto::findByCscat(1, 'all', ['order' => 'eprod.nprod ASC']));
 
         $this->view->set('brechoItem', $brechoItem);
         $this->view->set('tipos_embarcacoes', $tipos_embarcacoes);
