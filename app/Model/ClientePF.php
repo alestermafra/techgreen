@@ -16,6 +16,7 @@ class ClientePF extends Table {
 			INNER JOIN eps ON (eps.cps = zpainel.cps)
 			INNER JOIN upsf ON (upsf.cps = eps.cps)
 			LEFT JOIN eseg ON (eseg.cseg = zpainel.cseg)
+			LEFT JOIN eseg2 ON (eseg2.id = zpainel.cseg2)
 			LEFT JOIN zfone ON (zfone.cps = eps.cps AND zfone.flg_principal = 1)
 		WHERE eps.RA = 1
 			AND upsf.RA = 1
@@ -53,6 +54,8 @@ class ClientePF extends Table {
 		'zpainel.ativo',
 		'eseg.cseg',
 		'eseg.nseg',
+		'eseg2.id',
+		'eseg2.classificacao',
 		'zfone.cfone',
 		'zfone.fone',
 	);
@@ -133,6 +136,9 @@ class ClientePF extends Table {
 		}
 		if(isset($data['cseg'])) {
 			$new_data['cseg'] = intval($data['cseg']);
+		}
+		if(isset($data['cseg2'])) {
+			$new_data['cseg2'] = intval($data['cseg2']);
 		}
 		if(isset($data['ativo'])) {
 			$new_data['ativo'] = intval($data['ativo']);

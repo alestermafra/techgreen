@@ -55,8 +55,16 @@
 									<td><?= $clientepf['nps'] ?></td>
 								</tr>
 								<tr>
-									<td class="text-muted">Classificação</td>
-									<td><?= $clientepf['nseg'] ?></td>
+									<td class="text-muted">Classificação Primária</td>
+									<td>
+										<?= $clientepf['classificacao'] ?? 'N/A' ?>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-muted">Classificação Secundária</td>
+									<td>
+										<?= $clientepf['nseg'] ?>
+									</td>
 								</tr>
 								<?php if(!empty($clientepf['email'])): ?>
 								<tr>

@@ -60,8 +60,20 @@
 					</div>
 					
 					<div class="form-group col-xl-2">
-						<label class="small text-muted">Classificação</label>
+						<label class="small text-muted">Classificação Primária</label>
+						<select name="seg2" class="form-control form-control-sm" onchange="this.form.submit()">
+							<option value="" hidden selected>Selecione</option>
+							<?php foreach($classificacoes as $s): ?>
+								<option value="<?php echo $s['id'] ?>"<?php echo _isset($_GET['seg2'], '') === $s['id']? ' selected' : '' ?>><?php echo $s['classificacao'] ?></option>
+							<?php endforeach ?>
+                            	<option value="todos">Todos</option>
+						</select>
+					</div>
+					
+					<div class="form-group col-xl-2">
+						<label class="small text-muted">Classificação Secundária</label>
 						<select name="seg" class="form-control form-control-sm" onchange="this.form.submit()">
+						<option value="" hidden selected>Selecione</option>
 							<?php foreach($segmentacoes as $s): ?>
 								<option value="<?php echo $s['cseg'] ?>"<?php echo _isset($_GET['seg'], '') === $s['cseg']? ' selected' : '' ?>><?php echo $s['nseg'] ?></option>
 							<?php endforeach ?>
@@ -101,7 +113,6 @@
 						</select>
 					</div>
                     
-                     <div class="col-xl-2"></div>
                     
                     <div class="form-group col-xl-2 text-right align-bottom">
                     	<input type="hidden" value="0" name="excel" id="excel"/>
@@ -149,7 +160,8 @@
 				<tr>
 					<th scope="col" class="small">Id</th>
 					<th scope="col" class="small">Nome</th>
-                    <th scope="col" class="small">Classificação</th>
+                    <th scope="col" class="small">Classif. Prim.</th>
+                    <th scope="col" class="small">Classif. Sec.</th>
                     <th scope="col" class="small">Status</th>
                     <th scope="col" class="small">Data Contato</th>
                     <th scope="col" class="small">Telefone</th>

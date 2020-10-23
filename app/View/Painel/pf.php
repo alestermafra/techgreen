@@ -52,7 +52,8 @@
 						<label class="small text-muted">Ordenação</label>
 						<select name="order" class="form-control form-control-sm" onchange="this.form.submit()">
 							<option value="nome"<?php echo isset($_GET['order']) && $_GET['order'] === "nome"? ' selected':'' ?>>Nome do Velejador</option>
-                            <option value="segmentacao"<?php echo isset($_GET['order']) && $_GET['order'] === "segmentacao"? ' selected':'' ?>>Classificação</option>
+                            <option value="cseg2"<?php echo isset($_GET['order']) && $_GET['order'] === "cseg2"? ' selected':'' ?>>Classificação Primária</option>
+                            <option value="segmentacao"<?php echo isset($_GET['order']) && $_GET['order'] === "segmentacao"? ' selected':'' ?>>Classificação Secundária</option>
                             <option value="data"<?php echo isset($_GET['order']) && $_GET['order'] === "data"? ' selected':'' ?>>Data de Inserção</option>
 						</select>
 					</div>
@@ -99,7 +100,8 @@
 				<tr>
 					<th scope="col" class="small">id</th>
 					<th scope="col" class="small">Nome</th>
-					<th scope="col" class="small">Classificação</th>
+					<th scope="col" class="small">Classif. Prim.</th>
+					<th scope="col" class="small">Classif. Sec.</th>
                     <th scope="col" class="small">CPF</th>
 					<th scope="col" class="small">Telefone</th>
 					<th scope="col" class="small">1º Contato</th>
@@ -110,6 +112,7 @@
 				<tr style="cursor: pointer" onclick="window.location = '<?php echo $this->url('/painel/overview_pf/' . $d['cps']) ?>'">
 					<td nowrap><?php echo $d['cps'] ?></td>
 					<td nowrap><?php echo $d['nps'] ?></td>
+					<td nowrap><?php echo $d['classificacao'] ?></td>
 					<td nowrap><?php echo $d['nseg'] ?></td>
                     <td nowrap><?php echo cpf_mask($d['cpf']) ?></td>
 					<td nowrap><?= fone_mask($d['fone']) ?></td>

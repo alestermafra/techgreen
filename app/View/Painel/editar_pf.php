@@ -43,13 +43,24 @@
 				<label class="small text-muted">Nome</label>
 				<input name="nps" type="text" class="form-control form-control-sm" placeholder="Nome completo" value="<?php echo _isset($_POST['nps'], $clientepf['nps']) ?>" autocomplete="off" required>
 			</div>
-			<div class="form-group">
-				<label class="small text-muted">Classificação</label>
-				<select name="cseg" class="form-control form-control-sm">
-					<?php foreach($segmentacoes as $seg): ?>
-						<option value="<?php echo $seg['cseg'] ?>"<?php echo $seg['cseg'] == _isset($_POST['cseg'], $clientepf['cseg'])? ' selected' : '' ?>><?php echo $seg['nseg'] ?></option>
-					<?php endforeach ?>
-				</select>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label class="small text-muted">Classificação Primária</label>
+					<select name="cseg2" class="form-control form-control-sm">
+						<option value="" hidden selected>Selecione</option>
+						<?php foreach($classificacoes as $classificacao): ?>
+							<option value="<?php echo $classificacao['id'] ?>"<?= ($classificacao['id'] == _isset($_POST['cseg2'], $clientepf['id'])? 'selected' : '')?>><?php echo $classificacao['classificacao'] ?></option>
+						<?php endforeach ?>
+					</select>
+				</div>
+				<div class="form-group col-md-6">
+					<label class="small text-muted">Classificação Secundária</label>
+					<select name="cseg" class="form-control form-control-sm">
+						<?php foreach($segmentacoes as $seg): ?>
+							<option value="<?php echo $seg['cseg'] ?>"<?php echo $seg['cseg'] == _isset($_POST['cseg'], $clientepf['cseg'])? ' selected' : '' ?>><?php echo $seg['nseg'] ?></option>
+						<?php endforeach ?>
+					</select>
+				</div>
 			</div>
 			<div class="form-group">
 				<div class="form-row">

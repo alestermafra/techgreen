@@ -14,6 +14,7 @@ App::import('ClienteCanal', 'Model');
 App::import('Interesse', 'Model');
 App::import('ClienteInteresse', 'Model');
 App::import('Segmentacao', 'Model');
+App::import('Classificacao', 'Model');
 App::import('TipoTelefone', 'Model');
 App::import('ParticipanteAula', 'Model');
 App::import('Equipamento', 'Model');
@@ -37,6 +38,7 @@ class PainelController extends AppController {
 		$order_values = array(
 			'default' => 'eps.nps',
 			'nome' => 'eps.nps',
+			'cseg2' => 'eseg2.classificacao',
 			'segmentacao' => 'eseg.nseg',
 			'data' => 'eps.ts',
 		);
@@ -113,6 +115,7 @@ class PainelController extends AppController {
 		$this->view->set('canais', Canal::find());
 		$this->view->set('canais_contato', CanalContato::find());
 		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'eseg.ordem')));
+		$this->view->set('classificacoes', Classificacao::find('all', array('order' => 'eseg2.ordem')));
 		$this->view->set('tipos_telefone', TipoTelefone::find());
 		$this->view->set('tipos_endereco', Endereco::tipoEndereco());
 	}
@@ -144,6 +147,7 @@ class PainelController extends AppController {
 			$clientepf['a_contato'] = _isset($data['a_contato'], $clientepf['a_contato']);
 			$clientepf['telefones'] = _isset($data['telefones'], array());
 			$clientepf['cseg'] = _isset($data['cseg'], $clientepf['cseg']);
+			$clientepf['cseg2'] = _isset($data['cseg2'], $clientepf['id']);
 			$clientepf['canais'] = _isset($data['canais'], array());
 			$clientepf['canais_contato'] = _isset($data['canais_contato'], array());
 			$clientepf['interesses'] = _isset($data['interesses'], array());
@@ -166,6 +170,7 @@ class PainelController extends AppController {
 				
 		$this->view->set('clientepf', $clientepf);
 		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'eseg.ordem')));
+		$this->view->set('classificacoes', Classificacao::find('all', array('order' => 'eseg2.ordem')));
 		$this->view->set('interesses', Interesse::find());
 		$this->view->set('canais', Canal::find());
 		$this->view->set('canais_contato', CanalContato::find());
@@ -280,6 +285,7 @@ class PainelController extends AppController {
 		$dia = $_GET['dia'] ?? 0;
 		$mes = $_GET['mes'] ?? 0;
 		$ano = $_GET['ano'] ?? 0;
+		$cseg2 = $_GET['seg2'] ?? 0;
 		$cseg = $_GET['seg'] ?? 0;
 		$interesses = $_GET['interesses'] ?? [];
 
@@ -296,6 +302,9 @@ class PainelController extends AppController {
 		}
 		if($cseg > 0) {
 			$conditions .= " AND zpainel.cseg = $cseg";
+		}
+		if($cseg2 > 0) {
+			$conditions .= " AND eseg2.id = $cseg2";
 		}
 		if(!empty($interesses)) {
 			foreach($interesses as $interesse) {
@@ -315,6 +324,7 @@ class PainelController extends AppController {
 		$this->view->set('excel', $excel);
 		$this->view->set('interesses', Interesse::find());
 		$this->view->set('segmentacoes', Segmentacao::find('all', array('order' => 'eseg.ordem')));
+		$this->view->set('classificacoes', Classificacao::find('all', array('order' => 'eseg2.ordem')));
 		$this->view->set('can', Calendario::ean());
 		$this->view->set('cmes', Calendario::emes());
 		$this->view->set('cdia', Calendario::edia());
