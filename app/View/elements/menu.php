@@ -3,25 +3,25 @@
 ?>
 
 <ul class="menu nav flex-column bg-dark">
-	<?php if(in_array($user['sna'], array('ADM', 'AREANAU', 'INST'))): ?>
+	<?php if(can('permission-agenda-view')): ?>
 		<a href="<?= $this->url('/agenda/agenda') ?>" style="text-decoration: none;">
 			<li class="item-menu nav-item text-light noselect">Agenda</li>
 		</a>
 	<?php endif ?>
 
-	<?php if(in_array($user['sna'], array('ADM'))): ?>
+	<?php if(can('permission-painel-view')): ?>
 		<a href="<?= $this->url('/painel/pf') ?>" style="text-decoration: none;">
 			<li class="item-menu nav-item text-light noselect">Velejadores</li>
 		</a>
 	<?php endif ?>
 	
-	<?php if(in_array($user['sna'], array('ADM'))): ?>
+	<?php if(can('permission-brecho-view')): ?>
 		<a href="<?= $this->url('/brecho') ?>" style="text-decoration: none;">
 			<li class="item-menu nav-item text-light noselect">Brechó</li>
 		</a>
 	<?php endif ?>
 
-	<?php if(in_array($user['sna'], array('ADM'))): ?>
+	<?php if(can('permission-administracao-view')): ?>
 		<li class="nav-item text-light noselect">
 			<div class="item-menu noselect" data-toggle="collapse" data-target="#menu-administracao">Administração</div>
 			<div class="collapse" id="menu-administracao">
@@ -37,32 +37,26 @@
 		</li>
 	<?php endif ?>
 
-	<?php if(in_array($user['sna'], array('ADM', 'INST'))): ?>
+	<?php if(true): ?>
 		<li class="nav-item text-light noselect">
 			<div class="item-menu noselect" data-toggle="collapse" data-target="#menu-servicos">Serviços</div>
 			<div class="collapse" id="menu-servicos">
 				<ul class="menu nav flex-column bg-dark">
-					<?php if(in_array($user['sna'], array('ADM'))): ?>
+					<?php if(can('permission-guarderias-view')): ?>
 						<a href="<?= $this->url('/guardaria') ?>" style="text-decoration: none;">
 							<li class="item-menu nav-item text-light noselect" style="padding-left: 25px;">Guarderia</li>
 						</a>
 					<?php endif ?>
 
-					<?php if(in_array($user['sna'], array('ADM', 'INST'))): ?>
+					<?php if(can('permission-aulas-view')): ?>
 						<a href="<?= $this->url('/aula') ?>" style="text-decoration: none;">
 							<li class="item-menu nav-item text-light noselect" style="padding-left: 25px;">Aulas</li>
 						</a>
 					<?php endif ?>
 
-					<?php if(in_array($user['sna'], array('ADM'))): ?>
+					<?php if(can('permission-locacoes-view')): ?>
 						<a href="<?= $this->url('/locacao') ?>" style="text-decoration: none;">
 							<li class="item-menu nav-item text-light noselect" style="padding-left: 25px;">Locação</li>
-						</a>
-					<?php endif ?>
-
-					<?php if(in_array($user['sna'], array('ADM'))): ?>
-						<a href="<?= $this->url('/diariavelejador') ?>" style="text-decoration: none;">
-							<li class="item-menu nav-item text-light noselect" style="padding-left: 25px;">Diária/Pernoite</li>
 						</a>
 					<?php endif ?>
 				</ul>
@@ -70,7 +64,7 @@
 		</li>
 	<?php endif ?>
 
-	<?php if(in_array($user['sna'], array('ADM'))): ?>
+	<?php if(can('permission-tabela_precos-view')): ?>
 		<li class="nav-item text-light noselect">
 			<div class="item-menu noselect" data-toggle="collapse" data-target="#menu-tabela-de-precos">Tabela de Preços</div>
 			<div class="collapse" id="menu-tabela-de-precos">
@@ -83,7 +77,7 @@
 		</li>
 	<?php endif ?>
 
-	<?php if(in_array($user['sna'], array('ADM'))): ?>
+	<?php if(can('permission-relatorios-view')): ?>
 		<li class="nav-item text-light noselect">
 			<div class="item-menu noselect" data-toggle="collapse" data-target="#menu-relatorios">Relatórios</div>
 			<div class="collapse" id="menu-relatorios">
@@ -114,7 +108,7 @@
 		</li>
 	<?php endif ?>
 	
-	<?php if(Auth::user()['lg'] === 'gold'): ?>
+	<?php if(can('permission-usuarios-view')): ?>
 		<a href="<?= $this->url('/usuario') ?>" style="text-decoration: none;">
 			<li class="item-menu nav-item text-light noselect">Usuários</li>
 		</a>

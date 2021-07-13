@@ -13,7 +13,7 @@
 	<span class="navbar-brand">Aula / Curso</span>
 	<div>
 		<a href="<?php echo $this->url('/aula') ?>" class="btn btn-sm btn-secondary">Ir para a lista</a>
-		<a href="<?php echo $this->url('/aula/editar/' . $aula['caula']) ?>" class="btn btn-sm btn-primary" role="button">Editar</a>
+		<?php if(can('permission-aulas-edit')): ?> <a href="<?php echo $this->url('/aula/editar/' . $aula['caula']) ?>" class="btn btn-sm btn-primary" role="button">Editar</a> <?php endif ?>
 	</div>
 </nav>
 

@@ -4,24 +4,10 @@ include APP . DS . 'lib' . DS . 'view_utils.php';
 
 function can($action) {
 	$user = Auth::user();
-	switch($action) {
-		case 'add-guarderia':
-			if($user['cps'] == 5 || $user['cps'] == 19671) { // camila nao pode add guarderia
-				return false;
-			}
-			break;
+	$permissoes = Usuario::getPermissoes($user['cusu']);
 
-		case 'edit-guarderia':
-			if($user['cps'] == 5 || $user['cps'] == 19671) {
-				return false;
-			}
-			break;
-	}
-
-	return true;
+	return $user['admin'] || in_array($action, $permissoes);
 }
 /* grava o log na ticket */
 //App::import('Tickets', 'Model');
 //Tickets::insert();
-
-

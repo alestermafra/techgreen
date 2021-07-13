@@ -15,7 +15,9 @@
 <nav class="navbar navbar-light">
 	<span class="navbar-brand">Locação de Equipamentos</span>
 	<div>
-		<a href="<?php echo $this->url('/locacao/inserir') ?>" class="btn btn-sm btn-success" role="button" title="Novo registro">Adicionar</a>
+		<?php if(can('permission-locacoes-add')): ?>
+			<a href="<?php echo $this->url('/locacao/inserir') ?>" class="btn btn-sm btn-success" role="button" title="Novo registro">Adicionar</a>
+		<?php endif ?>
 	</div>
 </nav>
 

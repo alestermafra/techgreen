@@ -36,6 +36,7 @@ class UsuarioController extends AppController {
 			$data = $_POST;
 			try {
 				$usuario = Usuario::save($data);
+				Usuario::setPermissoes($usuario['cusu'], $data['permissoes'] ?? []);
 				return $this->redirect('/usuario/lista');
 			}
 			catch(Exception $e) {
@@ -58,8 +59,10 @@ class UsuarioController extends AppController {
 			$usuario['pwd'] = _isset($_POST['pwd'], $usuario['pwd']);
 			$usuario['email'] = _isset($_POST['email'], $usuario['email']);
 			$usuario['cna'] = _isset($_POST['cna'], $usuario['cna']);
+			$usuario['admin'] = $_POST['admin'] ?? $usuario['admin'] ?? 0;
 			try {
 				Usuario::save($usuario);
+				Usuario::setPermissoes($usuario['cusu'], _isset($_POST['permissoes'], []));
 				return $this->redirect('/usuario/lista');
 			}
 			catch(Exception $e) {
@@ -68,6 +71,7 @@ class UsuarioController extends AppController {
 		}
 		
 		$this->view->set('usuario', Usuario::findById($cusu));
+		$this->view->set('permissoes_usuario', Usuario::getPermissoes($cusu));
 		$this->view->set('niveis_acesso', NivelAcesso::find());
 	}
 

@@ -25,7 +25,7 @@
 
             <form method="GET">    
                 <div class="form-group">
-                    <a href="<?= $this->url('/brecho/create') ?>" class="btn btn-success">Adicionar</a>
+                    <?php if(can('permission-brecho-add')): ?> <a href="<?= $this->url('/brecho/create') ?>" class="btn btn-success">Adicionar</a> <?php endif ?>
                 </div>
 
                 <div class="form-row">
@@ -118,7 +118,7 @@
 
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="<?= $this->url('/brecho/show/' . $brechoItem->id) ?>">Visualizar</a>
-                                        <a class="dropdown-item" href="<?= $this->url('/brecho/edit/' . $brechoItem->id) ?>">Editar</a>
+                                        <?php if(can('permission-brecho-edit')): ?> <a class="dropdown-item" href="<?= $this->url('/brecho/edit/' . $brechoItem->id) ?>">Editar</a> <?php endif ?>
                                     </div>
                                 </div>
                             </td>

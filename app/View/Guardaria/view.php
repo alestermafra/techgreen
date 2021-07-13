@@ -6,7 +6,7 @@
 	<span class="navbar-brand">Guarderia</span>
 	<div>
 		<a href="<?php echo $this->url('/guardaria') ?>" class="btn btn-sm btn-secondary">Ir para a lista</a>
-		<?php if(can('edit-guarderia')): ?>
+		<?php if(can('permission-guarderias-edit')): ?>
 			<a href="<?php echo $this->url('/guardaria/editar/' . $guardaria['cguardaria']) ?>" class="btn btn-sm btn-primary" role="button">Editar</a>
 		<?php endif; ?>
 	</div>
@@ -82,7 +82,7 @@
 					</div>
 					
 					<div class="float-right">
-						<?php if(can('edit-guarderia')): ?>
+						<?php if(can('permission-guarderias-edit')): ?>
 							<?php if($guardaria['ativo'] == 1): ?>
 								<form action="<?php echo $this->url('/guardaria/cancelar_contrato/' . $guardaria['cguardaria']) ?>" method="POST">
 									<input type="submit" class="btn btn-sm btn-danger" value="Cancelar Contrato"></input>
@@ -155,7 +155,7 @@
 						</div>
 					</div>
 
-					<?php if(can('edit-guarderia')): ?>
+					<?php if(can('permission-guarderias-edit')): ?>
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#informar-pagamento-modal">
 							Informar Pagamento
 						</button>
@@ -187,7 +187,7 @@
 										<td class="align-middle" nowrap><?= money($pagamento['valor']); ?></td>
 										<td class="align-middle" nowrap><?= date('d/m/Y', strtotime($pagamento['data_pagamento'])) ?></td>
 										<td class="align-middle">
-											<?php if(can('edit-guarderia')): ?>
+											<?php if(can('permission-guarderias-edit')): ?>
 												<div class="dropdown text-center">
 													<a href="#" class="btn btn-link p-0 m-0" id="historico-dropdown-btn" data-toggle="dropdown">
 														<span class="material-icons align-middle">more_vert</span>

@@ -97,12 +97,17 @@
                 <textarea class="form-control" disabled><?= $brechoItem->observacao ?></textarea>
             </div>
 
+            
             <div class="form-group">
-                <a href="<?= $this->url('/brecho/edit/' . $brechoItem->id) ?>" class="btn btn-primary">Editar</a>
-                <?php if(!$brechoItem->vendido()): ?>
-                    <a href="<?= $this->url('/brecho/baixa/' . $brechoItem->id) ?>" class="btn btn-warning">Dar Baixa</a>
-                <?php endif; ?>
-                <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#destroyBrechoItemModal">Deletar</a>
+                <?php if(can('permission-brecho-edit')): ?>
+                    <a href="<?= $this->url('/brecho/edit/' . $brechoItem->id) ?>" class="btn btn-primary">Editar</a>
+                    <?php if(!$brechoItem->vendido()): ?>
+                        <a href="<?= $this->url('/brecho/baixa/' . $brechoItem->id) ?>" class="btn btn-warning">Dar Baixa</a>
+                    <?php endif; ?>
+                <?php endif ?>
+                <?php if(can('permission-brecho-destroy')): ?>
+                    <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#destroyBrechoItemModal">Deletar</a>
+                <?php endif ?>
             </div>
         </div>
     </div>

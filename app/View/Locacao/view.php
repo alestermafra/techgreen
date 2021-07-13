@@ -2,18 +2,20 @@
 	<span class="navbar-brand">Locação</span>
 	<div>
 		<a href="<?php echo $this->url('/locacao') ?>" class="btn btn-sm btn-secondary">Ir para a lista</a>
-		<a href="<?php echo $this->url('/locacao/editar/' . $locacao['clocacao']) ?>" class="btn btn-sm btn-primary" role="button">Editar</a>
+		<?php if(can('permission-locacoes-edit')): ?>
+			<a href="<?php echo $this->url('/locacao/editar/' . $locacao['clocacao']) ?>" class="btn btn-sm btn-primary" role="button">Editar</a>
+		<?php endif ?>
 	</div>
 </nav>
 
 <?php if(isset($error)): ?>
-		<div class="alert alert-danger alert-dismissible fade show" role="alert">
-			<?php echo $error ?>
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-	<?php endif ?>
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<?php echo $error ?>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+<?php endif ?>
 
 
 
@@ -88,7 +90,7 @@
 						<div class="col-md-8">
 							<?php if($locacao['descricao'] === ''): ?>
 								<span class="small text-muted">
-									Nenhuma. <small>Clique em <a href="<?php echo $this->url('/aula/editar/' . $locacao['caula']) ?>">editar</a> para adicionar uma descrição.</small>
+									-
 								</span>
 							<?php else: ?>
 								<?php echo $locacao['descricao'] ?>
@@ -96,7 +98,9 @@
 						</div>
 					</div>
 					<div class="text-right">
-						<a href="<?php echo $this->url('/agenda/agendar_locacao/'.$locacao['clocacao']) ?>" class="btn btn-sm btn-success">Agendar aluguel</a>
+						<?php if(can('permission-locacoes-edit')): ?>
+							<a href="<?php echo $this->url('/agenda/agendar_locacao/'.$locacao['clocacao']) ?>" class="btn btn-sm btn-success">Agendar aluguel</a>
+						<?php endif ?>
 					</div>
 				</div>
 			</div>

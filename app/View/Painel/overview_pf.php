@@ -17,7 +17,9 @@
 	<span class="navbar-brand">Velejador</span>
 	<div>
 		<a href="<?php echo $this->url('/painel/pf') ?>" class="btn btn-sm btn-secondary">Ir para a lista</a>
-		<a href="<?php echo $this->url('/painel/editar_pf/' . $clientepf['cps']) ?>" class="btn btn-sm btn-primary" role="button">Editar</a>
+		<?php if(can('permission-painel-edit')): ?>
+			<a href="<?php echo $this->url('/painel/editar_pf/' . $clientepf['cps']) ?>" class="btn btn-sm btn-primary" role="button">Editar</a>
+		<?php endif ?>
 	</div>
 </nav>
 

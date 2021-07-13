@@ -14,7 +14,7 @@
 <nav class="navbar navbar-light">
 	<span class="navbar-brand">Aulas/Cursos</span>
 	<div>
-		<a href="<?php echo $this->url('/aula/inserir') ?>" class="btn btn-sm btn-success" role="button" title="Novo registro">Adicionar</a>
+		<?php if(can('permission-aulas-add')): ?><a href="<?php echo $this->url('/aula/inserir') ?>" class="btn btn-sm btn-success" role="button" title="Novo registro">Adicionar</a><?php endif ?>
 	</div>
 </nav>
 

@@ -14,7 +14,7 @@
 <nav class="navbar navbar-light">
 	<span class="navbar-brand">Guarderia</span>
 	<div>
-		<?php if(can('add-guarderia')): ?>
+		<?php if(can('permission-guarderias-add')): ?>
 			<a href="<?php echo $this->url('/guardaria/inserir') ?>" class="btn btn-sm btn-success" role="button" title="Novo registro">Adicionar</a>
 		<?php endif; ?>
 	</div>
@@ -121,7 +121,7 @@
 					};
 					 
 					foreach($list as $d): ?>
-					<tr style="cursor: pointer" onclick="window.location = '<?php echo $this->url('/guardaria/view/' . $d['cguardaria']) ?>'">
+					<tr style="cursor: pointer" <?php if(can('permission-guarderias-edit')): ?> onclick="window.location = '<?php echo $this->url('/guardaria/view/' . $d['cguardaria']) ?>'" <?php endif ?>>
 						<td nowrap><?php echo $d['cguardaria'] ?></td>
 						<td nowrap><?php echo $d['nps'] ?></td>
                         <td nowrap><?php echo $d['nome'] ?></td>

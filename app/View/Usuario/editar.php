@@ -1,3 +1,48 @@
+<?php
+	$permissoes = [
+		'permission-agenda-view',
+		'permission-agenda-add',
+		'permission-agenda-edit',
+		'permission-agenda-destroy',
+		'permission-painel-view',
+		'permission-painel-add',
+		'permission-painel-edit',
+		'permission-painel-destroy',
+		'permission-brecho-view',
+		'permission-brecho-add',
+		'permission-brecho-edit',
+		'permission-brecho-destroy',
+		'permission-administracao-view',
+		'permission-administracao-add',
+		'permission-administracao-edit',
+		'permission-administracao-destroy',
+		'permission-guarderias-view',
+		'permission-guarderias-add',
+		'permission-guarderias-edit',
+		'permission-guarderias-destroy',
+		'permission-aulas-view',
+		'permission-aulas-add',
+		'permission-aulas-edit',
+		'permission-aulas-destroy',
+		'permission-locacoes-view',
+		'permission-locacoes-add',
+		'permission-locacoes-edit',
+		'permission-locacoes-destroy',
+		'permission-tabela_precos-view',
+		'permission-tabela_precos-add',
+		'permission-tabela_precos-edit',
+		'permission-tabela_precos-destroy',
+		'permission-relatorios-view',
+		'permission-relatorios-add',
+		'permission-relatorios-edit',
+		'permission-relatorios-destroy',
+		'permission-usuarios-view',
+		'permission-usuarios-add',
+		'permission-usuarios-edit',
+		'permission-usuarios-destroy'
+	];
+?>
+
 <form action="<?php echo $this->url('/usuario/editar/' . $usuario['cusu']) ?>" method="POST">
 
 <nav class="navbar navbar-light">
@@ -52,13 +97,22 @@
 					<?php endif ?>
 				</div>
 				<div class="form-group">
-					<label class="small text-muted">Nível de Acesso</label> 
-					<select name="cna" id="nivel_acesso-select" class="form-control form-control-sm" required>
-						<option disabled>Selecione</option>
-						<?php foreach($niveis_acesso as $nivel_acesso): ?>
-							<option value="<?php echo $nivel_acesso['cna'] ?>"<?php echo $nivel_acesso['cna'] === _isset($_POST['nivel_acesso'], $usuario['cna'])? ' selected' : '' ?>><?php echo $nivel_acesso['nna'] ?></option>
-						<?php endforeach ?>
+					<label class="small text-muted">Admin?</label> 
+					<select name="admin" id="admin-select" class="form-control form-control-sm">
+						<option value="0">Não</option>
+						<option value="1" <?= ($_POST['admin'] ?? $usuario['admin'] ?? null) == 1? 'selected' : ''?>>Sim</option>
 					</select>
+				</div>
+				<div class="form-group">
+					<label class="small text-muted">Permissões (se não for admin)</label>
+					<?php foreach($permissoes as $permissao): ?>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" name="permissoes[]" value="<?= $permissao ?>" id="<?= $permissao ?>-checkbox" <?= (isset($_POST['permissoes']) && in_array($permissao, $_POST['permissoes'])? 'checked' : (in_array($permissao, $permissoes_usuario)? 'checked' : '')) ?>>
+							<label class="form-check-label" for="<?= $permissao ?>-checkbox">
+								<?= $permissao ?>
+							</label>
+						</div>
+					<?php endforeach ?>
 				</div>
 		  </div>
 		</div>

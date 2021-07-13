@@ -18,7 +18,10 @@
             <a href="<?php echo $this->url('/painel/pf') ?>" class="btn btn-sm btn-secondary" title="Visualizar PF">Pessoa Física</a>
             <a href="<?php echo $this->url('/painel/pj') ?>" class="btn btn-sm btn-secondary active" title="Visualizar PJ">Pessoa Jurídica</a>
 		</div>
-		<a href="<?php echo $this->url('/painel/inserir_pj') ?>" class="btn btn-sm btn-success" role="button" title="Novo registro">Adicionar</a>
+
+		<?php if(can('permission-painel-add')): ?>
+			<a href="<?php echo $this->url('/painel/inserir_pj') ?>" class="btn btn-sm btn-success" role="button" title="Novo registro">Adicionar</a>
+		<?php endif ?>
 	</div>
 </nav>
 

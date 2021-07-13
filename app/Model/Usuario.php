@@ -12,8 +12,7 @@ class Usuario extends Table {
 			{{fields}}
 		FROM susu
 			INNER JOIN eps ON (eps.cps = susu.cps)
-			INNER JOIN sna ON (sna.cna = susu.cna)
-		WHERE susu.RA = 1 AND eps.RA = 1 AND sna.RA = 1
+		WHERE susu.RA = 1 AND eps.RA = 1
 			{{conditions}}
 		{{group}}
 		{{order}}
@@ -23,6 +22,7 @@ class Usuario extends Table {
 	
 	public static $_fields = array(
 		'susu.cusu',
+		'susu.admin',
 		'susu.lg',
 		'susu.pwd',
 		'susu.email',
@@ -36,9 +36,9 @@ class Usuario extends Table {
 		'eps.cps',
 		'eps.sps',
 		'eps.nps',
-		'sna.cna',
-		'sna.sna',
-		'sna.nna',
+		'1 as cna',
+		'2 as sna',
+		'3 as nna',
 	);
 	
 	
@@ -62,9 +62,6 @@ class Usuario extends Table {
 		if(!isset($data['email']) || strlen($data['email']) == 0) {
 			throw new Exception("Email inválido.");
 		}
-		if(!isset($data['cna']) || !NivelAcesso::findById($data['cna'], 'count')) {
-			throw new Exception("Nível de acesso inválido.");
-		}
 		
 		if(static::findByLogin($data['lg'], 'count')) {
 			throw new Exception("Este login já está sendo usado.");
@@ -87,6 +84,7 @@ class Usuario extends Table {
 			'pwd' => (string) $data['pwd'],
 			'email' => (string) $data['email'],
 			'cna' => (int) $data['cna'],
+			'admin' => (int) $data['admin'],
 		];
 		$connection->insert('susu', $susu);
 		
@@ -105,9 +103,6 @@ class Usuario extends Table {
 		}
 		if(!isset($data['email']) || strlen($data['email']) == 0) {
 			throw new Exception("Email inválido.");
-		}
-		if(!isset($data['cna']) || !NivelAcesso::findById($data['cna'], 'count')) {
-			throw new Exception("Nível de acesso inválido.");
 		}
 		
 		$cps = (int) $data['cps'];
@@ -131,6 +126,7 @@ class Usuario extends Table {
 			'pwd' => (string) $data['pwd'],
 			'email' => (string) $data['email'],
 			'cna' => (int) $data['cna'],
+			'admin' => (int) $data['admin'],
 		];
 		$connection->update('susu', $susu, "susu.cps = $cps");
 		
@@ -197,5 +193,39 @@ class Usuario extends Table {
 		$params['conditions'] .= " OR sna.sna LIKE '%$value%'";
 		$params['conditions'] .= " OR sna.nna LIKE '%$value%' )";
 		return static::_find($type, $params);
+	}
+
+	// cache de permissoes
+	public static $permissoes = [];
+
+	public static function getPermissoes($cusu) {
+		if(!isset(static::$permissoes[$cusu])) {
+			$connection = new Connection();
+			$result = $connection->query('
+				SELECT 
+					permissao
+				FROM
+					permissoes
+				WHERE cusu = ' . $cusu
+			);
+
+			$permissoes = [];
+			foreach($result as $r) {
+				$permissoes[] = $r['permissao'];
+			}
+			static::$permissoes[$cusu] = $permissoes;
+		}
+
+		return static::$permissoes[$cusu];
+	}
+
+	public static function setPermissoes($cusu, $permissoes) {
+		$connection = new Connection();
+
+		$connection->query('DELETE FROM permissoes WHERE cusu = ' . $cusu);
+
+		foreach($permissoes as $permissao) {
+			$connection->query("INSERT INTO permissoes (cusu, permissao) VALUES ($cusu, '$permissao')");
+		}
 	}
 }
